@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>温化寒痰</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .fengm{
+            width: 450px;
+            height: 800px;
+            margin: 50px auto;
+            background-image: url(./封面/a6ea7135139f99d0d09fd4659a30fe74.jpeg);
+            background-position-x: 0;
+            background-position-y: 0;
+            color:#000
+        }
+
+        .fm-guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 32px;
+            /* color: aliceblue; */
+            margin-top: 100px;
+            font-family: 楷体;
+        }
+   
+        .fm-title{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 50px;
+            padding-top: 293px;
+        }
+
+        .list{
+            width: 450px;
+            height: 800px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            padding-top: 10px;
+
+            background-image: url(./封面/a6ea7135139f99d0d09fd4659a30fe74.jpeg);
+            background-position-x: 0;
+            background-position-y: 0;
+        }
+        .guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: large;
+            color: #000;
+        }
+        .img-box{
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .img-box img{
+            width: 100%;
+        }
+        .content-box{
+            padding: 5px 15px 0 15px;
+        }
+        .title{
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 27px;
+        }
+        .list-item{
+            line-height: 1.7em;
+            text-indent: 1.2em;
+            font-size: 20px;
+            font-family: 楷体;
+            font-weight: 600;
+
+        }
+        .biao{
+            height: 26px;
+            line-height: 26px;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 19px;
+            margin-top: 5px;
+        }
+        .list-item:first-of-type{
+            margin-top: 20px;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="mainApp" id="app">
+
+        <!--封面-->
+        <div class="fengm">
+            <div class="fm-title">
+                中草药
+            </div>
+            <div class="fm-guilei">
+                温化寒痰
+            </div>
+        </div>
+
+        <div v-for="yaowu in yao" class="list">
+            <div class="guilei">
+                温化寒痰
+            </div>
+            <div class="img-box">
+                <img :src="yaowu.img" alt="">
+            </div>
+            <div class="content-box">
+                <h3 class="title">{{yaowu.name}}</h3>
+                <div class="biao">药性：{{yaowu.yaoxing}}</div>
+                <div class="biao">功效：{{yaowu.zhuzhi}}</div>
+                <div v-for="gong in yaowu.gongxiao" class="list-item">
+                    {{gong}}
+                </div>
+                <div class="biao" v-if="yaowu.shiyong">使用方法</div>
+                <div class="list-item">
+                    {{yaowu.shiyong}}
+                </div>
+            </div>
+            
+        </div>
+
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                yao:[
+                    {
+                        name:"半夏",
+                        yaoxing:"辛，温；有毒。归脾、胃、肺经",
+                        zhuzhi:'燥湿化痰，降逆止呕，消痞散结',
+                        img:'./中药图片/化痰止咳平喘/半夏.jpeg',
+                        gongxiao:[
+                            "湿痰、寒痰。燥湿化痰、温化寒痰之要药，尤善治脏腑之湿痰",
+                            "有良好的止呕作用。对各种原因所致的呕吐，皆可随证配伍使用",
+                            "治寒热互结所致心下痞满",
+                            '《半夏泻心汤》《半夏厚朴汤》《二陈汤》《半夏白术天麻汤》《小青龙汤》'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"天南星",
+                        yaoxing:"苦、辛，温；有毒。归肺、肝、脾经",
+                        zhuzhi:'燥湿化痰，祛风止痉，散结消肿',
+                        img:'./中药图片/化痰止咳平喘/天南星.jpg',
+                        gongxiao:[
+                            "性温，对证寒痰湿痰。有较强的燥湿化痰之功。善治顽痰阻肺，咳嗽痰多",
+                            "入肝经，可通行经络，尤善祛风痰，止痉搐 《玉真散》",
+                            "外用能消肿散结止痛。治痈疽肿痛，未成脓者，可促其消散，已成脓者可促其速溃",
+                            ''
+                        ],
+                        shiyong:"外用，研末以醋或酒调敷患处"
+                    },
+                    {
+                        name:"白附子",
+                        yaoxing:"辛，温；有毒。归胃、肝经",
+                        zhuzhi:'燥湿化痰，祛风止痉，止痛，解毒散结',
+                        img:'./中药图片/化痰止咳平喘/白附子.jpg',
+                        gongxiao:[
+                            "善祛风痰，定惊搐而解痉，是治疗风痰证的常用药",
+                            "性锐上行，善逐头面风痰，又具有较强的止痛作用，常用治肝风夹痰上扰所致头面部诸痛",
+                           
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"芥子",
+                        yaoxing:"辛，温。归肺经",
+                        zhuzhi:'温肺豁痰，利气散结，通络止痛',
+                        img:'./中药图片/化痰止咳平喘/芥子.jpg',
+                        gongxiao:[ 
+                            "辛温力强，能温肺寒，利气机，豁痰涎，逐水饮，治寒痰壅肺 《三子养亲汤》",
+                            "温通经络，善散“皮里膜外之痰” 《三子养亲汤》",
+                            "",
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"旋覆花",
+                        yaoxing:"苦、辛、咸，微温。归肺、脾、胃、大肠经",
+                        zhuzhi:'降气，消痰，行水，止呕',
+                        img:'./中药图片/化痰止咳平喘/旋覆花.jpg',
+                        gongxiao:[
+                            "痰浊阻肺，肺气不降，咳喘痰黏，胸闷不舒者",
+                            "善降胃气而止呕止噫 《旋覆代赭汤》",
+                            "",
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"白前",
+                        yaoxing:"辛、苦，微温。归肺经",
+                        zhuzhi:'降气，祛痰，止咳',
+                        img:'./中药图片/化痰止咳平喘/白前.png',
+                        gongxiao:[
+                            "痰湿或寒痰阻肺,长于祛痰，降肺气以平咳喘 《止嗽散》",
+                            "善降胃气而止呕止噫 《旋覆代赭汤》",
+                            "",
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    
+                ]
+
+            },
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                
+            },
+            mounted() {
+                
+            },
+            methods: {
+
+                
+               
+            }
+        })        
+    </script>
+    
+</body>
+
+</html>

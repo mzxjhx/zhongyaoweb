@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>封面</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 450px;
+            height: 800px;
+            margin: 50px auto;
+            background-image: url(./封面/a6ea7135139f99d0d09fd4659a30fe74.jpeg);
+            background-position-x: 0;
+            background-position-y: 0;
+            color:#000
+        }
+
+        .guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 32px;
+            /* color: aliceblue; */
+            margin-top: 100px;
+            font-family: 楷体;
+        }
+   
+        .title{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 50px;
+            padding-top: 293px;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="mainApp" id="app">
+        <div class="title">
+            中草药
+        </div>
+        <div class="guilei">
+            温化寒痰
+        </div>
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+    <script>
+        var bookcover = document.querySelector('.details-book-cover-container')
+        var img = bookcover.children[0].shadowRoot.children[1].children[2]
+        var path = img.src.replace('covers300','covers1000')
+        var link = document.createElement('a')
+        link.text = '下载原图'
+        bookcover.appendChild(link)
+        link.src = path
+    </script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                yao:[
+                    {
+                        name:"陈 皮",
+                        yaoxing:"苦、辛，温。归脾、肺经",
+                        zhuzhi:'理气健脾，燥湿化痰',
+                        img:'./中药图片/理气药/陈皮.jpg',
+                        gongxiao:[
+                            "治脾胃气滞、湿阻之脘腹胀满、食少吐泻之佳品",
+                            "治呕吐，呃逆",
+                            "药性苦、温，治湿痰、寒痰之要药",
+                            '《平胃散》《保和丸》《二陈汤》'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"青 皮",
+                        yaoxing:"苦、辛，温。归肝、胆、胃经",
+                        zhuzhi:'疏肝破气，消积化滞',
+                        img:'./中药图片/理气药/青皮.jpeg',
+                        gongxiao:[
+                            "苦泄辛行温通，善于疏理肝胆之气，尤宜于肝郁气滞诸症",
+                            "消积、行气、止痛，常用于治疗食积气滞",
+                            "辛散温通力强，能破气散结"
+                        ],
+                        shiyong:"醋炙用增强疏肝止痛之力"
+                    },
+                    {
+                        name:"枳实",
+                        yaoxing:"苦、辛、酸，微寒。归脾、胃经",
+                        zhuzhi:'破气消积，化痰散痞',
+                        img:'./中药图片/理气药/枳实.jpg',
+                        gongxiao:[
+                            "破气消积，治胃肠积滞、气机不畅 《大承气汤》",
+                            "行气化痰，治痰阻气滞，胸痹 《枳实消痞丸》",
+                            "治脾虚升举无力导致的脏器下垂"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"木香",
+                        yaoxing:"辛、苦，温。归脾、胃、大肠、三焦、胆经",
+                        zhuzhi:'行气止痛，健脾消食',
+                        img:'./中药图片/理气药/木香.jpg',
+                        gongxiao:[
+                            "辛行苦泄温通，能通理三焦，尤善行脾胃之气滞，行气调中止痛之佳品《香砂六君子汤》",
+                            "苦降，善行大肠之滞气，为治泻痢后重之要药 《香连丸》",
+                            "辛行苦泄，走三焦和胆经，能疏理肝胆和三焦之气机",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"沉香",
+                        yaoxing:"辛、苦，微温。归脾、胃、肾经",
+                        zhuzhi:'行气止痛，温中止呕，纳气平喘',
+                        img:'./中药图片/理气药/沉香.jpg',
+                        gongxiao:[
+                            "性温祛寒，善于行气散寒止痛",
+                            "温中降气而止呕",
+                            "入肾经，温肾纳气平喘 《苏子降气汤》"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"川楝子",
+                        yaoxing:"苦，寒；有小毒。归肝、小肠、膀胱经",
+                        zhuzhi:'疏肝泄热，行气止痛，杀虫',
+                        img:'./中药图片/理气药/川楝子.jpg',
+                        gongxiao:[
+                            "治肝郁气滞疼痛之良药，尤善治肝郁化火诸痛 《金铃子散》",
+                            "杀虫药，治蛔虫等引起的虫积腹痛",                            
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"乌药",
+                        yaoxing:"辛，温。归肺、脾、肾、膀胱经",
+                        zhuzhi:'行气止痛，温肾散寒',
+                        img:'./中药图片/理气药/乌药.jpg',
+                        gongxiao:[
+                            "入肺、脾、肾经，故能治三焦寒凝气滞疼痛 《天台乌药散》",
+                            "肾阳不足，膀胱虚冷，遗尿尿频《缩泉丸》"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"香附",
+                        yaoxing:"辛、微苦、微甘，平。归肝、脾、三焦经",
+                        zhuzhi:'疏肝解郁，理气宽中，调经止痛',
+                        img:'./中药图片/理气药/香附.jpg',
+                        gongxiao:[
+                            "疏肝解郁之要药，肝郁气滞诸痛症均宜 《柴胡疏肝散》",
+                            "疏肝理气，善调经止痛，故为妇科调经之要药",
+                            "行气宽中，常用于治疗脾胃气滞证 《香苏散》"
+                        ],
+                        shiyong:"酸入肝，醋炙增强疏肝止痛作用"
+                    },
+                    {
+                        name:"佛手",
+                        yaoxing:"辛、苦、酸，温。归肝、脾、胃、肺经",
+                        zhuzhi:'疏肝理气，和胃止痛，燥湿化痰',
+                        img:'./中药图片/理气药/佛手.jpg',
+                        gongxiao:[
+                            "辛行苦泄，善于疏肝解郁、行气止痛",
+                            "入脾胃经，能理气和中止痛",
+                            "味苦能燥能泄，善治湿痰咳嗽、痰多胸闷"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"薤白",
+                        yaoxing:"辛、苦，温。归心、肺、胃、大肠经",
+                        zhuzhi:'通阳散结，行气异滞',
+                        img:'./中药图片/理气药/薤白.jpg',
+                        gongxiao:[
+                            "散阴寒之凝滞、通胸阳之闭结，为治胸痹要药",
+                            
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"柿蒂",
+                        yaoxing:"苦、涩，平。归胃经",
+                        zhuzhi:'降气止呃',
+                        img:'./中药图片/理气药/柿蒂.jpg',
+                        gongxiao:[
+                            "善降胃气而为止呃逆之要药 《丁香柿蒂汤》",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                ]
+
+            },
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                
+            },
+            mounted() {
+                
+            },
+            methods: {
+
+                
+               
+            }
+        })        
+    </script>
+    
+</body>
+
+</html>

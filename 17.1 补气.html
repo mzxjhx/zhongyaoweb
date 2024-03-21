@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./css/font-awesome.min.css?r="+Math.random()>
+    <title>补气</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .fengm{
+            width: 450px;
+            height: 800px;
+            margin: 50px auto;
+            background-image: url(./封面/d677f133f64db422d1cd5ac14a4737f8.jpg);
+            background-position-x: -685px;
+            background-position-y: -90px;
+
+            color:#000
+        }
+
+        .fm-guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 32px;
+            /* color: aliceblue; */
+            margin-top: 100px;
+            font-family: 楷体;
+        }
+   
+        .fm-title{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 50px;
+            padding-top: 293px;
+        }
+
+        .list{
+            width: 450px;
+            height: 800px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            padding-top: 10px;
+
+
+            background-image: url(./封面/d677f133f64db422d1cd5ac14a4737f8.jpg);
+            background-position-x: -685px;
+            background-position-y: -90px;          
+        }
+        .guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: large;
+        }
+        .img-box{
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .img-box img{
+            width: 100%;
+        }
+        .content-box{
+            padding: 5px 15px 0 15px;
+        }
+        .title{
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: x-large;
+        }
+        .list-item{
+            line-height: 1.7em;
+            text-indent: 1.2em;
+            font-size: 19px;
+            font-family: 楷体;
+            font-weight: 800;
+        }
+        .biao{
+            height: 26px;
+            line-height: 26px;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 17px;
+            margin-top: 5px;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="mainApp" id="app">
+
+       <!--封面-->
+       <div class="fengm">
+            <div class="fm-title">
+                中草药
+            </div>
+            <div class="fm-guilei">
+                补气药
+            </div>
+        </div>        
+        <div v-for="yaowu in yao" class="list">
+            <div class="guilei">
+                补气药
+            </div>
+            <div class="img-box">
+                <img :src="yaowu.img" alt="">
+            </div>
+            <div class="content-box">
+                <h3 class="title">{{yaowu.name}}</h3>
+                <div class="biao">药性：{{yaowu.yaoxing}}</div>
+                <div class="biao">功效：{{yaowu.zhuzhi}}</div>
+                <div v-for="gong in yaowu.gongxiao" class="list-item">
+                    {{gong}}
+                </div>
+                <div class="biao" v-if="yaowu.shiyong">使用方法</div>
+                <div class="list-item">
+                    {{yaowu.shiyong}}
+                </div>
+            </div>
+            
+        </div>
+
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                yao:[
+                    {
+                        name:"人参",
+                        yaoxing:"甘、微苦，微温。归脾、肺、心、肾经",
+                        zhuzhi:'大补元气，复脉固脱，补脾益肺，生津养血安神',
+                        img:'./中药图片/补气/人参.jpg',
+                        gongxiao:[
+                            "大补元气，适用于大泻、大失血或大病、久病所致元气虚脱，为拯危救脱之要药",
+                            "补脾气之要药 《四君子汤》《归脾汤》",
+                            "入肺经，补肺气。入肾经，益肾气助肾阳",
+                            '补气生津，生血养血。气虚、血虚、心气不足 《天王补心丹》《八珍汤》'
+                        ],
+                        shiyong:"不宜与藜芦、五灵脂同用"
+                    },
+                    {
+                        name:"西洋参",
+                        yaoxing:"甘、微苦，凉。归心、肺、肾经",
+                        zhuzhi:'补气养阴，清热生津',
+                        img:'./中药图片/补气/西洋参.jpg',
+                        gongxiao:[
+                            "适用于热病或大汗、大吐、大泻、大失血等，耗伤元气及阴津所致气阴两脱证",
+                            "性凉，清热补气养阴生津，较宜于气阴两伤而有热者"
+                        ],
+                        shiyong:"不宜与藜芦同用"
+                    },
+                    {
+                        name:"党参",
+                        yaoxing:"甘，平。归脾、肺经",
+                        zhuzhi:'补脾益肺，养血生津',
+                        img:'./中药图片/补气/党参.jpg',
+                        gongxiao:[
+                            "脾肺气虚，食少倦怠，咳嗽虚喘,为补中益气之良药",
+                            "气血双补，故适用于气虚不能生血，或血虚无以化气",
+                            "补气生津作用，适用于气津两伤，气短口渴"
+                        ],
+                        shiyong:"不宜与藜芦同用"
+                    },
+                    {
+                        name:"太子参",
+                        yaoxing:"甘、微苦，凉。归脾、肺经",
+                        zhuzhi:'益气健脾，生津润肺',
+                        img:'./中药图片/补气/太子参.jpg',
+                        gongxiao:[
+                            "补脾气，又能养胃阴。但补气之力较弱，兼能养阴生津。入肺经，治肺脏气阴不足，燥咳痰少舌红少苔",
+                            "",                            
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"黄芪",
+                        yaoxing:"甘，微温。归脾、肺经",
+                        zhuzhi:'补气升阳，益卫固表，利水消肿，生津养血',
+                        img:'./中药图片/补气/黄芪.jpg',
+                        gongxiao:[
+                            "其功效还有：行滞通痹，托毒排脓，敛疮生肌",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/补气/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/补气/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/补气/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/补气/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/补气/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/补气/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                ]
+
+            },
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                
+            },
+            mounted() {
+                
+            },
+            methods: {
+
+                
+               
+            }
+        })        
+    </script>
+    
+</body>
+
+</html>

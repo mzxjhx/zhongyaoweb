@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./css/font-awesome.min.css?r="+Math.random()>
+    <title>活血止痛</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            /*background: #f5f5f5;*/
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .list{
+            width: 450px;
+            height: 800px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            padding-top: 10px;
+        }
+        .guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 400;
+            font-size: large;
+        }
+        .img-box{
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+        }
+        .img-box img{
+            width: 100%;
+        }
+        .content-box{
+            padding: 5px 15px 0 15px;
+        }
+        .title{
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: x-large;
+        }
+        .list-item{
+            line-height: 1.7em;
+            text-indent: 1.2em;
+            font-size: 18px;
+            font-family: 仿宋;
+        }
+        .biao{
+            height: 26px;
+            line-height: 26px;
+            font-weight: 700;
+            font-family: 仿宋;
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="mainApp" id="app">
+        <div v-for="yaowu in yao" class="list">
+            <div class="guilei">
+                活血止痛
+            </div>
+            <div class="img-box">
+                <img :src="yaowu.img" alt="">
+            </div>
+            <div class="content-box">
+                <h3 class="title">{{yaowu.name}}</h3>
+                <div class="biao">药性：{{yaowu.yaoxing}}</div>
+                <div class="biao">功效：{{yaowu.zhuzhi}}</div>
+                <div v-for="gong in yaowu.gongxiao" class="list-item">
+                    {{gong}}
+                </div>
+                <div class="biao" v-if="yaowu.shiyong">使用方法</div>
+                <div class="list-item">
+                    {{yaowu.shiyong}}
+                </div>
+            </div>
+            
+        </div>
+
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                yao:[
+                    {
+                        name:"川芎",
+                        yaoxing:"辛，温。归肝、胆、心包经",
+                        zhuzhi:'活血行气，祛风止痛',
+                        img:'./中药图片/活血止痛/川芎.jpg',
+                        gongxiao:[
+                            "治气滞血瘀诸痛证之要药，为“血中气药”",
+                            "本品性善行窜，上行头目，中开郁结，下调水道",
+                            "既能活血行气止痛，又长于祛风止痛，为治头痛之要药"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"元胡",
+                        yaoxing:"辛、苦，温。归肝、脾、心经",
+                        zhuzhi:'活血，行气，止痛',
+                        img:'./中药图片/活血止痛/元胡.jpg',
+                        gongxiao:[
+                            '辛散温通，既能活血，又能行气，且止痛作用显著',
+                            '为活血行气止痛要药能行血中气滞，气中血滞，故专治一身上下诸痛'
+                        ],
+                        shiyong:"煎服，3～10g；研末服，每次1.5～3g。醋制可加强止痛之功"
+                    },
+                    {
+                        name:"郁金",
+                        yaoxing:"辛、苦，寒；归肝、胆、心、肺经",
+                        zhuzhi:'活血止痛，行气解郁，清心凉血，利胆退黄',
+                        img:'./中药图片/活血止痛/郁金.jpg',
+                        gongxiao:[
+                            '气滞血瘀之疼痛，血热瘀滞',
+                            '清心解郁开窍，治热病神昏，癫痫发狂',
+                            '吐血衄血，倒经，尿血'
+                        ],
+                        shiyong:'不宜与丁香、母丁香同用'
+                    },
+                    {
+                        name:"姜黄",
+                        yaoxing:"辛、苦，温。归肝、脾经",
+                        zhuzhi:'活血行气，通经止痛',
+                        img:'./中药图片/活血止痛/姜黄.jpg',
+                        gongxiao:[
+                            '既入血分，又入气分，长于止痛，善治气滞血瘀诸痛证',
+                            '尤长于行肢臂而除痹痛',
+                            '治寒凝气滞血瘀之证'
+                        ]
+                        
+                    },
+                    {
+                        name:"乳香",
+                        yaoxing:"辛、苦，温。归心、肝、脾经",
+                        zhuzhi:'活血定痛，消肿生肌',
+                        img:'./中药图片/活血止痛/乳香.jpg',
+                        gongxiao:[
+                            '跌打损伤，痈肿疮疡，为外伤要药',
+                            '行血中气滞长于止痛，可用于血瘀气滞之诸痛证'
+                        ],
+                        shiyong:'研末可外用'
+                    },
+                    {
+                        name:"没药",
+                        yaoxing:"辛、苦，平。归心、肝、脾经",
+                        zhuzhi:'散瘀定痛，消肿生肌',
+                        img:'./中药图片/活血止痛/没药.jpg',
+                        gongxiao:[
+                            '没药的功效主治与乳香相似，常与乳香相须为用',                        
+                        ],
+                        shiyong:'多入丸散用。外用适量'
+                    },
+                    {
+                        name:"五灵脂",
+                        yaoxing:"苦、咸、甘，温。归肝经",
+                        zhuzhi:'活血止痛，化瘀止血',
+                        img:'./中药图片/活血止痛/五灵脂.jpg',
+                        gongxiao:[
+                            '苦泄温通，专入肝经血分，为治疗瘀滞疼痛之要药',                            
+                        ]
+                    },
+                    {
+                        name:"降香",
+                        yaoxing:"辛，温。归肝、脾经",
+                        zhuzhi:'化瘀止血，理气止痛',
+                        img:'./中药图片/活血止痛/降香.jpg',
+                        gongxiao:[
+                            '血瘀气滞之胸胁脘腹疼痛及跌打伤痛',
+                            '外科出血常',
+                            '降气止呕'
+                        ]
+                    }
+                ]
+
+            },
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                
+            },
+            mounted() {
+                
+            },
+            methods: {
+
+                
+               
+            }
+        })        
+    </script>
+    
+</body>
+
+</html>

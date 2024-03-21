@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./css/font-awesome.min.css?r="+Math.random()>
+    
+    <title>化湿药</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            /*background: #cfcd64;
+            background: #d9d277;*/
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .list{
+            width: 450px;
+            height: 800px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            padding-top: 10px;
+            background-image: url(./中药图片/化湿/water.jpeg);
+            background-position-x: 1273px;
+            background-position-y: -154px;
+        }
+        .guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: large;
+        }
+        .img-box{
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .img-box img{
+            width: 100%;
+        }
+        .content-box{
+            padding: 5px 15px 0 15px;
+
+        }
+        .title{
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 27px;
+        }
+        .list-item{
+            line-height: 1.7em;
+            text-indent: 1.2em;
+            font-size: 20px;
+            font-family: 楷体;
+            font-weight: 600;
+
+        }
+        .biao{
+            height: 26px;
+            line-height: 26px;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 19px;
+            margin-top: 5px;
+        }
+        .list-item:first-of-type{
+            margin-top: 20px;
+        }
+
+        
+        
+    </style>
+</head>
+<body>
+
+    <div class="mainApp" id="app">
+        <div v-for="yaowu in yao" class="list">
+            <div class="guilei">
+                化湿药
+            </div>
+            <div class="img-box">
+                <img :src="yaowu.img" alt="">
+            </div>
+            <div class="content-box">
+                <h3 class="title">{{yaowu.name}}</h3>
+                <div class="biao">药性：{{yaowu.yaoxing}}</div>
+                <div class="biao">功效：{{yaowu.zhuzhi}}</div>
+                <div style="margin-top: 10px;">
+                    <div v-for="gong in yaowu.gongxiao" class="list-item">
+                        {{gong}}
+                    </div>
+                </div>
+
+                <div class="biao" v-if="yaowu.shiyong">使用方法</div>
+                <div class="list-item">
+                    {{yaowu.shiyong}}
+                </div>
+            </div>
+            
+        </div>
+
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                yao:[
+                    {
+                        name:"霍 香",
+                        yaoxing:"辛，微温。归脾、胃、肺经",
+                        zhuzhi:'芳香化湿，和中止呕，发表解暑',
+                        img:'./中药图片/化湿/霍香.jpg',
+                        gongxiao:[
+                            '治湿浊中阻所致的脘腹痞闷，少食作呕，神疲体倦等症',
+                            '湿浊中阻所致之呕吐',
+                            '暑湿表证，湿温初起，发热倦怠，胸闷不舒',
+                            '《不换金正气散》'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"佩 兰",
+                        yaoxing:"辛，平。归脾、胃、肺经",
+                        zhuzhi:'芳香化湿，醒脾开胃，发表解暑',
+                        img:'./中药图片/化湿/佩兰.jpg',
+                        gongxiao:[
+                            '化湿和中之功与藿香相似,常相须为用',
+                            '脾经湿热，口中甜腻，口臭，多涎',
+                            '暑湿表证，湿温初起，发热倦怠，胸闷不舒'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"苍术",
+                        yaoxing:"辛、苦，温。归脾、胃、肝经",
+                        zhuzhi:'燥湿健脾，祛风散寒，明目',
+                        img:'./中药图片/化湿/苍术.jpg',
+                        gongxiao:[
+                            '湿阻中焦，脘腹胀满，泄泻，水肿',
+                            '长于祛湿，故痹证湿胜者尤宜',                            
+                            '用于夜盲症，眼目昏涩',
+                            "《平胃散》"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"厚 朴",
+                        yaoxing:"苦、辛，温。归脾、胃、肺、大肠经",
+                        zhuzhi:'燥湿，行气，消积，消痰平喘',
+                        img:'./中药图片/化湿/厚朴.jpg',
+                        gongxiao:[
+                            '燥湿，下气除胀满，为消除胀满的要药',
+                            '行气宽中，消积异滞。治疗食积气滞便秘',
+                            '燥湿消痰，下气平喘，治疗痰饮阻肺，肺气不降',
+                            '《平胃散》，《大承气汤》，《半夏厚朴汤》'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:'砂仁',
+                        yaoxing:'辛，温。归脾、胃、肾经',
+                        zhuzhi:'化湿开胃，温中止泻，理气安胎',
+                        img:'./中药图片/化湿/砂仁.jpg',
+                        gongxiao:[
+                            '化湿醒脾开胃，行气温中之效均佳，为“为醒脾调胃要药”',
+                            '脾胃虚寒，呕吐泄泻',
+                            '行气和中而止呕安胎',
+                            "方剂《香砂六君子汤》"
+
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:'豆蔻',
+                        yaoxing:'辛，温。归肺、脾、胃经',
+                        zhuzhi:'化湿行气，温中止呕，开胃消食',
+                        img:'./中药图片/化湿/豆蔻.jpg',
+                        gongxiao:[
+                            '既可化湿行气，又能开胃消食',
+                            '辛散入肺而宣化湿邪，故常用于湿温初起。方剂《三仁汤》',
+                            '行气宽中，温胃止呕',
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:'草果',
+                        yaoxing:'辛，温。归脾、胃经',
+                        zhuzhi:'燥湿温中，截疟除痰',
+                        img:'./中药图片/化湿/草果.jpg',
+                        gongxiao:[
+                            '燥湿、温中之力皆强，多用于寒湿偏盛之脘腹痞满胀痛',
+                            '温脾燥湿，除痰截疟'
+                        ],
+                        shiyong:""
+                    },
+                    
+                ]
+
+            },
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                
+            },
+            mounted() {
+                
+            },
+            methods: {
+
+                
+               
+            }
+        })        
+    </script>
+    
+</body>
+
+</html>

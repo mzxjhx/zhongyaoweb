@@ -1,11 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./css/font-awesome.min.css?r="+Math.random()>
+    <title>清化热痰</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .fengm{
+            width: 450px;
+            height: 800px;
+            margin: 50px auto;
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
+
+            color:#000
+        }
+
+        .fm-guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 40px;
+            /* color: aliceblue; */
+            margin-top: 100px;
+            font-family: 楷体;
+        }
+   
+        .fm-title{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 54px;
+            padding-top: 293px;
+        }
+
+        .list{
+            width: 450px;
+            height: 800px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            padding-top: 10px;
+
+
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
+        }
+        .guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: large;
+        }
+        .img-box{
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .img-box img{
+            width: 100%;
+        }
+        .content-box{
+            padding: 5px 15px 0 15px;
+        }
+        .title{
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: x-large;
+        }
+        .list-item{
+            line-height: 1.7em;
+            text-indent: 1.2em;
+            font-size: 19px;
+            font-family: 楷体;
+            font-weight: 800;
+        }
+        .biao{
+            height: 26px;
+            line-height: 26px;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 17px;
+            margin-top: 5px;
+        }
+        
+        
+    </style>
 </head>
+
 <body>
+
+    <div class="mainApp" id="app">
+
+        <!--封面-->
+        <div class="fengm">
+            <div class="fm-title">
+                中草药
+            </div>
+            <div class="fm-guilei">
+                清化热痰
+            </div>
+        </div>                        
+        <div v-for="yaowu in yao" class="list">
+            <div class="guilei">
+                
+            </div>
+            <div class="img-box">
+                <img :src="yaowu.img" alt="">
+            </div>
+            <div class="content-box">
+                <h3 class="title">{{yaowu.name}}</h3>
+                <div class="biao">药性：{{yaowu.yaoxing}}</div>
+                <div class="biao">功效：{{yaowu.zhuzhi}}</div>
+                <div v-for="gong in yaowu.gongxiao" class="list-item">
+                    {{gong}}
+                </div>
+                <div class="biao" v-if="yaowu.shiyong">使用方法</div>
+                <div class="list-item">
+                    {{yaowu.shiyong}}
+                </div>
+            </div>
+            
+        </div>
+
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                yao:[
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    
+
+                ]
+
+            },
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                
+            },
+            mounted() {
+                
+            },
+            methods: {
+
+                
+               
+            }
+        })        
+    </script>
     
 </body>
+
 </html>

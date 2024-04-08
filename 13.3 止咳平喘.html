@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
-    <title>温化寒痰</title>
+    <link rel="stylesheet" href="./css/font-awesome.min.css?r="+Math.random()>
+    <title>止咳平喘</title>
     <style>
         html,
         body {
@@ -13,22 +13,24 @@
             height: 100%;
             margin: 0;
             padding: 0;
+
             font-family: serif;
         }
 
         .mainApp {
             width: 100%;
             height: 100%;
-
+            position: relative;
         }
 
         .fengm{
             width: 450px;
             height: 800px;
             margin: 50px auto;
-            background-image: url(./封面/a6ea7135139f99d0d09fd4659a30fe74.jpeg);
-            background-position-x: 0;
-            background-position-y: 0;
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
+
             color:#000
         }
 
@@ -38,7 +40,7 @@
             line-height: 40px;
             font-family: serif;
             font-weight: 600;
-            font-size: 32px;
+            font-size: 40px;
             /* color: aliceblue; */
             margin-top: 100px;
             font-family: 楷体;
@@ -50,7 +52,7 @@
             line-height: 40px;
             font-family: serif;
             font-weight: 600;
-            font-size: 50px;
+            font-size: 54px;
             padding-top: 293px;
         }
 
@@ -61,9 +63,10 @@
             border: 1px solid #ccc;
             padding-top: 10px;
 
-            background-image: url(./封面/a6ea7135139f99d0d09fd4659a30fe74.jpeg);
-            background-position-x: 0;
-            background-position-y: 0;
+
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
         }
         .guilei{
             text-align: center;
@@ -72,7 +75,6 @@
             font-family: serif;
             font-weight: 600;
             font-size: large;
-            color: #000;
         }
         .img-box{
             width: 320px;
@@ -93,26 +95,22 @@
             line-height: 20px;
             font-family: serif;
             font-weight: 600;
-            font-size: 27px;
+            font-size: x-large;
         }
         .list-item{
             line-height: 1.7em;
             text-indent: 1.2em;
-            font-size: 20px;
+            font-size: 19px;
             font-family: 楷体;
-            font-weight: 600;
-
+            font-weight: 800;
         }
         .biao{
             height: 26px;
             line-height: 26px;
             font-weight: 700;
             font-family: 楷体;
-            font-size: 19px;
+            font-size: 17px;
             margin-top: 5px;
-        }
-        .list-item:first-of-type{
-            margin-top: 20px;
         }
         
         
@@ -129,13 +127,12 @@
                 中草药
             </div>
             <div class="fm-guilei">
-                温化寒痰
+                止咳平喘
             </div>
-        </div>
-
+        </div>                        
         <div v-for="yaowu in yao" class="list">
             <div class="guilei">
-                温化寒痰
+                
             </div>
             <div class="img-box">
                 <img :src="yaowu.img" alt="">
@@ -168,83 +165,127 @@
             data: {
                 yao:[
                     {
-                        name:"半夏",
-                        yaoxing:"辛，温；有毒。归脾、胃、肺经",
-                        zhuzhi:'燥湿化痰，降逆止呕，消痞散结',
-                        img:'./中药图片/温化寒痰/半夏.jpeg',
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
                         gongxiao:[
-                            "湿痰、寒痰。燥湿化痰、温化寒痰之要药，尤善治脏腑之湿痰",
-                            "有良好的止呕作用。对各种原因所致的呕吐，皆可随证配伍使用",
-                            "治寒热互结所致心下痞满",
-                            '《半夏泻心汤》《半夏厚朴汤》《二陈汤》《半夏白术天麻汤》《小青龙汤》'
-                        ],
-                        shiyong:""
-                    },
-                    {
-                        name:"天南星",
-                        yaoxing:"苦、辛，温；有毒。归肺、肝、脾经",
-                        zhuzhi:'燥湿化痰，祛风止痉，散结消肿',
-                        img:'./中药图片/温化寒痰/天南星.jpg',
-                        gongxiao:[
-                            "性温，对证寒痰湿痰。有较强的燥湿化痰之功。善治顽痰阻肺，咳嗽痰多",
-                            "入肝经，可通行经络，尤善祛风痰，止痉搐 《玉真散》",
-                            "外用能消肿散结止痛。治痈疽肿痛，未成脓者，可促其消散，已成脓者可促其速溃",
-                            ''
-                        ],
-                        shiyong:"外用，研末以醋或酒调敷患处"
-                    },
-                    {
-                        name:"白附子",
-                        yaoxing:"辛，温；有毒。归胃、肝经",
-                        zhuzhi:'燥湿化痰，祛风止痉，止痛，解毒散结',
-                        img:'./中药图片/温化寒痰/白附子.jpg',
-                        gongxiao:[
-                            "善祛风痰，定惊搐而解痉，是治疗风痰证的常用药",
-                            "性锐上行，善逐头面风痰，又具有较强的止痛作用，常用治肝风夹痰上扰所致头面部诸痛",
-                           
-                        ],
-                        shiyong:""
-                    },
-                    {
-                        name:"芥子",
-                        yaoxing:"辛，温。归肺经",
-                        zhuzhi:'温肺豁痰，利气散结，通络止痛',
-                        img:'./中药图片/温化寒痰/芥子.jpg',
-                        gongxiao:[ 
-                            "辛温力强，能温肺寒，利气机，豁痰涎，逐水饮，治寒痰壅肺 《三子养亲汤》",
-                            "温通经络，善散“皮里膜外之痰” 《三子养亲汤》",
                             "",
-                            ''
+                            "",
+                            ""
                         ],
                         shiyong:""
                     },
                     {
-                        name:"旋覆花",
-                        yaoxing:"苦、辛、咸，微温。归肺、脾、胃、大肠经",
-                        zhuzhi:'降气，消痰，行水，止呕',
-                        img:'./中药图片/温化寒痰/旋覆花.jpg',
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
                         gongxiao:[
-                            "痰浊阻肺，肺气不降，咳喘痰黏，胸闷不舒者",
-                            "善降胃气而止呕止噫 《旋覆代赭汤》",
                             "",
-                            ''
+                            "",
+                            ""
                         ],
                         shiyong:""
                     },
                     {
-                        name:"白前",
-                        yaoxing:"辛、苦，微温。归肺经",
-                        zhuzhi:'降气，祛痰，止咳',
-                        img:'./中药图片/温化寒痰/白前.png',
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
                         gongxiao:[
-                            "痰湿或寒痰阻肺,长于祛痰，降肺气以平咳喘 《止嗽散》",
-                            "善降胃气而止呕止噫 《旋覆代赭汤》",
                             "",
-                            ''
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            "",
+                            "",
+                            ""
                         ],
                         shiyong:""
                     },
                     
+
                 ]
 
             },

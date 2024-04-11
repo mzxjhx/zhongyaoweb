@@ -27,9 +27,9 @@
             width: 450px;
             height: 800px;
             margin: 50px auto;
-            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
-            background-position-x: 455px;
-            background-position-y: -570px;
+            background-image: url(./封面/d677f133f64db422d1cd5ac14a4737f8.jpg);
+            background-position-x: 0px;
+            background-position-y: 0px;
 
             color:#000
         }
@@ -64,9 +64,9 @@
             padding-top: 10px;
 
 
-            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
-            background-position-x: 455px;
-            background-position-y: -570px;
+            background-image: url(./封面/d677f133f64db422d1cd5ac14a4737f8.jpg);
+            background-position-x: 0px;
+            background-position-y: 0px;
         }
         .guilei{
             text-align: center;
@@ -141,8 +141,8 @@
                 <h3 class="title">{{yaowu.name}}</h3>
                 <div class="biao">药性：{{yaowu.yaoxing}}</div>
                 <div class="biao">功效：{{yaowu.zhuzhi}}</div>
-                <div v-for="gong in yaowu.gongxiao" class="list-item">
-                    {{gong}}
+                <div v-for="gong in yaowu.gongxiao" class="list-item" v-html="gong">
+
                 </div>
                 <div class="biao" v-if="yaowu.shiyong">使用方法</div>
                 <div class="list-item">
@@ -165,126 +165,125 @@
             data: {
                 yao:[
                     {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
+                        name:"苦杏仁",
+                        yaoxing:"苦，微温；有小毒。归肺、大肠经",
+                        zhuzhi:'降气止咳平喘，润肠通便',
+                        img:'./中药图片/止咳平喘/苦杏仁.jpg',
                         gongxiao:[
-                            "",
-                            "",
+                            "长于降泄上逆之肺气，又兼宣发壅闭之肺气，为治咳喘要药 《桑菊饮》《杏苏散》《麻杏石甘汤》《清燥救肺汤》",
+                            "能润肠通便之《五仁丸》",
                             ""
                         ],
                         shiyong:""
                     },
                     {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
+                        name:"紫苏子",
+                        yaoxing:"辛，温。归肺、大肠经",
+                        zhuzhi:'降气化痰，止咳平喘，润肠通便',
+                        img:'./中药图片/止咳平喘/紫苏子.jpg',
                         gongxiao:[
-                            "",
-                            "",
+                            "善于降肺气，化痰涎而止咳平喘 《三子养亲汤》",
+                            "富含油脂，能润燥滑肠，且善降泄肺气以助大肠传异",
                             ""
                         ],
                         shiyong:""
                     },
                     {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
+                        name:"百部",
+                        yaoxing:"甘、苦，微温。归肺经",
+                        zhuzhi:'润肺下气止咳，杀虫灭虱',
+                        img:'./中药图片/止咳平喘/百部.png',
                         gongxiao:[
-                            "",
-                            "",
+                            "善于润肺下气止咳，治疗咳嗽。尤以小儿顿咳、阴虚痨嗽为宜 《止嗽散》",
+                            "本品有杀虫灭虱作用。治头虱、体虱及疥癣",
                             ""
                         ],
                         shiyong:""
                     },
                     {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
+                        name:"紫菀",
+                        yaoxing:"辛、苦，温。归肺经",
+                        zhuzhi:'润肺下气，化痰止咳',
+                        img:'./中药图片/止咳平喘/紫菀.jpg',
                         gongxiao:[
-                            "",
-                            "",
+                            "温润不燥，长于润肺下气，辛开肺郁，化痰浊而止咳",
+                            "《止嗽散》",
+                            "紫菀偏于祛痰"
+                        ],
+                        shiyong:"外感暴咳宜生用，肺虚久咳蜜炙用"
+                    },
+                    {
+                        name:"款冬花",
+                        yaoxing:"辛、微苦，温。归肺经",
+                        zhuzhi:'润肺下气，止咳化痰',
+                        img:'./中药图片/止咳平喘/款冬花.jpg',
+                        gongxiao:[
+                            "辛散而润，温而不燥，长于润肺下气止咳，略具化痰作用",
+                            "对肺寒咳喘尤宜，常与紫菀相须为用《射干麻黄汤》",
+                            ""
+                        ],
+                        shiyong:""
+                    },                    
+                    {
+                        name:"枇杷叶",
+                        yaoxing:"苦，微寒。归肺、胃经",
+                        zhuzhi:'清肺止咳，降逆止呕',
+                        img:'./中药图片/止咳平喘/枇杷叶.jpg',
+                        gongxiao:[
+                            "入肺经长于降泄肺气，清肺化痰以止咳平喘 《清燥救肺汤》",
+                            "入胃经长于清胃热，降胃气而止呕逆",
                             ""
                         ],
                         shiyong:""
                     },
                     {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
+                        name:"桑白皮",
+                        yaoxing:"甘，寒。归肺经",
+                        zhuzhi:'泻肺平喘，利水消肿',
+                        img:'./中药图片/止咳平喘/桑白皮.jpg',
                         gongxiao:[
-                            "",
-                            "",
+                            "能清泻肺火，兼泻肺中水气而平喘咳 《泻白散》",
+                            "能肃降肺气，通调水道而利水消肿。治肺气不宣，水气不行之全身水肿胀满 《五皮散》",
                             ""
                         ],
                         shiyong:""
                     },
                     {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
+                        name:"葶苈子",
+                        yaoxing:"辛、苦，大寒。归肺、膀胱经",
+                        zhuzhi:'泻肺平喘，行水消肿',
+                        img:'./中药图片/止咳平喘/葶苈子.jpg',
                         gongxiao:[
-                            "",
-                            "",
+                            "功专泻肺之实而下气定喘，尤善泻肺中水饮及痰火。治痰涎壅盛，喘咳痰多，胸胁胀满",
+                            "泻肺气之壅闭，而通调水道，行水消肿 《大陷胸丸》",
                             ""
                         ],
                         shiyong:""
                     },
                     {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
+                        name:"白果",
+                        yaoxing:"甘、苦、涩，平；有毒。归肺、肾经",
+                        zhuzhi:'敛肺定喘，收涩止带，缩尿',
+                        img:'./中药图片/止咳平喘/白果.jpg',
                         gongxiao:[
-                            "",
-                            "",
+                            "味涩收敛，善于敛肺定喘，且有一定化痰之功，为治哮喘痰嗽之常用药 《定喘汤》",
+                            "味苦除湿，味涩收敛，故能除湿泄浊，收涩止带，固精缩尿止遗",
                             ""
                         ],
                         shiyong:""
                     },
                     {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
+                        name:"马兜铃",
+                        yaoxing:"苦，微寒。归肺、大肠经",
+                        zhuzhi:'清肺降气，止咳平喘，清肠消痔',
+                        img:'./中药图片/止咳平喘/马兜铃.jpg',
                         gongxiao:[
-                            "",
-                            "",
+                            "性寒清热，兼可化痰，故善降肺气、清痰火而止咳平喘",
+                            "清泄大肠实热，用治大肠壅热所致的痔疮肿痛、出血",
                             ""
                         ],
                         shiyong:""
                     },
-                    {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
-                        gongxiao:[
-                            "",
-                            "",
-                            ""
-                        ],
-                        shiyong:""
-                    },
-                    {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
-                        gongxiao:[
-                            "",
-                            "",
-                            ""
-                        ],
-                        shiyong:""
-                    },
-                    
 
                 ]
 

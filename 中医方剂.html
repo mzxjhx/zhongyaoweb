@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title></title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 100%;
+            height: 100%;
+        }
+
+        .list{
+
+        }
+        .group{
+            margin-left: 10px;
+        }
+        .fengm{
+            width: 540px;
+            /*height: 900px;*/
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            padding-top: 10px;
+            min-height: 700px;
+
+            background-image: url(./封面/7953ba28a9342f3274a9d571848255f6.jpeg);
+            background-position-x: 0;
+            background-position-y: 0px;
+            color:#000
+        }
+
+        .fm-title{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 54px;
+            padding-top: 200px;
+        }
+
+        .fang-title{
+            text-align: center;
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            /* background: #5e34be; */
+            /* color: aliceblue; */
+            margin: 0 auto;
+            font-size: 50px;
+            font-family: cursive;
+            font-weight: 600;
+            /* border-radius: 12px;*/
+        }
+
+        .peiwu{
+            
+            position: relative;
+            /*
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin: 0 auto;
+            */
+
+        }
+        .yaobox{
+            /*
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            */
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            margin-left: 10px;     
+            margin-top: 20px;
+        }
+
+        .yaobox .img-box{
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .yaobox .img-box img{
+            width: 100%;
+        }
+        .yaobox .yaoname{
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 20px;            
+        }
+        .peiwu .large-image{
+            position: absolute;
+            left: 540px;
+            top:10px;
+            width: 500px;
+            height: 500px;
+        }
+        .peiwu .large-image img{
+            width: 100%;
+        }
+        
+        .biao{
+            height: 26px;
+            padding: 0 10px;
+            line-height: 26px;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 20px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+        .roles{
+            padding: 0 10px;
+        }
+        .table{
+            font-size: 20px;
+            font-family: 楷体;      
+            font-weight: 700;                  
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="mainApp" id="app">
+        <div v-for="fangs in fangji" class="list">
+            <!--每种的封面-->
+            <div class="fengm">
+                <div class="fm-title">
+                    {{fangs.name}}
+                </div>                
+            </div>         
+            <!-- 具体方剂 -->
+            <div v-for="fang in fangs.children"  class="fengm">
+                <div class="fang-title">{{fang.name}}</div>
+                <h3 class="group">【组成】</h3>
+                <!-- 中药图片放这里  -->
+                <div class="peiwu">
+                    <div v-for="(yao, index) in fang.fangjie" :key="index" class="yaobox" @mouseenter="showlarge(yao.img)" @mouseout="hidelarge">
+                        <div class="img-box">
+                            <img :src="yao.img" alt="">
+                        </div>
+                        <div class="yaoname">{{yao.name}} {{yao.number}}g</div>
+                    </div>
+                    <div class="large-image" :style="{display:largeimage.show?'block':'none'}">
+                        <img :src="largeimage.src" alt="">
+                    </div>
+                </div>
+                <h3>【方解】</h3>
+                <!-- 君臣佐使角色放这里 -->
+                <div class="roles">
+                    <table class="table">
+                        <tbody>
+                            <tr v-for="yao in fang.fangjie" style="height: 30px;">
+                                <td style="width: 50px;color:#bd2d2d;">{{ yao.role }}:</td>
+                                <td style="width: 80px;">{{ yao.name }}-</td>
+                                <td >{{ yao.fun }}</td>
+                              </tr>
+                        </tbody>
+
+                    </table>                    
+                    
+                </div>
+
+                <h3>【功用】</h3>
+                <div class="biao">{{fang.gong}}</div>
+                <h3>【主治】</h3>
+                <div class="biao">{{fang.zhi}}</div>                
+            </div>    
+            
+        </div>
+
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {                    
+                largeimage:{
+                    src:'',
+                    show:false
+                }, 
+                fangji:[
+                    {
+                        name:"辛温解表",
+                        children:[
+                            {
+                                name:'麻黄汤',
+                                gong:'发汗解表，宣肺平喘',
+                                zhi:'外感风寒表实证。恶寒发热，头身疼痛，无汗而喘',
+                                fangjie:[
+                                    {
+                                        name:'麻黄',
+                                        number:9,
+                                        role:'君',
+                                        fun:'发汗宣肺平喘',
+                                        img:'./中药图片/发散风寒/麻黄.jpg'
+                                    },
+                                    {
+                                        name:'桂枝',
+                                        number:6,
+                                        role:'臣',
+                                        fun:'解肌发表，通达营卫',
+                                        img:'./中药图片/发散风寒/桂枝.jpg'
+                                    },
+                                    {
+                                        name:'杏仁',
+                                        number:9,
+                                        role:'佐',
+                                        fun:'利肺平喘，宣降肺气',
+                                        img:'./中药图片/止咳平喘/杏仁.jpeg'
+                                    },
+                                    {
+                                        name:'甘草',
+                                        number:3,
+                                        role:'使',
+                                        fun:'调和药性',
+                                        img:'./中药图片/补气/甘草.jpg'
+                                    },
+                                ]
+                            },
+                            {
+                                name:'桂枝汤',
+                                gong:'解肌发表，调和营卫',
+                                zhi:'外感风寒表虚证，恶风发热，汗出头痛',
+                                fangjie:[
+                                    {
+                                        name:'桂枝',
+                                        number:9,
+                                        role:'君',
+                                        fun:'解肌发表，通达营卫',
+                                        img:'./中药图片/发散风寒/桂枝.jpg'
+                                    },
+                                    {
+                                        name:'白芍',
+                                        number:9,
+                                        role:'臣',
+                                        fun:'益阴敛营',
+                                        img:'./中药图片/补血/白芍.jpeg'
+                                    },
+                                    {
+                                        name:'生姜',
+                                        number:9,
+                                        role:'佐',
+                                        fun:'辛浊散邪，和胃止呕',
+                                        img:'./中药图片/发散风寒/生姜.jpeg'
+                                    },
+                                    {
+                                        name:'大枣',
+                                        number:6,
+                                        role:'',
+                                        fun:'益气补中，滋脾生津',
+                                        img:'./中药图片/补气/大枣.jpg'
+                                    },
+                                    {
+                                        name:'灸甘草',
+                                        number:6,
+                                        role:'使',
+                                        fun:'调和诸药',
+                                        img:'./中药图片/补气/甘草.jpg'
+                                    }
+                            
+                                ]
+                            }
+                        ]                        
+                    },
+                    {
+                        name:"",
+                        children:[
+                            {
+                                name:'',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'发散风寒/麻黄.jpg'
+                                    }
+                                ]
+                            }
+                        ]                        
+                    },
+                    
+
+                ]
+
+            },
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                
+            },
+            mounted() {
+                
+            },
+            methods: {
+                showlarge:function(img){
+                    this.largeimage={
+                        src:img,
+                        show:true
+                    }
+
+                },
+                hidelarge:function(){
+                    this.largeimage.show = false
+                }
+                
+               
+            }
+        })        
+    </script>
+    
+</body>
+
+</html>

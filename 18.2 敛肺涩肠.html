@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="./css/font-awesome.min.css?r="+Math.random()>
-    <title></title>
+    <title>收涩药</title>
     <style>
         html,
         body {
@@ -116,7 +116,7 @@
         
     </style>
 </head>
-
+<!-- 收涩药都放这里 -->
 <body>
 
     <div class="mainApp" id="app">
@@ -127,7 +127,7 @@
                 中草药
             </div>
             <div class="fm-guilei">
-                
+                收涩药
             </div>
         </div>                        
         <div v-for="yaowu in yao" class="list">
@@ -141,8 +141,8 @@
                 <h3 class="title">{{yaowu.name}}</h3>
                 <div class="biao">药性：{{yaowu.yaoxing}}</div>
                 <div class="biao">功效：{{yaowu.zhuzhi}}</div>
-                <div v-for="gong in yaowu.gongxiao" class="list-item">
-                    {{gong}}
+                <div v-for="gong in yaowu.gongxiao" class="list-item" v-html="gong">
+
                 </div>
                 <div class="biao" v-if="yaowu.shiyong">使用方法</div>
                 <div class="list-item">
@@ -165,10 +165,97 @@
             data: {
                 yao:[
                     {
+                        name:"五味子",
+                        yaoxing:"酸、甘，温。归肺、心、肾经",
+                        zhuzhi:'收敛固涩，益气生津，补肾宁心',
+                        img:'./中药图片/敛肺涩肠/五味子.jpg',
+                        gongxiao:[
+                            "上能补心，能宁心安神《天王补心丹》",                            
+                            "上敛肺气，为治疗久咳虚喘之要药《小青龙汤》",
+                            "下滋肾阴，补肾涩精止遗，为治肾虚精关不固之遗精滑精及遗尿尿频之常用药",
+                            "下能涩肠止泻《如四神丸》，敛肺止汗，益气生津《生脉散》",
+
+                        ],
+                        shiyong:"煎服，2～6g"
+                    },
+                    {
+                        name:"乌梅",
+                        yaoxing:"酸、涩，平。归肝、脾、肺、大肠经",
+                        zhuzhi:'敛肺，涩肠，生津，安蛔',
+                        img:'./中药图片/敛肺涩肠/乌梅.jpg',
+                        gongxiao:[
+                            "止咳敛肺，适用于肺虚久咳少痰或干咳无痰之证",
+                            "有良好的涩肠止泻痢作用，为治疗久泻、久痢之常用药",
+                            "善于生津液，止烦渴"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"五倍子",
+                        yaoxing:"酸、涩，寒。归肺、大肠、肾经",
+                        zhuzhi:'敛肺降火，涩肠止泻，敛汗，固精止遗，止血',
+                        img:'./中药图片/敛肺涩肠/五倍子.jpg',
+                        gongxiao:[
+                            "酸涩收敛，性寒清降:",
+                            "上能敛肺、止咳、清肺火",
+                            "外能止汗，治自汗。收湿敛疮，解毒消肿",
+                            "下能涩肠止泻，涩精止遗，收敛止血"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"诃子",
+                        yaoxing:"苦、酸、涩，平。归肺、大肠经",
+                        zhuzhi:'涩肠止泻，敛肺止咳，降火利咽',
+                        img:'./中药图片/敛肺涩肠/诃子.jpg',
+                        gongxiao:[
+                            "上能敛肺下气止咳，又能清肺利咽开音，为治<span style='color:#f00;'>失音</span>之要药",
+                            "下入大肠经，善于涩肠止泻，为治疗久泻、久痢之常用药",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"肉豆蔻",
+                        yaoxing:"辛，温。归脾、胃、大肠经",
+                        zhuzhi:'温中行气，涩肠止泻',
+                        img:'./中药图片/敛肺涩肠/肉豆蔻.jpg',
+                        gongxiao:[
+                            "脾胃虚寒，久泻不止《四神丸》 ",
+                            "胃寒气滞，脘腹胀痛，食少呕吐",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"赤石脂",
+                        yaoxing:"甘、酸、涩，温。归大肠、胃经",
+                        zhuzhi:'涩肠止泻，收敛止血，生肌敛疮',
+                        img:'./中药图片/敛肺涩肠/赤石脂.jpg',
+                        gongxiao:[
+                            "长于涩肠止泻，并能止血，为治久泻久痢、下痢脓血之常用药《赤石脂禹余粮汤》",
+                            "收敛止血治大便出血",
+                            "本品外用有收湿生肌敛疮的功效"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"禹余粮",
+                        yaoxing:"甘、涩，微寒。归胃、大肠经",
+                        zhuzhi:'涩肠止泻，收敛止血',
+                        img:'./中药图片/敛肺涩肠/禹余粮.jpg',
+                        gongxiao:[
+                            "治久泻、久痢者 《赤石脂禹余粮汤》",
+                            "下焦出血止血，固涩止带",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
                         name:"",
                         yaoxing:"",
                         zhuzhi:'',
-                        img:'./中药图片/',
+                        img:'./中药图片/敛肺涩肠/',
                         gongxiao:[
                             "",
                             "",
@@ -180,7 +267,7 @@
                         name:"",
                         yaoxing:"",
                         zhuzhi:'',
-                        img:'./中药图片/',
+                        img:'./中药图片/敛肺涩肠/',
                         gongxiao:[
                             "",
                             "",
@@ -192,91 +279,7 @@
                         name:"",
                         yaoxing:"",
                         zhuzhi:'',
-                        img:'./中药图片/',
-                        gongxiao:[
-                            "",
-                            "",
-                            ""
-                        ],
-                        shiyong:""
-                    },
-                    {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
-                        gongxiao:[
-                            "",
-                            "",
-                            ""
-                        ],
-                        shiyong:""
-                    },
-                    {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
-                        gongxiao:[
-                            "",
-                            "",
-                            ""
-                        ],
-                        shiyong:""
-                    },
-                    {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
-                        gongxiao:[
-                            "",
-                            "",
-                            ""
-                        ],
-                        shiyong:""
-                    },
-                    {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
-                        gongxiao:[
-                            "",
-                            "",
-                            ""
-                        ],
-                        shiyong:""
-                    },
-                    {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
-                        gongxiao:[
-                            "",
-                            "",
-                            ""
-                        ],
-                        shiyong:""
-                    },
-                    {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
-                        gongxiao:[
-                            "",
-                            "",
-                            ""
-                        ],
-                        shiyong:""
-                    },
-                    {
-                        name:"",
-                        yaoxing:"",
-                        zhuzhi:'',
-                        img:'./中药图片/',
+                        img:'./中药图片/敛肺涩肠/',
                         gongxiao:[
                             "",
                             "",

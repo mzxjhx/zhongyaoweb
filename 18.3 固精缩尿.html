@@ -141,8 +141,8 @@
                 <h3 class="title">{{yaowu.name}}</h3>
                 <div class="biao">药性：{{yaowu.yaoxing}}</div>
                 <div class="biao">功效：{{yaowu.zhuzhi}}</div>
-                <div v-for="gong in yaowu.gongxiao" class="list-item">
-                    {{gong}}
+                <div v-for="gong in yaowu.gongxiao" class="list-item" v-html="gong">
+
                 </div>
                 <div class="biao" v-if="yaowu.shiyong">使用方法</div>
                 <div class="list-item">

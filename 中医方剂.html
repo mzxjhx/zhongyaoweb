@@ -36,7 +36,7 @@
             padding-top: 10px;
             min-height: 700px;
 
-            background-image: url(./封面/7953ba28a9342f3274a9d571848255f6.jpeg);
+            background-image: url(./封面/5f2c602c412fc9dd1fecac904a47681e.jpeg);
             background-position-x: 0;
             background-position-y: 0px;
             color:#000
@@ -54,7 +54,7 @@
 
         .fang-title{
             text-align: center;
-            width: 200px;
+            /*width: 200px;*/
             height: 40px;
             line-height: 40px;
             /* background: #5e34be; */
@@ -87,7 +87,7 @@
             display: inline-block;
             width: 150px;
             height: 150px;
-            margin-left: 10px;     
+            margin-left: 20px;     
             margin-top: 20px;
         }
 
@@ -122,7 +122,7 @@
         }
         
         .biao{
-            height: 26px;
+            /*height: 26px;*/
             padding: 0 10px;
             line-height: 26px;
             font-weight: 700;
@@ -130,6 +130,7 @@
             font-size: 20px;
             margin-top: 5px;
             margin-bottom: 20px;
+            text-indent: 1.2em;
         }
         .roles{
             padding: 0 10px;
@@ -175,8 +176,8 @@
                     <table class="table">
                         <tbody>
                             <tr v-for="yao in fang.fangjie" style="height: 30px;">
-                                <td style="width: 50px;color:#bd2d2d;">{{ yao.role }}:</td>
-                                <td style="width: 80px;">{{ yao.name }}-</td>
+                                <td style="width: 50px;color:#bd2d2d;">{{ yao.role }}</td>
+                                <td style="width: 80px;">{{ yao.name }}</td>
                                 <td >{{ yao.fun }}</td>
                               </tr>
                         </tbody>
@@ -293,10 +294,87 @@
                         ]                        
                     },
                     {
-                        name:"",
+                        name:'四、清热剂',
                         children:[
                             {
-                                name:'',
+                                name:'芍药汤',
+                                gong:'清热燥湿，调气和血',
+                                zhi:'湿热痢疾。腹痛，便脓血，里急后重。肛门灼热，小便短赤',
+                                fangjie:[
+                                    {
+                                        name:'白芍',
+                                        number:30,
+                                        role:'君',
+                                        fun:'清热凉血，散瘀止痛',
+                                        img:'./中药图片/补血/白芍.jpeg'
+                                    },
+                                    {
+                                        name:'当归',
+                                        number:15,
+                                        role:'',
+                                        fun:'养血活血',
+                                        img:'./中药图片/补血/当归.jpg'
+                                    },
+                                    {
+                                        name:'黄连',
+                                        number:15,
+                                        role:'',
+                                        fun:'清热燥湿以止痢',
+                                        img:'./中药图片/清热燥湿/黄连.jpg'
+                                    },
+                                    {
+                                        name:'黄芩',
+                                        number:15,
+                                        role:'',
+                                        fun:'清热燥湿以止痢',
+                                        img:'./中药图片/清热燥湿/黄芩.jpg'
+                                    },
+                                    {
+                                        name:'大黄',
+                                        number:10,
+                                        role:'臣',
+                                        fun:'泻热通便，攻下积滞',
+                                        img:'./中药图片/泻下/大黄.jpg'
+                                    },
+                                    {
+                                        name:'木香',
+                                        number:6,
+                                        role:'',
+                                        fun:'行气导滞',
+                                        img:'./中药图片/理气药/木香.jpg'
+                                    },
+                                    {
+                                        name:'槟榔',
+                                        number:9,
+                                        role:'',
+                                        fun:'行气导滞',
+                                        img:'./中药图片/驱虫/槟榔.jpg'
+                                    },
+                                    {
+                                        name:'肉桂',
+                                        number:5,
+                                        role:'佐',
+                                        fun:'行血和营，制芩连之苦寒',
+                                        img:'./中药图片/温里药/肉桂1.jpg'
+                                    },
+                                    {
+                                        name:'甘草',
+                                        number:10,
+                                        role:'使',
+                                        fun:'调和',
+                                        img:'./中药图片/补气/甘草.jpg'
+                                    },
+
+
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        name:"八、补益剂",
+                        children:[
+                            {
+                                name:'四君子汤',
                                 gong:'',
                                 zhi:'',
                                 fangjie:[
@@ -308,9 +386,94 @@
                                         img:'发散风寒/麻黄.jpg'
                                     }
                                 ]
+                            },
+                            {
+                                name:'参苓白术散',
+                                gong:'益气健脾，渗湿止泻',
+                                zhi:'脾虚湿盛证，饮食不化。肠鸣泄泻，四肢乏力，面色萎黄',
+                                fangjie:[
+                                    {
+                                        name:'人参',
+                                        number:15,
+                                        role:'君',
+                                        fun:'补气健脾',
+                                        img:'中药图片/补气/人参.jpg'
+                                    },
+                                    {
+                                        name:'茯苓',
+                                        number:15,
+                                        role:'君',
+                                        fun:'健脾渗湿',
+                                        img:'中药图片/补气/茯苓.jpg'
+                                    },
+                                    {
+                                        name:'人参',
+                                        number:15,
+                                        role:'君',
+                                        fun:'补气健脾',
+                                        img:'中药图片/补气/人参.jpg'
+                                    },
+                                ]
                             }
                         ]                        
                     },
+                    {
+                        name:'',
+                        children:[
+                            {
+                                name:'',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        name:'',
+                        children:[
+                            {
+                                name:'',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        name:'',
+                        children:[
+                            {
+                                name:'',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                        ]
+                    }
                     
 
                 ]

@@ -160,8 +160,8 @@
                 <h3 class="group">【组成】</h3>
                 <!-- 中药图片放这里  -->
                 <div class="peiwu">
-                    <div v-for="(yao, index) in fang.fangjie" :key="index" class="yaobox" @mouseenter="showlarge(yao.img)" @mouseout="hidelarge">
-                        <div class="img-box">
+                    <div v-for="(yao, index) in fang.fangjie" :key="index" class="yaobox">
+                        <div class="img-box"  @mouseenter="showlarge(yao.img)" @mouseout="hidelarge">
                             <img :src="yao.img" alt="">
                         </div>
                         <div class="yaoname">{{yao.name}} {{yao.number}}g</div>

@@ -20,18 +20,46 @@
         .mainApp {
             width: 100%;
             height: 100%;
+            display: flex;
         }
 
-        .list{
+        .directory-wrapper,
+        .showimg{
+            flex: 1;
+        } 
 
+        .directory{
+            position: fixed;
+            left: 200px;
+            top: 100px;
+            height: 60%;
+            overflow-y: auto;
         }
+        .directory .fanglei{
+            list-style: none;
+        }
+        .directory .fangming{
+            list-style: none;
+            margin: 9px 0;
+            cursor: pointer;        
+            color: #000;    
+        }
+        .directory .fangming a{
+   
+            color: #000;    
+            text-decoration: none;
+        }
+        .fangji-list{
+            width: 540px;
+        }
+
         .group{
             margin-left: 10px;
         }
         .fengm{
-            width: 540px;
-            /*height: 900px;*/
-            margin: 10px auto;
+
+            /*height: 900px;
+            margin: 10px auto;*/
             border: 1px solid #ccc;
             padding-top: 10px;
             min-height: 700px;
@@ -60,6 +88,7 @@
             /* background: #5e34be; */
             /* color: aliceblue; */
             margin: 0 auto;
+            margin-top: 10px;
             font-size: 50px;
             font-family: cursive;
             font-weight: 600;
@@ -147,53 +176,65 @@
 <body>
 
     <div class="mainApp" id="app">
-        <div v-for="fangs in fangji" class="list">
-            <!--每种的封面-->
-            <div class="fengm">
-                <div class="fm-title">
+        <div class="directory-wrapper">
+            <ul class="directory">
+                <li v-for="fangs in fangji" class="fanglei">
                     {{fangs.name}}
-                </div>                
-            </div>         
-            <!-- 具体方剂 -->
-            <div v-for="fang in fangs.children"  class="fengm">
-                <div class="fang-title">{{fang.name}}</div>
-                <h3 class="group">【组成】</h3>
-                <!-- 中药图片放这里  -->
-                <div class="peiwu">
-                    <div v-for="(yao, index) in fang.fangjie" :key="index" class="yaobox">
-                        <div class="img-box"  @mouseenter="showlarge(yao.img)" @mouseout="hidelarge">
-                            <img :src="yao.img" alt="">
-                        </div>
-                        <div class="yaoname">{{yao.name}} {{yao.number}}g</div>
-                    </div>
-                    <div class="large-image" :style="{display:largeimage.show?'block':'none'}">
-                        <img :src="largeimage.src" alt="">
-                    </div>
-                </div>
-                <h3>【方解】</h3>
-                <!-- 君臣佐使角色放这里 -->
-                <div class="roles">
-                    <table class="table">
-                        <tbody>
-                            <tr v-for="yao in fang.fangjie" style="height: 30px;">
-                                <td style="width: 50px;color:#bd2d2d;">{{ yao.role }}</td>
-                                <td style="width: 80px;">{{ yao.name }}</td>
-                                <td >{{ yao.fun }}</td>
-                              </tr>
-                        </tbody>
-
-                    </table>                    
-                    
-                </div>
-
-                <h3>【功用】</h3>
-                <div class="biao">{{fang.gong}}</div>
-                <h3>【主治】</h3>
-                <div class="biao">{{fang.zhi}}</div>                
-            </div>    
-            
+                    <ul>
+                        <li v-for="fang in fangs.children" class="fangming"><a :href="'#'+fang.key">{{fang.name}}</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
+        <div class="fangji-list">
+            <div v-for="fangs in fangji" class="list">
+                <!--每种的封面-->
+                <div class="fengm">
+                    <div class="fm-title">
+                        {{fangs.name}}
+                    </div>                
+                </div>         
+                <!-- 具体方剂 -->
+                <div v-for="fang in fangs.children" class="fengm">
+                    <div class="fang-title" :id="fang.key">{{fang.name}}</div>
+                    <h3 class="group">【组成】</h3>
+                    <!-- 中药图片放这里  -->
+                    <div class="peiwu">
+                        <div v-for="(yao, index) in fang.fangjie" :key="index" class="yaobox">
+                            <div class="img-box"  @mouseenter="showlarge(yao.img)" @mouseout="hidelarge">
+                                <img :src="yao.img" alt="">
+                            </div>
+                            <div class="yaoname">{{yao.name}} {{yao.number}}g</div>
+                        </div>
+                        <div class="large-image" :style="{display:largeimage.show?'block':'none'}">
+                            <img :src="largeimage.src" alt="">
+                        </div>
+                    </div>
+                    <h3>【方解】</h3>
+                    <!-- 君臣佐使角色放这里 -->
+                    <div class="roles">
+                        <table class="table">
+                            <tbody>
+                                <tr v-for="yao in fang.fangjie" style="height: 30px;">
+                                    <td style="width: 50px;color:#bd2d2d;">{{ yao.role }}</td>
+                                    <td style="width: 80px;">{{ yao.name }}</td>
+                                    <td >{{ yao.fun }}</td>
+                                </tr>
+                            </tbody>
 
+                        </table>                    
+                        
+                    </div>
+
+                    <h3>【功用】</h3>
+                    <div class="biao">{{fang.gong}}</div>
+                    <h3>【主治】</h3>
+                    <div v-for="it in fang.zhi" class="biao" v-html="it"></div>                
+                </div>    
+                
+            </div>
+        </div>
+        <div class="showimg"></div>
         
     </div>
 
@@ -211,12 +252,15 @@
                 }, 
                 fangji:[
                     {
-                        name:"解解表",
+                        name:"一、解表剂",
                         children:[
                             {
                                 name:'麻黄汤',
+                                key:'7aef5a9807de31e35bb5b686e98354e0',
                                 gong:'发汗解表，宣肺平喘',
-                                zhi:'外感风寒表实证。恶寒发热，头身疼痛，无汗而喘',
+                                zhi:[
+                                    '外感风寒表实证。恶寒发热，头身疼痛，无汗而喘',
+                                ],
                                 fangjie:[
                                     {
                                         name:'麻黄',
@@ -250,8 +294,11 @@
                             },
                             {
                                 name:'桂枝汤',
+                                key:'a9e3751fc29decabac951536dd764b88',
                                 gong:'解肌发表，调和营卫',
-                                zhi:'外感风寒表虚证，恶风发热，汗出头痛',
+                                zhi:[
+                                    '外感风寒表虚证，恶风发热，汗出头痛',
+                                ],
                                 fangjie:[
                                     {
                                         name:'桂枝',
@@ -293,44 +340,209 @@
                             },
                             {
                                 name:'小青龙汤',
-                                gong:'',
-                                zhi:'',
+                                key:'de48af2dd4241e7313922fbd489a542e',
+                                gong:'解表散寒，温肺化饮',
+                                zhi:[
+                                    '外寒内饮证。即外感受外寒，内有痰饮。恶寒发热，头身疼痛，无汗咳喘。',
+                                    '大小青龙以“青龙”命名，因其皆有“治水”之能。小青龙汤治外寒与内饮相当，发汗之力较弱'
+                                ],                                
                                 fangjie:[
                                     {
-                                        name:'',
+                                        name:'麻黄',
                                         number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        role:'君',
+                                        fun:'解表散寒',
+                                        img:'中药图片/发散风寒/麻黄.jpg'
+                                    },
+                                    {
+                                        name:'桂枝',
+                                        number:9,
+                                        role:'',
+                                        fun:'宣肺平喘化饮',
+                                        img:'中药图片/发散风寒/桂枝.jpg'
+                                    },
+                                    {
+                                        name:'干姜',
+                                        number:6,
+                                        role:'臣',
+                                        fun:'温肺化饮，协君药袪邪',
+                                        img:'中药图片/温里药/干姜.jpeg'
+                                    },
+                                    {
+                                        name:'细辛',
+                                        number:3,
+                                        role:'',
+                                        fun:'温肺化饮，协君药袪邪',
+                                        img:'中药图片/发散风寒/细辛.png'
+                                    },
+                                    {
+                                        name:'白芍药',
+                                        number:9,
+                                        role:'佐',
+                                        fun:'和营养血',
+                                        img:'中药图片/补血/白芍.jpeg'
+                                    },
+                                    {
+                                        name:'五味子',
+                                        number:9,
+                                        role:'',
+                                        fun:'敛肺止咳。两位佐药防辛散之药伤津',
+                                        img:'./中药图片/收涩药/敛肺涩肠/五味子.jpg',
+                                    },
+                                    {
+                                        name:'半夏',
+                                        number:9,
+                                        role:'',
+                                        fun:'燥湿化痰，和胃降逆',
+                                        img:'中药图片/温化寒痰/半夏.jpeg'
+                                    },
+                                    {
+                                        name:'灸甘草',
+                                        number:6,
+                                        role:'使',
+                                        fun:'调和',
+                                        img:'中药图片/补气/灸甘草.jpg'
+                                    },
                                 ]
                             },
                             {
                                 name:'止嗽散',
-                                gong:'',
-                                zhi:'',
+                                key:'af746b3405b5d41a3d59408715ee97ba',
+                                gong:'宣利肺气，疏风止咳',
+                                zhi:[
+                                    '风邪犯肺之咳嗽证。咳嗽咽痒，咯痰不爽',
+                                ],
                                 fangjie:[
                                     {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        name:'紫菀',
+                                        number:12,
+                                        role:'君',
+                                        fun:'长于化痰浊而止咳，是止咳化痰要药',
+                                        img:'./中药图片/止咳平喘/紫菀.Jpg'
+                                    },
+                                    {
+                                        name:'百部',
+                                        number:12,
+                                        role:'',
+                                        fun:'润肺下气止咳',
+                                        img:'./中药图片/止咳平喘/百部.png'
+                                    },    
+                                    {
+                                        name:'桔梗',
+                                        number:12,
+                                        role:'臣',
+                                        fun:'清化热痰，宣肺止咳',
+                                        img:'中药图片/清化热痰/桔梗.jpg'
+                                    },
+                                    {
+                                        name:'白前',
+                                        number:12,
+                                        role:'',
+                                        fun:'降气化痰',
+                                        img:'中药图片/温化寒痰/白前.png'
+                                    },                                    
+                                    {
+                                        name:'荆介',
+                                        number:12,
+                                        role:'佐',
+                                        fun:'疏风解表，袪在表之余邪',
+                                        img:'中药图片/发散风寒/荆芥.jpg'
+                                    },      
+                                    {
+                                        name:'陈皮',
+                                        number:6,
+                                        role:'',
+                                        fun:'理气化痰',
+                                        img:'中药图片/理气药/陈皮.jpg'
+                                    },                                                                                                      
+                                    {
+                                        name:'甘草',
+                                        number:4,
+                                        role:'使',
+                                        fun:'合桔梗利咽止咳，调和诸药',
+                                        img:'中药图片/补气/甘草.jpg'
+                                    },
+                                    
                                 ]
                             },
                             {
                                 name:'银翘散',
-                                gong:'',
-                                zhi:'',
+                                key:'9cdc14cc93b09b18a5234fda3cf74b76',
+                                gong:'辛凉透表，清热解毒',
+                                zhi:[
+                                    '温病初起。发热微恶风寒，口渴头痛，咽痛咳嗽',
+                                ],
                                 fangjie:[
                                     {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
+                                        name:'银花',
+                                        number:30,
+                                        role:'君',
+                                        fun:'清热解毒，疏散风热',
+                                        img:'中药图片/清热药/清热解毒药/金银花.jpg'
+                                    },
+                                    {
+                                        name:'连翘',
+                                        number:30,
+                                        role:'',
+                                        fun:'辛凉透表，清热解毒，疏散风热',
+                                        img:'中药图片/清热药/清热解毒药/连翘.jpg'
+                                    },
+                                    {
+                                        name:'薄荷',
+                                        number:18,
+                                        role:'臣',
+                                        fun:'疏散风热，清利头目，利咽',
+                                        img:'中药图片/发散风热/薄荷.png'
+                                    },
+                                    {
+                                        name:'牛蒡子',
+                                        number:18,
+                                        role:'',
+                                        fun:'疏散风热，清利头目，利咽',
+                                        img:'中药图片/发散风热/牛蒡子.png'
+                                    },
+                                    {
+                                        name:'荆芥',
+                                        number:12,
+                                        role:'',
+                                        fun:'辛散透表，去性存用',
+                                        img:'中药图片/发散发寒/荆芥.jpg'
+                                    },
+                                    {
+                                        name:'淡豆鼓',
+                                        number:15,
+                                        role:'',
+                                        fun:'辛散透表，去性存用',
+                                        img:'中药图片/发散发寒/淡豆鼓.png'
+                                    },
+                                    {
+                                        name:'芦根',
+                                        number:12,
+                                        role:'佐',
+                                        fun:'汤服用',
+                                        img:'中药图片/发散风热/芦根.png'
+                                    },
+                                    {
+                                        name:'竹叶',
+                                        number:12,
+                                        role:'',
+                                        fun:'清热利尿生津',
                                         img:'中药图片/'
-                                    }
+                                    },
+                                    {
+                                        name:'桔梗',
+                                        number:18,
+                                        role:'',
+                                        fun:'宣肺利咽',
+                                        img:'中药图片/清化热痰/桔梗.jpg'
+                                    },
+                                    {
+                                        name:'甘草',
+                                        number:15,
+                                        role:'',
+                                        fun:'调和',
+                                        img:'中药图片/补气/甘草.jpg'
+                                    },
                                 ]
                             },
                             {
@@ -843,10 +1055,52 @@
                         ]
                     },
                     {
-                        name:'',
+                        name:'五、袪暑剂',
                         children:[
                             {
-                                name:'',
+                                name:'香濡散',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'新加香濡饮',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'六一散',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'清暑益气汤',
                                 gong:'',
                                 zhi:'',
                                 fangjie:[
@@ -861,9 +1115,144 @@
                             },
                         ]
                     },
-
                     {
-                        name:"八、补益剂",
+                        name:'六、温里剂',
+                        children:[
+                            {
+                                name:'理中丸',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    },
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    },
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'吴茱萸汤',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    },
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    },
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'小建中汤',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    },
+                                    
+                                ]
+                            },
+                            {
+                                name:'四逆汤',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    },
+                                    
+                                ]
+                            },
+                            {
+                                name:'当归四逆汤',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    },
+                                    
+                                ]
+                            },
+                            {
+                                name:'黄芪桂枝五物汤',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    },
+                                    
+                                ]
+                            },
+                            {
+                                name:'阳和汤',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    },
+                                    
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        name:"七、补益剂",
                         children:[
                             {
                                 name:'四君子汤',
@@ -906,7 +1295,176 @@
                                         img:'中药图片/补气/人参.jpg'
                                     },
                                 ]
-                            }
+                            },
+                            {
+                                name:'补中益气汤',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片.jpg'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'生脉散',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'玉屏风散',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'完带汤',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'四物汤',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'当归补血汤',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'归脾汤',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'灸甘草汤',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'六味地黄丸',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'一贯煎',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'肾气丸',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'地黄饮子',
+                                gong:'',
+                                zhi:'',
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+
                         ]                        
                     },
                     {
@@ -926,6 +1484,7 @@
                                     }
                                 ]
                             },
+
                         ]
                     },
                     {

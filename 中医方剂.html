@@ -67,7 +67,9 @@
             background-image: url(./封面/5f2c602c412fc9dd1fecac904a47681e.jpeg);
             background-position-x: 0;
             background-position-y: 0px;
-            color:#000
+            color:#000;
+
+            margin-top: 20px;
         }
 
         .fm-title{
@@ -118,6 +120,8 @@
             height: 150px;
             margin-left: 20px;     
             margin-top: 20px;
+
+            position: relative;
         }
 
         .yaobox .img-box{
@@ -139,6 +143,19 @@
             font-family: 楷体;
             font-size: 20px;            
         }
+        .yaobox .role{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 20px;   
+        }
+        /*
         .peiwu .large-image{
             position: absolute;
             left: 540px;
@@ -149,7 +166,18 @@
         .peiwu .large-image img{
             width: 100%;
         }
-        
+        */
+        .large-image{
+            position: fixed;
+            
+            top:10px;
+            width: 500px;
+            height: 500px;
+        }
+        .large-image img{
+            width: 100%;
+        }
+
         .biao{
             /*height: 26px;*/
             padding: 0 10px;
@@ -172,7 +200,14 @@
         
     </style>
 </head>
-
+<!-- 
+    qi--四气：
+    寒 ：-2
+    凉 ：-1
+    平 ：0
+    温 ：1
+    热 ：2
+-->
 <body>
 
     <div class="mainApp" id="app">
@@ -185,6 +220,9 @@
                     </ul>
                 </li>
             </ul>
+        </div>
+        <div class="large-image" :style="{display:largeimage.show?'block':'none',left:largeimage.left+'px'}">
+            <img :src="largeimage.src" alt="">
         </div>
         <div class="fangji-list">
             <div v-for="fangs in fangji" class="list">
@@ -204,11 +242,10 @@
                             <div class="img-box"  @mouseenter="showlarge(yao.img)" @mouseout="hidelarge">
                                 <img :src="yao.img" alt="">
                             </div>
-                            <div class="yaoname">{{yao.name}} {{yao.number}}g</div>
+                            <div class="yaoname" :style="{color:calcNameColor(yao.qi)}">{{yao.name}} {{yao.number}}g</div>
+                            <div class="role">{{yao.role}}</div>
                         </div>
-                        <div class="large-image" :style="{display:largeimage.show?'block':'none'}">
-                            <img :src="largeimage.src" alt="">
-                        </div>
+
                     </div>
                     <h3>【方解】</h3>
                     <!-- 君臣佐使角色放这里 -->
@@ -248,7 +285,8 @@
             data: {                    
                 largeimage:{
                     src:'',
-                    show:false
+                    show:false,
+                    left:500,
                 }, 
                 fangji:[
                     {
@@ -266,6 +304,7 @@
                                         name:'麻黄',
                                         number:9,
                                         role:'君',
+                                        qi:1,
                                         fun:'发汗宣肺平喘',
                                         img:'./中药图片/发散风寒/麻黄.jpg'
                                     },
@@ -273,6 +312,7 @@
                                         name:'桂枝',
                                         number:6,
                                         role:'臣',
+                                        qi:1,
                                         fun:'解肌发表，通达营卫',
                                         img:'./中药图片/发散风寒/桂枝.jpg'
                                     },
@@ -280,6 +320,7 @@
                                         name:'杏仁',
                                         number:9,
                                         role:'佐',
+                                        qi:0,
                                         fun:'利肺平喘，宣降肺气',
                                         img:'./中药图片/止咳平喘/杏仁.jpeg'
                                     },
@@ -304,6 +345,7 @@
                                         name:'桂枝',
                                         number:9,
                                         role:'君',
+                                        qi:1,
                                         fun:'解肌发表，通达营卫',
                                         img:'./中药图片/发散风寒/桂枝.jpg'
                                     },
@@ -311,6 +353,7 @@
                                         name:'白芍',
                                         number:9,
                                         role:'臣',
+                                        qi:-1,
                                         fun:'益阴敛营',
                                         img:'./中药图片/补血/白芍.jpeg'
                                     },
@@ -318,6 +361,7 @@
                                         name:'生姜',
                                         number:9,
                                         role:'佐',
+                                        qi:1,
                                         fun:'辛浊散邪，和胃止呕',
                                         img:'./中药图片/发散风寒/生姜.jpeg'
                                     },
@@ -325,6 +369,7 @@
                                         name:'大枣',
                                         number:6,
                                         role:'',
+                                        qi:1,
                                         fun:'益气补中，滋脾生津',
                                         img:'./中药图片/补气/大枣.jpg'
                                     },
@@ -402,6 +447,88 @@
                                         role:'使',
                                         fun:'调和',
                                         img:'中药图片/补气/灸甘草.jpg'
+                                    },
+                                ]
+                            },
+                            {
+                                name:'九味羌活汤',
+                                key:'0c84f1fe8cf73d876d8b0bf3101d4b8f',
+                                gong:'发汗袪湿，兼清里热',
+                                zhi:[
+                                    '外感风寒湿邪，内有蕴热证。',
+                                    '诸药配伍，主以辛温，少佐寒凉。既兼治内外，又分六经。发汗袪湿兼清里热'
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'羌活',
+                                        number:9,
+                                        role:'君',
+                                        qi:1,
+                                        fun:'解表寒，袪风湿利关节。入太阳经',
+                                        img:'./中药图片/发散风寒/羌活.png'
+                                    },
+                                    {
+                                        name:'防风',
+                                        number:9,
+                                        role:'臣',
+                                        qi:1,
+                                        fun:'袪风除湿止痛',
+                                        img:'./中药图片/发散风寒/防风.png'
+                                    },
+                                    {
+                                        name:'苍术',
+                                        number:9,
+                                        role:'',
+                                        qi:1,
+                                        fun:'入太阴经，袪太阴寒湿',
+                                        img:'./中药图片/化湿/苍术.jpg'
+                                    },
+                                    {
+                                        name:'细辛',
+                                        number:9,
+                                        role:'佐',
+                                        qi:1,
+                                        fun:'入少阴经，袪风散寒止痛',
+                                        img:'./中药图片/发散风寒/细辛.png'
+                                    },
+                                    {
+                                        name:'白芷',
+                                        number:9,
+                                        role:'',
+                                        qi:1,
+                                        fun:'入阳明经，袪风散寒燥湿',
+                                        img:'./中药图片/发散风寒/白芷.png'
+                                    },
+                                    {
+                                        name:'川芎',
+                                        number:9,
+                                        role:'',
+                                        qi:1,
+                                        fun:'入少阳阙阴经，袪风散寒，行气活血',
+                                        img:'./中药图片/活血化瘀/活血止痛/川芎.jpg',
+                                    },
+                                    {
+                                        name:'生地黄',
+                                        number:6,
+                                        role:'',
+                                        qi:-2,
+                                        fun:'',
+                                        img:'./中药图片/清热药/清热凉血/生地黄.jpg'
+                                    },
+                                    {
+                                        name:'黄芩',
+                                        number:9,
+                                        role:'',
+                                        qi:-2,
+                                        fun:'清泄里热，防散寒药热盛伤津',
+                                        img:'./中药图片/清热药/清热燥湿/黄芩.jpg'
+                                    },
+                                    {
+                                        name:'甘草',
+                                        number:6,
+                                        role:'使',
+                                        fun:'调和辛温清热药',
+                                        img:'./中药图片/补气/甘草.jpg'
                                     },
                                 ]
                             },
@@ -492,7 +619,7 @@
                                         number:18,
                                         role:'臣',
                                         fun:'疏散风热，清利头目，利咽',
-                                        img:'中药图片/发散风热/薄荷.png'
+                                        img:'中药图片/发散风热/薄荷-1.png'
                                     },
                                     {
                                         name:'牛蒡子',
@@ -547,18 +674,68 @@
                             },
                             {
                                 name:'桑菊饮',
-                                gong:'',
+                                key:'14840d7208d265acbd8b48dc605fe2ac',
+                                gong:'疏风清热，宣肺止咳',
                                 zhi:[
-                                    ''
+                                    '风温初起，邪客肺络证。但咳，身热不甚，脉浮数。轻证'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        name:'桑叶',
+                                        number:7.5,
+                                        role:'君',
+                                        fun:'疏散风热止咳',
+                                        img:'./中药图片/发散风热/桑叶.png'
+                                    },
+                                    {
+                                        name:'菊花',
+                                        number:3,
+                                        role:'',
+                                        fun:'疏散风热，清利头目',
+                                        img:'./中药图片/发散风热/菊花.jpg'
+                                    },
+                                    {
+                                        name:'杏仁',
+                                        number:6,
+                                        role:'臣',
+                                        fun:'味苦，肃降肺气',
+                                        img:'./中药图片/止咳平喘/杏仁.jpeg'
+                                    },
+                                    {
+                                        name:'桔梗',
+                                        number:6,
+                                        role:'',
+                                        fun:'辛散而开宣肺气，上行',
+                                        img:'./中药图片/清化热痰/桔梗.jpg',
+                                    },
+                                    {
+                                        name:'薄荷',
+                                        number:2.5,
+                                        role:'佐',
+                                        fun:'辛凉解表',
+                                        img:'./中药图片/发散风热/薄荷.png'
+                                    },
+                                    {
+                                        name:'连翘',
+                                        number:5,
+                                        role:'',
+                                        fun:'清热解毒的疮家圣药',
+                                        img:'./中药图片/清热药/清热解毒药/连翘.jpg'
+                                    },
+                                    {
+                                        name:'芦根',
+                                        number:6,
+                                        role:'',
+                                        fun:'清热生津',
+                                        img:'./中药图片/清热药/清热泻火/芦根.jpg'
+                                    },
+                                    {
+                                        name:'甘草',
+                                        number:2.5,
+                                        role:'使',
+                                        fun:'调和',
+                                        img:'./中药图片/补气/甘草.jpg'
+                                    },
                                 ]
                             },
                             {
@@ -994,8 +1171,11 @@
                             },
                             {
                                 name:'芍药汤',
+                                key:'573b5c09807ec921c6e2ad4d9cc7cf89',
                                 gong:'清热燥湿，调气和血',
-                                zhi:'湿热痢疾。腹痛，便脓血，里急后重。肛门灼热，小便短赤',
+                                zhi:[
+                                    '湿热痢疾。腹痛，便脓血，里急后重。肛门灼热，小便短赤',
+                                ],
                                 fangjie:[
                                     {
                                         name:'白芍',
@@ -1066,18 +1246,41 @@
                             },
                             {
                                 name:'白头翁汤',
+                                key:'7ce3f432ad5d2f21d08df4f1144171d6',
                                 gong:'清热解毒，凉血止痢',
                                 zhi:[
-                                    ''
+                                    '热毒痢疾。下痢脓血，赤多白少，腹痛，里急后重，肛门灼痛，舌红苔黄脉弦数',
+                                    '热毒入血分，下迫大肠所致。热毒阻滞气机则腹痛'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
+                                        name:'白头翁',
+                                        number:15,
+                                        role:'君',
+                                        fun:'清胃肠湿热及血分热毒，治痢之良药',
+                                        img:'./中药图片/清热药/清热解毒药/白头翁.jpg'
+                                    },
+                                    {
+                                        name:'黄连',
                                         number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        role:'臣',
+                                        fun:'泻火解毒，燥湿厚肠，治痢要药',
+                                        img:'./中药图片/清热药/清热燥湿/黄连.jpg'
+                                    },
+                                    {
+                                        name:'黄柏',
+                                        number:9,
+                                        role:'',
+                                        fun:'清下焦湿热',
+                                        img:'./中药图片/清热药/清热燥湿/黄柏.jpeg'
+                                    },
+                                    {
+                                        name:'秦皮',
+                                        number:9,
+                                        role:'佐',
+                                        fun:'清热解毒而收涩止痢',
+                                        img:'./中药图片/清热药/清热燥湿/秦皮.jpg'
+                                    },
                                 ]
                             },
                             {
@@ -1599,75 +1802,83 @@
                             },
                             {
                                 name:'真人养脏汤',
+                                key:'bf45bd41d9bc2bbde4c76d245210435e',
                                 gong:'涩肠固脱，温补脾肾',
                                 zhi:[
-                                    '久泻久痢，脾肾虚寒证。泻痢日久，脾阳虚则中午下陷，肾阳虚则关门不固',
+                                    '久泻久痢，脾肾虚寒证。泻痢日久，脾阳虚则中气下陷，肾阳虚则关门不固',
+                                    '腹痛喜温喜按，食少神疲，舌淡苔白'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
+                                        name:'罂粟壳',
                                         number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
+                                        role:'君',
+                                        fun:'涩肠固脱止泻',
+                                        img:'./中药图片/收涩药/敛肺涩肠/罂粟壳.jpg'
                                     },
                                     {
-                                        name:'',
+                                        name:'诃子',
                                         number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
+                                        role:'臣',
+                                        fun:'涩肠止泻',
+                                        img:'./中药图片/收涩药/敛肺涩肠/诃子.jpg'
                                     },
                                     {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
+                                        name:'肉豆蔻',
+                                        number:8,
+                                        role:'',
+                                        fun:'涩肠止泻',
+                                        img:'./中药图片/收涩药/敛肺涩肠/肉豆蔻.jpg'
                                     },
                                     {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
+                                        name:'人参',
+                                        number:6,
+                                        role:'佐',
+                                        fun:'大补元气，补脾益肺。泻痢日久，气血亏虚',
+                                        img:'./中药图片/补气/人参.jpg'
                                     },
                                     {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
+                                        name:'白术',
+                                        number:6,
+                                        role:'',
+                                        fun:'补气健脾，燥水利湿',
+                                        img:'./中药图片/补气/白术.jpg'
                                     },
                                     {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
+                                        name:'肉桂',
+                                        number:6,
+                                        role:'',
+                                        fun:'温补脾肾，消散阴寒',
+                                        img:'./中药图片/温里药/肉桂.jpeg'
                                     },
                                     {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
+                                        name:'当归',
+                                        number:6,
+                                        role:'',
+                                        fun:'补血活血',
+                                        img:'./中药图片/补血/当归.jpg'
                                     },
                                     {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
+                                        name:'白芍',
+                                        number:12,
+                                        role:'',
+                                        fun:'养血活血，治下痢腹痛',
+                                        img:'./中药图片/补血/白芍.jpeg'
                                     },
                                     {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
+                                        name:'木香',
+                                        number:3,
+                                        role:'',
+                                        fun:'醒脾导滞，使补而不滞',
+                                        img:'./中药图片/理气药/木香.jpg'
                                     },
-
+                                    {
+                                        name:'灸甘草',
+                                        number:6,
+                                        role:'使',
+                                        fun:'调和诸药',
+                                        img:'./中药图片/补气/灸甘草.jpg'
+                                    },
                                 ]
                             },
                             {
@@ -1821,6 +2032,10 @@
                 ]
 
             },
+            computed: {
+                
+            },
+            
             components: {
 
             },
@@ -1829,7 +2044,8 @@
                 
             },
             mounted() {
-                
+                var width = window.innerWidth
+                this.largeimage.left = (width - 540)/2 + 600;
             },
             methods: {
                 showlarge:function(img){
@@ -1841,7 +2057,32 @@
                 },
                 hidelarge:function(){
                     this.largeimage.show = false
-                }
+                },
+                calcNameColor(val){
+                    if(val == undefined || val == null){
+                        return "0x000";
+                    }                        
+                    else if(val == -2){
+                        // 寒
+                        return "#0a497f";
+                    }
+                    else if(val == -1){
+                        // 凉
+                        return "#5792c5";
+                    }
+                    else if(val == 0){
+                        // 凉
+                        return "0x000";
+                    }
+                    else if(val == 1){
+                        // 凉
+                        return "#dd6549";
+                    }
+                    else if(val == 2){
+                        // 凉
+                        return "0xa00";
+                    }
+                },
                 
                
             }

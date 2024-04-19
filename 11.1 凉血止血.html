@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./css/font-awesome.min.css?r="+Math.random()>
+    <title>止血药</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .fengm{
+            width: 450px;
+            height: 800px;
+            margin: 50px auto;
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
+
+            color:#000
+        }
+
+        .fm-guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 40px;
+            /* color: aliceblue; */
+            margin-top: 100px;
+            font-family: 楷体;
+        }
+   
+        .fm-title{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 54px;
+            padding-top: 293px;
+        }
+
+        .list{
+            width: 450px;
+            height: 800px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            padding-top: 10px;
+
+
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
+        }
+        .guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: large;
+        }
+        .img-box{
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .img-box img{
+            width: 100%;
+        }
+        .content-box{
+            padding: 5px 15px 0 15px;
+        }
+        .title{
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: x-large;
+        }
+        .list-item{
+            line-height: 1.7em;
+            text-indent: 1.2em;
+            font-size: 19px;
+            font-family: 楷体;
+            font-weight: 800;
+        }
+        .biao{
+            height: 26px;
+            line-height: 26px;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 17px;
+            margin-top: 5px;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="mainApp" id="app">
+
+        <!--封面-->
+        <div class="fengm">
+            <div class="fm-title" >
+                中草药
+            </div>
+            <div class="fm-guilei">
+                止血药
+            </div>
+        </div>                        
+        <div v-for="yaowu in yao" class="list">
+            <div class="guilei">
+                
+            </div>
+            <div class="img-box">
+                <img :src="yaowu.img" alt="">
+            </div>
+            <div class="content-box">
+                <h3 class="title">{{yaowu.name}}</h3>
+                <div class="biao">药性：{{yaowu.yaoxing}}</div>
+                <div class="biao">功效：{{yaowu.zhuzhi}}</div>
+                <div v-for="gong in yaowu.gongxiao" class="list-item" v-html="gong">
+
+                </div>
+                <div class="biao" v-if="yaowu.shiyong">使用方法</div>
+                <div class="list-item">
+                    {{yaowu.shiyong}}
+                </div>
+            </div>
+            
+        </div>
+
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                yao:[
+                    {
+                        name:"小蓟",
+                        yaoxing:"甘、苦，凉。归心、肝经",
+                        zhuzhi:'凉血止血，散瘀解毒消痈',
+                        img:'./中药图片/止血/凉血止血/小蓟.jpg',
+                        gongxiao:[
+                            "性寒凉，善清血分之热而凉血止血。以治血尿、血淋为佳",
+                            "能清热解毒，散瘀消肿，用治热毒疮疡初起肿痛之证",
+                            "《十灰散》"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"大蓟",
+                        yaoxing:"甘、苦，凉。归心、肝经",
+                        zhuzhi:'凉血止血，散瘀解毒消痈',
+                        img:'./中药图片/止血/凉血止血/大蓟.jpg',
+                        gongxiao:[
+                            "性寒，入血分能凉血止血，主治血热妄行之多种出血证",
+                            "散瘀消痈力强",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"地榆",
+                        yaoxing:"苦、酸、涩，微寒。归肝、大肠经",
+                        zhuzhi:'凉血止血，解毒敛疮',
+                        img:'./中药图片/止血/凉血止血/地榆.jpg',
+                        gongxiao:[
+                            "尤宜于下焦血热之便血、痔血、血痢及崩漏",
+                            '味兼酸涩，又能<span style="color:#f00;">收敛止血</span>',
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"槐花",
+                        yaoxing:"苦，微寒。归肝、大肠经",
+                        zhuzhi:'凉血止血，清肝泻火',
+                        img:'./中药图片/止血/凉血止血/槐花.jpg',
+                        gongxiao:[
+                            "善清泄大肠火热，故对大肠火盛之便血、痔血、血痢最为适宜",
+                            "长于清泻肝火，治疗肝火上炎。",
+                            "《槐花散》"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"白茅根",
+                        yaoxing:"甘，寒。归肺、胃、膀胱经",
+                        zhuzhi:'凉血止血，清热利尿',
+                        img:'./中药图片/止血/凉血止血/白茅根.jpg',
+                        gongxiao:[
+                            "对下焦血热之尿血、血淋之证尤为适宜",
+                            "清胃热而止呕，又能清肺热而止咳",
+                            "清热利尿以除湿退黄、消退水肿、通淋"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"三七",
+                        yaoxing:"甘、微苦，温。归肝、胃经",
+                        zhuzhi:'散瘀止血，消肿定痛',
+                        img:'./中药图片/止血/化瘀止血/三七.jpg',
+                        gongxiao:[
+                            "入肝经血分，功善止血，又能祛瘀，有止血不留瘀，化瘀不伤正的特点",
+                            "活血消肿，止痛力强，为治瘀血诸证之佳品",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"茜草",
+                        yaoxing:"苦，寒。归肝经",
+                        zhuzhi:'凉血，祛瘀，止血，通经',
+                        img:'./中药图片/止血/化瘀止血/茜草.jpg',
+                        gongxiao:[
+                            "对于血热夹瘀之出血尤为适宜 《固冲汤》",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"蒲黄",
+                        yaoxing:"甘，平。归肝、心包经",
+                        zhuzhi:'止血，化瘀，利尿通淋',
+                        img:'./中药图片/止血/化瘀止血/蒲黄.jpg',
+                        gongxiao:[
+                            "止血行瘀之良药，有止血不留瘀",
+                            "《失笑散》",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"白及",
+                        yaoxing:"苦、甘、涩，微寒。归肺、胃、肝经",
+                        zhuzhi:'收敛止血，消肿生肌',
+                        img:'./中药图片/止血/收敛止血/白及.jpg',
+                        gongxiao:[
+                            "本品味涩质黏，为收敛止血之要药，可用治体内外诸出血证",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"仙鹤草",
+                        yaoxing:"苦、涩，平。归心、肝经",
+                        zhuzhi:'收敛止血，截疟，止痢，解毒，补虚',
+                        img:'./中药图片/止血/收敛止血/仙鹤草.jpg',
+                        gongxiao:[
+                            '收敛止血，广泛用于全身各部位的出血证。<span style="color:#f00;">治出血而无瘀滞</span>',
+                            "涩肠止泻痢，兼能补虚止血，故对于血痢及久病泻痢尤为适宜",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"血余炭",
+                        yaoxing:"苦，平。归肝、胃经",
+                        zhuzhi:'收敛止血，化瘀，利尿',
+                        img:'./中药图片/止血/收敛止血/血余炭.jpg',
+                        gongxiao:[
+                            "本品为人发制成的炭化物",
+                            "收敛止血之功，且能化瘀，有止血而不留瘀",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"艾叶",
+                        yaoxing:"辛、苦，温；有小毒。归肝、脾、肾经",
+                        zhuzhi:'温经止血，散寒止痛，调经，安胎；外用祛湿止痒',
+                        img:'./中药图片/止血/温经止血/艾叶.jpg',
+                        gongxiao:[
+                            "暖气血而温经脉，为温经止血之要药，适用于虚寒性出血病证 《胶艾汤》",
+                            "入三阴经而直走下焦，能温经脉，暖宫散寒止痛，尤善调经",
+                            ""
+                        ],
+                        shiyong:""
+                    },                    
+
+                ]
+
+            },
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                
+            },
+            mounted() {
+                
+            },
+            methods: {
+
+                
+               
+            }
+        })        
+    </script>
+    
+</body>
+
+</html>

@@ -235,6 +235,12 @@
                 <!-- 具体方剂 -->
                 <div v-for="fang in fangs.children" class="fengm">
                     <div class="fang-title" :id="fang.key">{{fang.name}}</div>
+
+                    <h3>【功用】</h3>
+                    <div class="biao">{{fang.gong}}</div>
+                    <h3>【主治】</h3>
+                    <div v-for="it in fang.zhi" class="biao" v-html="it"></div>        
+                                        
                     <h3 class="group">【组成】</h3>
                     <!-- 中药图片放这里  -->
                     <div class="peiwu">
@@ -262,11 +268,7 @@
                         </table>                    
                         
                     </div>
-
-                    <h3>【功用】</h3>
-                    <div class="biao">{{fang.gong}}</div>
-                    <h3>【主治】</h3>
-                    <div v-for="it in fang.zhi" class="biao" v-html="it"></div>                
+        
                 </div>    
                 
             </div>
@@ -867,16 +869,54 @@
                                 key:'0670d9646d6ee2bc5e2fbf6d15426eab',
                                 gong:'温肾益精，润肠通便',
                                 zhi:[
-                                    ''
+                                    '肾虚便秘。大便秘结小便清长，腰膝酸冷，舌淡苔白',
+                                    '肾司气化而主二便之开合，肾阳虚弱则气化失司，以致肠失润滑。诸药合用温肾益精治其本，又能润肠通便治其标。',
+                                    '是治疗肾虚便秘常用方'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
+                                        name:'肉苁蓉',
                                         number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        role:'君',
+                                        fun:'温补肾精，暖腰润肠',
+                                        img:'中药图片/补阳/肉苁蓉.jpeg'
+                                    },
+                                    {
+                                        name:'当归',
+                                        number:9,
+                                        role:'臣',
+                                        fun:'养血和血，润肠通便',
+                                        img:'./中药图片/补血/当归.jpg'
+                                    },
+                                    {
+                                        name:'牛膝',
+                                        number:6,
+                                        role:'',
+                                        fun:'补肾壮阳，载药下行',
+                                        img:'中药图片/活血化瘀/活血调经/牛膝.jpg'
+                                    },
+                                    {
+                                        name:'枳壳',
+                                        number:3,
+                                        role:'佐',
+                                        fun:'破气消积，下气通便',
+                                        img:'中药图片/理气药/枳实.jpg'
+                                    },
+                                    {
+                                        name:'泽泻',
+                                        number:4.5,
+                                        role:'',
+                                        fun:'利水渗湿',
+                                        img:'./中药图片/利水渗湿/利水消肿/泽泻.jpg'
+                                    },
+                                    {
+                                        name:'升麻',
+                                        number:3,
+                                        role:'',
+                                        qi:2,
+                                        fun:'升举阳气，使清升浊降',
+                                        img:'中药图片/发散风热/升麻.png'
+                                    },
                                 ]
                             },
                             {
@@ -2651,6 +2691,42 @@
                                         fun:'',
                                         img:'中药图片/'
                                     }
+                                ]
+                            },
+                            {
+                                name:'增液汤',
+                                key:'8693324d26b0d191d964d060d07e5a93',
+                                gong:'增液润燥',
+                                zhi:[
+                                    '阳明病，津亏肠燥便秘证。',
+                                    '三药重剂，养阴增液以清热，使肠燥得润而大便自下'
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'玄参',
+                                        number:30,
+                                        role:'君',
+                                        qi:-2,
+                                        fun:'清热养阴生津',
+                                        img:'./中药图片/清热药/清热凉血/玄参.jpg'
+                                    },
+                                    {
+                                        name:'生地黄',
+                                        number:24,
+                                        role:'臣',
+                                        qi:-2,
+                                        fun:'清热滋阴生津',
+                                        img:'中药图片/清热药/清热凉血/生地黄.jpg'
+                                    },         
+                                    {
+                                        name:'麦冬',
+                                        number:24,
+                                        role:'佐',
+                                        qi:-2,
+                                        fun:'养阴润肺生津，肺与大肠相表里，生津以润肠',
+                                        img:'./中药图片/补阴/麦冬.jpg'
+                                    },
+                                                           
                                 ]
                             },
                         ]

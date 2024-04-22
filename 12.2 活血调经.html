@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./css/font-awesome.min.css?r="+Math.random()>
+    <title></title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .fengm{
+            width: 450px;
+            height: 800px;
+            margin: 50px auto;
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
+
+            color:#000
+        }
+
+        .fm-guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 40px;
+            /* color: aliceblue; */
+            margin-top: 100px;
+            font-family: 楷体;
+        }
+   
+        .fm-title{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 54px;
+            padding-top: 293px;
+        }
+
+        .list{
+            width: 450px;
+            height: 800px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            padding-top: 10px;
+
+
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
+        }
+        .guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: large;
+        }
+        .img-box{
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .img-box img{
+            width: 100%;
+        }
+        .content-box{
+            padding: 5px 15px 0 15px;
+        }
+        .title{
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: x-large;
+        }
+        .list-item{
+            line-height: 1.7em;
+            text-indent: 1.2em;
+            font-size: 19px;
+            font-family: 楷体;
+            font-weight: 800;
+        }
+        .biao{
+            height: 26px;
+            line-height: 26px;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 17px;
+            margin-top: 5px;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="mainApp" id="app">
+
+        <!--封面-->
+        <div class="fengm">
+            <div class="fm-title">
+                中草药
+            </div>
+            <div class="fm-guilei">
+                活血调经
+            </div>
+        </div>                        
+        <div v-for="yaowu in yao" class="list">
+            <div class="guilei">
+                
+            </div>
+            <div class="img-box">
+                <img :src="yaowu.img" alt="">
+            </div>
+            <div class="content-box">
+                <h3 class="title">{{yaowu.name}}</h3>
+                <div class="biao">药性：{{yaowu.yaoxing}}</div>
+                <div class="biao">功效：{{yaowu.zhuzhi}}</div>
+                <div v-for="gong in yaowu.gongxiao" class="list-item" v-html="gong">
+
+                </div>
+                <div class="biao" v-if="yaowu.shiyong">使用方法</div>
+                <div class="list-item">
+                    {{yaowu.shiyong}}
+                </div>
+            </div>
+            
+        </div>
+
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                yao:[
+                    {
+                        name:"丹参",
+                        yaoxing:"苦，微寒。归心、肝经",
+                        zhuzhi:'活血祛瘀，通经止痛，清心除烦，凉血消痈',
+                        img:'./中药图片/活血化瘀/活血调经/丹参.jpg',
+                        gongxiao:[
+                            '治血行不畅、瘀血阻滞之经产病的要药 “破宿血，补新血”',
+                            '性善通行，能活血化瘀，通经止痛，为<span style="color:#f00;">治疗血瘀证的要药</span> 《丹参饮》',
+                            "清心凉血、除烦安神之功 《清营汤》《天王补心丹》"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"红花",
+                        yaoxing:"辛，温。归心、肝经",
+                        zhuzhi:'活血通经，散瘀止痛',
+                        img:'./中药图片/活血化瘀/活血调经/红花.jpg',
+                        gongxiao:[
+                            "活血祛瘀、通经止痛之力强，是妇科瘀血阻滞之经产病的常用药 《桃红四物汤》",
+                            '善治<span style="color:#f00;">瘀阻心腹胁痛</span> 《血府逐瘀汤》《复元活血汤》',
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"桃仁",
+                        yaoxing:"苦、甘，平。归心、肝、大肠经",
+                        zhuzhi:'活血祛瘀，润肠通便，止咳平喘',
+                        img:'./中药图片/活血化瘀/活血调经/桃仁.jpg',
+                        gongxiao:[
+                            '<span style="color:#f00;">活血祛瘀，入心肝血分，善泄血滞，祛瘀力强，为治疗多种瘀血阻滞病症的要药</span>',
+                            '润肠通便，本品富含油脂，能润肠通便，用于肠燥便秘',
+                            '苦降泄，能降泄肺气，止咳平喘',
+                            '《桃红四物汤》《桃核承气汤》《大黄牡丹汤》《润肠丸》'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"益母草",
+                        yaoxing:"苦、辛，微寒。归肝、心包、膀胱经",
+                        zhuzhi:'活血调经，利尿消肿，清热解毒',
+                        img:'./中药图片/活血化瘀/活血调经/益母草.jpg',
+                        gongxiao:[
+                            '<span style="color:#f00;">妇科经产病的要药</span>',
+                            '既能利水消肿，又能活血化瘀，尤宜于水瘀互结的水肿',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"泽兰",
+                        yaoxing:"苦、辛，微温。归肝、脾经",
+                        zhuzhi:'活血调经，祛瘀消痈，利水消肿',
+                        img:'./中药图片/活血化瘀/活血调经/泽兰.jpg',
+                        gongxiao:[
+                            '',
+                            '',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"牛膝",
+                        yaoxing:"苦、甘、酸，平。归肝、肾经",
+                        zhuzhi:'逐瘀通经，补肝肾，强筋骨，利尿通淋',
+                        img:'./中药图片/活血化瘀/活血调经/牛膝.jpg',
+                        gongxiao:[
+                            '活血化瘀通经 《血府逐瘀汤》',
+                            '补益肝肾，强筋健骨，善治肝肾不足之证 《独活寄生汤》',
+                            '<span style="color:#f00;">性善下行</span>，既能利尿通淋，又能活血祛瘀。《加味肾气丸》',
+                            '<span style="color:#f00;">引血下行</span>，常用于气火上逆、火热上攻之证 《玉女煎》'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"鸡血藤",
+                        yaoxing:"苦、甘，温。归肝、肾经",
+                        zhuzhi:'活血补血，调经止痛，舒筋活络',
+                        img:'./中药图片/活血化瘀/活血调经/鸡血藤.jpg',
+                        gongxiao:[
+                            '<span style="color:#f00;">妇科调经要药</span>，凡妇人血瘀及血虚之月经病均可应用',
+                            '',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"王不留行",
+                        yaoxing:"苦、平。归肝、胃经",
+                        zhuzhi:'活血通经，下乳消肿，利尿通淋',
+                        img:'./中药图片/活血化瘀/活血调经/王不留行.jpg',
+                        gongxiao:[
+                            '行血脉，通乳汁，为治疗<span style="color:#f00;">产后乳汁不下</span>常用之品',
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                                    
+                ]
+
+            },
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                
+            },
+            mounted() {
+                
+            },
+            methods: {
+
+                
+               
+            }
+        })        
+    </script>
+    
+</body>
+
+</html>

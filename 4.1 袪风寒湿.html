@@ -1,11 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./css/font-awesome.min.css?r="+Math.random()>
+    <title>袪风湿药</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .fengm{
+            width: 450px;
+            height: 800px;
+            margin: 50px auto;
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
+
+            color:#000
+        }
+
+        .fm-guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 40px;
+            /* color: aliceblue; */
+            margin-top: 100px;
+            font-family: 楷体;
+        }
+   
+        .fm-title{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 54px;
+            padding-top: 293px;
+        }
+
+        .list{
+            width: 450px;
+            height: 800px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            padding-top: 10px;
+
+
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
+        }
+        .guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: large;
+        }
+        .img-box{
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .img-box img{
+            width: 100%;
+        }
+        .content-box{
+            padding: 5px 15px 0 15px;
+        }
+        .title{
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: x-large;
+        }
+        .list-item{
+            line-height: 1.7em;
+            text-indent: 1.2em;
+            font-size: 19px;
+            font-family: 楷体;
+            font-weight: 800;
+        }
+        .biao{
+            height: 26px;
+            line-height: 26px;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 17px;
+            margin-top: 5px;
+        }
+        
+        .red{
+            color:#f00;
+        }
+
+        .large-image{
+            position: fixed;
+            
+            top:10px;
+            width: 600px;
+            height: 600px;
+
+        }
+        .large-image img{
+            width: 100%;
+        }
+    </style>
 </head>
+
 <body>
+
+    <div class="mainApp" id="app">
+
+        <!--封面-->
+        <div class="fengm">
+            <div class="fm-title">
+                中草药
+            </div>
+            <div class="fm-guilei">
+                袪风湿药
+            </div>
+        </div>                        
+        <div class="large-image" :style="{display:largeimage.show?'block':'none',left:largeimage.left+'px'}">
+            <img :src="largeimage.src" alt="">
+        </div>
+        <div v-for="yaowu in yao" class="list">
+            <div class="guilei">
+                
+            </div>
+            <div class="img-box"  @mouseenter="showlarge(yaowu.img)" @mouseout="hidelarge">
+                <img :src="yaowu.img" alt="">
+            </div>
+            <div class="content-box">
+                <h3 class="title">{{yaowu.name}}</h3>
+                <div class="biao">【药性】{{yaowu.yaoxing}}</div>
+                <div class="biao">【功效】{{yaowu.zhuzhi}}</div>
+                <div class="biao">【应用】</div>
+                <div v-for="gong in yaowu.gongxiao" class="list-item" v-html="gong">
+
+                </div>
+                <div class="biao" v-if="yaowu.shiyong">使用方法</div>
+                <div class="list-item">
+                    {{yaowu.shiyong}}
+                </div>
+            </div>
+            
+        </div>
+
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                largeimage:{
+                    src:'',
+                    show:false,
+                    left:500,
+                }, 
+                yao:[
+                    {
+                        name:"独活",
+                        yaoxing:"辛、苦，微温。归肾、膀胱经",
+                        zhuzhi:'祛风除湿，通痹止痛，解表',
+                        img:'./中药图片/袪风湿药/袪风寒湿/独活.jpg',
+                        gongxiao:[
+                            '治风湿痹痛主药，性善下行，“宣肾经之寒湿”，故尤以<span class="red">下半身风寒湿痹为宜</span> 《独活寄生汤》',
+                            '发散风寒湿邪而解表，治外感风寒夹湿所致的头痛头重，一身尽痛 《羌活胜湿汤》',
+                            '入肾经而搜伏风，与细辛、川芎等相配，可治风扰肾经，<span class="red">伏而不出之少阴头痛</span>'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"威灵仙",
+                        yaoxing:"辛、咸，温。归膀胱经",
+                        zhuzhi:'祛风湿，通经络，止痛，消骨骾',
+                        img:'./中药图片/袪风湿药/袪风寒湿/威灵仙.jpg',
+                        gongxiao:[
+                            '性猛善走，既能祛风湿，又能通经络而止痛，为治风湿痹痛要药',
+                            '味咸能软坚而消骨骾，鱼刺卡咽喉',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"徐长卿",
+                        yaoxing:"辛，温。归肝、胃经",
+                        zhuzhi:'祛风除湿，止痛，止痒',
+                        img:'./中药图片/袪风湿药/袪风寒湿/徐长卿.jpg',
+                        gongxiao:[
+                            '有较强的止痛作用，故常用于各种痛证',
+                            '',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"川乌",
+                        yaoxing:"辛、苦，热。归心、肝、肾、脾经",
+                        zhuzhi:'祛风除湿，温经止痛',
+                        img:'./中药图片/袪风湿药/袪风寒湿/川乌.jpg',
+                        gongxiao:[
+                            '<span class="red">有剧毒</span>',
+                            '“一切沉寒痼冷之症，用此无不奏效” 《小活络丹》,大热之物，散寒止痛之功显著。',                            
+                            '不宜与半夏、川贝母、浙贝母、平贝母、伊贝母、湖北贝母、瓜蒌、瓜蒌皮、瓜蒌子、天花粉、白及、白蔹同用'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"蕲蛇",
+                        yaoxing:"甘、咸，温；有毒。归肝经",
+                        zhuzhi:'祛风，通络，止痉',
+                        img:'./中药图片/袪风湿药/袪风寒湿/蕲蛇.jpeg',
+                        gongxiao:[
+                            '动物类药，性善走窜。内走脏腑，外达肌表而透骨搜风，以祛内外之风邪，为截风要药',
+                            '',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"木瓜",
+                        yaoxing:"酸，温。归肝、脾经",
+                        zhuzhi:'舒筋活络，和胃化湿',
+                        img:'./中药图片/袪风湿药/袪风寒湿/木瓜.jpeg',
+                        gongxiao:[
+                            '味酸入肝，善于舒筋活络，且能去湿除痹，尤为<span class="red">湿痹筋脉拘挛之要药</span>',
+                            '和胃化湿，湿去则中焦得运，泄泻可止 《蚕矢汤》',
+                            '还有消食，生津作用'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"蚕沙",
+                        yaoxing:"甘、辛，温。归肝、脾、胃经",
+                        zhuzhi:'祛风除湿，和胃化湿',
+                        img:'./中药图片/袪风湿药/袪风寒湿/蚕沙.jpg',
+                        gongxiao:[
+                            '本品为蚕蛾科昆虫家蚕的干燥粪便。',
+                            '祛风、温燥，又善除湿舒筋，作用缓和，可用于各种痹证《宣痹汤》',
+                            '暑湿中阻而致的腹痛吐泻转筋《蚕矢汤》'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"青风藤",
+                        yaoxing:"苦、辛，平。归肝、脾经",
+                        zhuzhi:'祛风湿，通经络，利小便',
+                        img:'./中药图片/袪风湿药/袪风寒湿/青风藤.jpg',
+                        gongxiao:[
+                            '藤类植物，祛风湿，通经络作用强',
+                            '',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"秦艽",
+                        yaoxing:"辛、苦，平。归胃、肝、胆经",
+                        zhuzhi:'祛风湿，清湿热，舒筋络，止痹痛，退虚热',
+                        img:'./中药图片/袪风湿药/袪风湿热/秦艽.jpeg',
+                        gongxiao:[
+                            '辛散苦泄，质偏润而不燥，善于祛风湿，舒筋络，止痹痛，为<span class="red">“风药中之润剂”</span>',
+                            '退虚热，除骨蒸，<span class="red">为治虚热要药</span>。治骨蒸潮热，小儿疳积发热',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"防己",
+                        yaoxing:"苦，寒。归膀胱、肺经",
+                        zhuzhi:'祛风湿，止痛，利水消肿',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            '',
+                            '',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            '',
+                            '',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            '',
+                            '',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+
+                ]
+
+            },
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                
+            },
+            mounted() {
+                var width = window.innerWidth
+                this.largeimage.left = (width - 450)/2 + 500;
+            },
+            methods: {
+                showlarge:function(img){
+                    this.largeimage={
+                        src:img,
+                        show:true
+                    }
+
+                },
+                hidelarge:function(){
+                    this.largeimage.show = false
+                },
+                
+               
+            }
+        })        
+    </script>
     
 </body>
+
 </html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./css/font-awesome.min.css?r="+Math.random()>
+    <title>活血疗伤</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .fengm{
+            width: 450px;
+            height: 800px;
+            margin: 50px auto;
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
+
+            color:#000
+        }
+
+        .fm-guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 40px;
+            /* color: aliceblue; */
+            margin-top: 100px;
+            font-family: 楷体;
+        }
+   
+        .fm-title{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 54px;
+            padding-top: 293px;
+        }
+
+        .list{
+            width: 450px;
+            height: 800px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            padding-top: 10px;
+
+
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
+        }
+        .guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: large;
+        }
+        .img-box{
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .img-box img{
+            width: 100%;
+        }
+        .content-box{
+            padding: 5px 10px 0 10px;
+        }
+        .title{
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: x-large;
+        }
+        .list-item{
+            line-height: 1.7em;
+            text-indent: 1.2em;
+            font-size: 19px;
+            font-family: 楷体;
+            font-weight: 800;
+        }
+        .list-item:first-child{
+            margin-top: 150px;
+        }
+        .biao{
+            height: 26px;
+            line-height: 26px;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 19px;
+            margin-top: 5px;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="mainApp" id="app">
+
+        <!--封面-->
+        <div class="fengm">
+            <div class="fm-title">
+                中草药
+            </div>
+            <div class="fm-guilei">
+                活血疗伤
+            </div>
+        </div>                        
+        <div v-for="yaowu in yao" class="list">
+            <div class="guilei">
+                
+            </div>
+            <div class="img-box">
+                <img :src="yaowu.img" alt="">
+            </div>
+            <div class="content-box">
+                <h3 class="title">{{yaowu.name}}</h3>
+                <div class="biao">【药性】{{yaowu.yaoxing}}</div>
+                <div class="biao">【功效】{{yaowu.zhuzhi}}</div>
+                <div class="biao">【应用】</div>
+                <div v-for="gong in yaowu.gongxiao" class="list-item" v-html="gong">
+
+                </div>
+                <div class="biao" v-if="yaowu.shiyong">使用方法</div>
+                <div class="list-item">
+                    {{yaowu.shiyong}}
+                </div>
+            </div>
+            
+        </div>
+
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                yao:[
+                    {
+                        name:"土鳖虫",
+                        yaoxing:"咸，寒；有小毒。归肝经",
+                        zhuzhi:'破血逐瘀，续筋接骨',
+                        img:'./中药图片/活血化瘀/活血疗伤/土鳖虫.jpg',
+                        gongxiao:[
+                            '性善走窜，<span style="color:#f00;">活血力强，功善破血逐瘀</span>，消肿止痛，续筋接骨',
+                            '常用于瘀滞经产病及癥瘕痞块 《下瘀血汤》《大黄䗪虫丸》',
+                            '',
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"马钱子",
+                        yaoxing:"苦，温；有大毒。归肝、脾经",
+                        zhuzhi:'通络止痛，散结消肿',
+                        img:'./中药图片/活血化瘀/活血疗伤/马钱子.jpg',
+                        gongxiao:[
+                            '善搜筋骨间风湿，开通经络，透达关节，止痛力强，为治疗<span style="color:#f00;">风湿顽痛、伤科疗伤止痛要药</span>',
+                            '<span style="color:#f00;">有大毒。0.3～0.6g，炮制后入丸散用</span>',
+                            '',
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"骨碎补",
+                        yaoxing:"苦，温。归肝、肾经",
+                        zhuzhi:'活血疗伤止痛，补肾强骨；外用消风祛斑',
+                        img:'./中药图片/活血化瘀/活血疗伤/骨碎补.jpg',
+                        gongxiao:[
+                            '续筋接骨，以<span style="color:#f00;">善补骨碎而得名</span>，为伤科要药',
+                            '入肾经，能温补肾阳，强筋健骨，可治肾阳虚损之证',
+                            '',
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"血竭",
+                        yaoxing:"甘、咸，平。归心、肝经",
+                        zhuzhi:'活血定痛，化瘀止血，生肌敛疮',
+                        img:'./中药图片/活血化瘀/活血疗伤/血竭.jpg',
+                        gongxiao:[
+                            '棕榈科植物麒麟竭果实渗出的树脂经加工制成',
+                            '入血分，活血散瘀，消肿止痛，为伤科及其他<span style="color:#f00;">瘀滞痛证要药</span>《七厘散》',
+                            '散瘀止血，且止血不留瘀',
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"莪术",
+                        yaoxing:"辛、苦，温。归肝、脾经",
+                        zhuzhi:'破血行气，消积止痛',
+                        img:'./中药图片/活血化瘀/破血消癥/莪术.jpg',
+                        gongxiao:[
+                            '破血行气，散瘀消癥，消积止痛，适用于气滞血瘀、食积日久而成的癥瘕积聚',
+                            '辛散苦泄，能行气止痛，消食化积，可用于食积气滞，脘腹胀痛',
+                            '',
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"水蛭",
+                        yaoxing:"咸、苦，平；有小毒。归肝经",
+                        zhuzhi:'破血通经，逐瘀消癥',
+                        img:'./中药图片/活血化瘀/破血消癥/水蛭.jpg',
+                        gongxiao:[
+                            '主归肝经，<span style="color:#f00;">破血逐瘀力强，常用于瘀滞重症</span> 《抵当汤》',
+                            '',
+                            '',
+                        ],
+                        shiyong:"煎服，1～3g"
+                    },
+                    {
+                        name:"斑蝥",
+                        yaoxing:"辛，热；有大毒。归肝、胃、肾经",
+                        zhuzhi:'破血逐瘀，散结消癥，攻毒蚀疮',
+                        img:'./中药图片/活血化瘀/破血消癥/斑蝥.jpg',
+                        gongxiao:[
+                            '有剧毒，内服，0.03～0.06g',
+                            '入血分，能破血逐瘀，通行经脉，消癥散结，常用于瘀血重症',
+                            '',
+                            '',
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"",
+                        yaoxing:"",
+                        zhuzhi:'',
+                        img:'./中药图片/',
+                        gongxiao:[
+                            '',
+                            '',
+                            '',
+                        ],
+                        shiyong:""
+                    },
+                    
+                
+                ]
+
+            },
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                
+            },
+            mounted() {
+                
+            },
+            methods: {
+
+                
+               
+            }
+        })        
+    </script>
+    
+</body>
+
+</html>

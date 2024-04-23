@@ -3158,7 +3158,8 @@
                                 let canvas = document.getElementById('canvas_'+fang.key);
                                 let ctx = canvas.getContext('2d');
                                 let start = 0;
-                                let tempAngle = -90;
+                                let tempAngle = -90;    //canvas坐标y轴正方向是-90
+                                let axisAngle = 90;     // 坐标系统y轴正方向是90度
                                 //设置角度的中间变量
                                 let x0 = that.fangjiWidth/2, y0 = that.fangjiWidth/2;
                                 let radius = that.fangjiWidth/2;
@@ -3176,10 +3177,7 @@
                                         ctx.moveTo(x0, y0);                                       
 
                                         //console.log(`key= ${fang.key} i=${i} start=${(tempAngle + angle * i) * Math.PI / 180} end=${(tempAngle + angle * (i + 1)) * Math.PI / 180}`)
-                                        var start = (tempAngle + angle * i) * Math.PI / 180;
-                                        var end = (tempAngle + angle * (i + 1)) * Math.PI / 180
-                                        if(fang.key == 'de48af2dd4241e7313922fbd489a542e')
-                                        console.log(`key= ${fang.key} i=${i} start=${start} end=${end}`)
+
                                         ctx.arc(
                                             x0, 
                                             y0, 
@@ -3192,26 +3190,59 @@
                                         ctx.stroke();
                                         // 剪切画布到定义的扇形区域
                                         ctx.clip();
-                                        
+
+                                        // 计算图片显示位置
+                                        var start = (axisAngle - angle * i);
+                                        var end = (axisAngle - angle * (i + 1))
                                         let width = e.target.width, height=e.target.height
-                                        let dx = 0,dy= 0
+                                        let x2 = 0, y2= 0, x1=0, y1=0;
                                         
-                                        if(start > 0 && start < Math.PI / 2){
-                                            // 第四
-                                            dx = radius;
-                                            dy = radius;
-                                        } else if(start > Math.PI / 2 && start < Math.PI){
+                                        
+                                        if(start >= 0 && start < 90 || start >= -90 && start < 0){                                            
+                                            x1= radius + radius * Math.cos(start * Math.PI / 180);
+                                            y1 = radius - radius * Math.sin(start * Math.PI / 180);                                            
+                                        } else if(start >= -180 && start < -90){
                                             // 第三
-                                            dx = 0;
-                                            dy = radius;
-                                        }else if(start > Math.PI && start < 1.5 * Math.PI){
-                                            // 第一
-                                            dx = 0;
-                                            dy = 0;
-                                        } else {
-                                            //第二
-                                            dx = radius;
-                                            dy = 0;
+                                            x1 = radius + radius * Math.sin(start * Math.PI / 180);
+                                            y1 = radius - radius * Math.cos(start * Math.PI / 180);
+                                        }else if(start >= -270 && start < -180){
+                                            x1 = radius + radius * Math.cos(start * Math.PI / 180)
+                                            y1 = radius - radius * Math.sin(start * Math.PI / 180)
+                                        } 
+
+                                        if(end >= 0 && end < 90 || end >= -90 && end < 0){                                            
+                                            x2 = radius + radius * Math.cos(end * Math.PI / 180);
+                                            y2 = radius - radius * Math.sin(end * Math.PI / 180);                                            
+                                        } else if(end >= -180 && end < -90){
+                                            // 第三
+                                            x2 = radius + radius * Math.sin(end * Math.PI / 180);
+                                            y2 = radius - radius * Math.cos(end * Math.PI / 180);
+                                        }else if(end >= -270 && end < -180){
+                                            x2 = radius + radius * Math.cos(end * Math.PI / 180)
+                                            y2 = radius - radius * Math.sin(end * Math.PI / 180)
+                                        } 
+                                                                 
+                                        width = radius ,height=radius;//* e.target.height / e.target.width;
+                                        if(x1 <= radius && x2 <= radius){
+                                            x1 = 0;
+                                        }else if(x1 <= radius && x2 > radius){
+                                            width = x2 - x1;
+                                        }else if(x1 > radius && x2 < radius){
+                                            
+                                        }
+                                        else if(x >= radius && x2 >= radius){
+                                            x1 = radius;
+                                            width = radius;
+                                        }
+
+                                        if(y1 <= radius && y2 <= radius ){
+                                            y1 = 0;
+                                        }else if(y1 > radius && y2 <= radius){
+                                            y1=y2;
+                                        }else if(y1 <= radius && y2 > radius){
+
+                                        }else if(y1 > radius && y2 >radius){
+
                                         }
 
                                         ctx.drawImage(
@@ -3220,10 +3251,10 @@
                                             height / (4 * 2),
                                             3 *  width / 4,
                                             3 *  height / 4,
-                                            dx,
-                                            dy,
-                                            radius,
-                                            radius
+                                            x1,
+                                            y1,
+                                            width,
+                                            height
 
                                         );
                                                                             

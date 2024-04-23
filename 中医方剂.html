@@ -49,10 +49,11 @@
             color: #000;    
             text-decoration: none;
         }
+        /*方剂宽度
         .fangji-list{
             width: 540px;
         }
-
+*/
         .group{
             margin-left: 10px;
         }
@@ -224,7 +225,8 @@
         <div class="large-image" :style="{display:largeimage.show?'block':'none',left:largeimage.left+'px'}">
             <img :src="largeimage.src" alt="">
         </div>
-        <div class="fangji-list">
+        <div class="fangji-list" :style='{width:fangjiWidth+"px",}'>
+
             <div v-for="fangs in fangji" class="list">
                 <!--每种的封面-->
                 <div class="fengm">
@@ -245,7 +247,7 @@
                     <!-- 中药图片放这里  -->
                     <div class="peiwu">
                         <div v-for="(yao, index) in fang.fangjie" :key="index" class="yaobox">
-                            <div class="img-box"  @mouseenter="showlarge(yao.img)" @mouseout="hidelarge">
+                            <div class="img-box" @mouseenter="showlarge(yao.img)" @mouseout="hidelarge">
                                 <img :src="yao.img" alt="">
                             </div>
                             <div class="yaoname" :style="{color:calcNameColor(yao.qi)}">{{yao.name}} {{yao.number}}g</div>
@@ -253,6 +255,7 @@
                         </div>
 
                     </div>
+                    <canvas :id='"canvas_"+fang.key' :width="fangjiWidth" :height="fangjiWidth" style="margin:0 auto; margin-top: 20px;"></canvas>
                     <h3>【方解】</h3>
                     <!-- 君臣佐使角色放这里 -->
                     <div class="roles">
@@ -290,6 +293,8 @@
                     show:false,
                     left:500,
                 }, 
+                // 定义中心方剂内容宽度
+                fangjiWidth:540,
                 fangji:[
                     {
                         name:"一、解表剂",
@@ -399,7 +404,7 @@
                                         number:9,
                                         role:'君',
                                         fun:'解表散寒',
-                                        img:'中药图片/发散风寒/麻黄.jpg'
+                                        img:'./中药图片/发散风寒/麻黄.jpg'
                                     },
                                     {
                                         name:'桂枝',
@@ -1172,18 +1177,90 @@
                             {
                                 name:'龙胆泻肝汤',
                                 key:'e08b7086118dfe04fbf532fc380190f9',
-                                gong:'',
+                                gong:'清泻肝胆实火，清利肝经湿热',
                                 zhi:[
-                                    ''
+                                    '肝胆实火上炎证',
+                                    '肝经湿热下注证'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
+                                        name:'龙胆草',
+                                        number:6,
+                                        role:'君',
+                                        qi:-2,
+                                        fun:'清热燥湿，泻肝胆火',
+                                        img:'./中药图片/清热药/清热燥湿/龙胆.jpg'
+                                    },
+                                    {
+                                        name:'黄芩',
                                         number:9,
-                                        role:1,
+                                        role:'臣',
+                                        qi:-2,
+                                        fun:'善清中上焦湿热',
+                                        img:'./中药图片/清热药/清热燥湿/黄芩.jpg'
+                                    },
+                                    {
+                                        name:'栀子',
+                                        number:9,
+                                        role:'',
+                                        qi:-2,
+                                        fun:'清泻三焦火邪',
+                                        img:'./中药图片/清热药/清热泻火/栀子.jpg'
+                                    },
+                                    {
+                                        name:'泽泻',
+                                        number:12,
+                                        role:'佐',
+                                        qi:-2,
+                                        fun:'利水渗湿泄热',
+                                        img:'./中药图片/利水渗湿/利水消肿/泽泻.jpg'
+                                    },
+                                    {
+                                        name:'木通',
+                                        number:6,
+                                        role:'',
+                                        qi:-2,
+                                        fun:'利尿通淋',
+                                        img:'./中药图片/利水渗湿/利尿通淋/通草.png'
+                                    },
+                                    {
+                                        name:'车前子',
+                                        number:9,
+                                        role:'',
+                                        qi:-2,
+                                        fun:'清热利尿通淋',
+                                        img:'./中药图片/利水渗湿/利尿通淋/车前子.jpg'
+                                    },
+                                    {
+                                        name:'当归',
+                                        number:9,
+                                        role:'',
+                                        qi:1,
+                                        fun:'方中寒性药物多，用之养血滋阴',
+                                        img:'中药图片/补血/当归.jpg'
+                                    },
+                                    {
+                                        name:'生地黄',
+                                        number:9,
+                                        role:'',
+                                        qi:-2,
+                                        fun:'滋阴养血，清虚热',
+                                        img:'./中药图片/清热药/清热凉血/生地黄.jpg'
+                                    },
+                                    {
+                                        name:'柴胡',
+                                        number:6,
+                                        role:'',
+                                        fun:'疏肝解郁（疏散退热，升举阳气）',
+                                        img:'./中药图片/发散风热/柴胡.png'
+                                    },
+                                    {
+                                        name:'甘草',
+                                        number:6,
+                                        role:'使',
                                         fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        img:'中药图片/补气/甘草.jpg'
+                                    },
                                 ]
                             },
                             {
@@ -1632,7 +1709,7 @@
                                         number:9,
                                         role:1,
                                         fun:'',
-                                        img:'发散风寒/麻黄.jpg'
+                                        img:'./中药图片/发散风寒/麻黄.jpg'
                                     }
                                 ]
                             },
@@ -1649,7 +1726,7 @@
                                         number:15,
                                         role:'君',
                                         fun:'补气健脾',
-                                        img:'中药图片/补气/人参.jpg'
+                                        img:'./中药图片/补气/人参.jpg'
                                     },
                                     {
                                         name:'茯苓',
@@ -1663,7 +1740,7 @@
                                         number:15,
                                         role:'君',
                                         fun:'补气健脾',
-                                        img:'中药图片/补气/人参.jpg'
+                                        img:'./中药图片/补气/人参.jpg'
                                     },
                                 ]
                             },
@@ -1679,7 +1756,7 @@
                                         number:9,
                                         role:1,
                                         fun:'',
-                                        img:'中药图片.jpg'
+                                        img:'./中药图片'
                                     }
                                 ]
                             },
@@ -1878,18 +1955,58 @@
                             },
                             {
                                 name:'一贯煎',
-                                gong:'',
+                                key:'87d6a492aa25c79bc15372407cea53de',
+                                gong:'滋阴疏肝',
                                 zhi:[
-                                    ''
+                                    '肝肾阴虚，肝气郁滞证。胸脘胀痛，咽干口燥，舌红少津'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
+                                        name:'生地黄',
+                                        number:18,
+                                        role:'君',
+                                        qi:-2,
+                                        fun:'滋养肝肾之阴',
+                                        img:'中药图片/清热药/清热凉血/生地黄.jpg'
+                                    },
+                                    {
+                                        name:'枸杞子',
                                         number:9,
-                                        role:1,
+                                        role:'',
+                                        fun:'滋补肝肾，益精明目',
+                                        img:'./中药图片/补阴/枸杞子.jpg',
+                                    },
+                                    {
+                                        name:'当归',
+                                        number:9,
+                                        role:'臣',
+                                        fun:'补血养肝',
+                                        img:'中药图片/补血/当归.jpg'
+                                    },
+                                    {
+                                        name:'川楝子',
+                                        number:9,
+                                        role:'',
+                                        qi:-2,
+                                        fun:'治肝郁气滞疼痛',
+                                        img:'中药图片/理气药/川楝子.jpg'
+                                    },
+                                    {
+                                        name:'北沙参',
+                                        number:9,
+                                        role:'佐',
+                                        qi:-1,
+                                        fun:'滋养肺胃之阴',
+                                        img:'中药图片/补阴/北沙参.jpg'
+                                    },
+                                    {
+                                        name:'麦冬',
+                                        number:9,
+                                        role:'',
+                                        qi:-1,
                                         fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        img:'./中药图片/补阴/麦冬.jpg',
+                                    },
                                 ]
                             },
                             {
@@ -2964,7 +3081,7 @@
                                         number:9,
                                         role:1,
                                         fun:'',
-                                        img:'中药图片/'
+                                        img:'./中药图片/'
                                     }
                                 ]
                             },
@@ -2988,7 +3105,8 @@
             },
             mounted() {
                 var width = window.innerWidth
-                this.largeimage.left = (width - 540)/2 + 600;
+                this.largeimage.left = (width - this.fangjiWidth)/2 + 600 ;
+                this.drawCanvas()
             },
             methods: {
                 showlarge:function(img){
@@ -3026,6 +3144,114 @@
                         return "0xa00";
                     }
                 },
+                /**
+                 * 在每个canvas上画一圈中药图片
+                 */ 
+                drawCanvas:function(){
+                    let that = this;
+                    
+                    for(let j=0; j < this.fangji.length; j++){
+                        let fangarray = this.fangji[j].children;
+                        for(let k=0; k<fangarray.length; k++){
+                            let fang = fangarray[k];
+                            if(fang.key != undefined ||fang.key != null){
+                                let canvas = document.getElementById('canvas_'+fang.key);
+                                let ctx = canvas.getContext('2d');
+                                let start = 0;
+                                let tempAngle = -90;
+                                //设置角度的中间变量
+                                let x0 = that.fangjiWidth/2, y0 = that.fangjiWidth/2;
+                                let radius = that.fangjiWidth/2;
+                                let angle = 360 / fang.fangjie.length
+                                for(let i=0; i< fang.fangjie.length; i++){
+                                    
+                                    let image = new Image();
+                                    image.src = fang.fangjie[i].img; // 替换为你的图片路径
+                                    //console.log(`i=${i} key=${fang.key} fang.fangjie[i].img = ${fang.fangjie[i].img}`)
+                                    image.onload = function(e) {
+                                        //console.log(e)
+                                        ctx.save()
+                                        // 绘制扇形路径
+                                        ctx.beginPath();
+                                        ctx.moveTo(x0, y0);                                       
+
+                                        //console.log(`key= ${fang.key} i=${i} start=${(tempAngle + angle * i) * Math.PI / 180} end=${(tempAngle + angle * (i + 1)) * Math.PI / 180}`)
+                                        var start = (tempAngle + angle * i) * Math.PI / 180;
+                                        var end = (tempAngle + angle * (i + 1)) * Math.PI / 180
+                                        if(fang.key == 'de48af2dd4241e7313922fbd489a542e')
+                                        console.log(`key= ${fang.key} i=${i} start=${start} end=${end}`)
+                                        ctx.arc(
+                                            x0, 
+                                            y0, 
+                                            radius,                                 // 半径
+                                            (tempAngle + angle * i) * Math.PI / 180, //起始弧度
+                                            (tempAngle + angle * (i + 1)) * Math.PI / 180,  //结束弧度
+                                            false
+                                        ); // 扇形半径、起始角度、结束角度
+                                        ctx.closePath();
+                                        ctx.stroke();
+                                        // 剪切画布到定义的扇形区域
+                                        ctx.clip();
+                                        
+                                        let width = e.target.width, height=e.target.height
+                                        let dx = 0,dy= 0
+                                        
+                                        if(start > 0 && start < Math.PI / 2){
+                                            // 第四
+                                            dx = radius;
+                                            dy = radius;
+                                        } else if(start > Math.PI / 2 && start < Math.PI){
+                                            // 第三
+                                            dx = 0;
+                                            dy = radius;
+                                        }else if(start > Math.PI && start < 1.5 * Math.PI){
+                                            // 第一
+                                            dx = 0;
+                                            dy = 0;
+                                        } else {
+                                            //第二
+                                            dx = radius;
+                                            dy = 0;
+                                        }
+
+                                        ctx.drawImage(
+                                            this, 
+                                            width / (4 * 2), 
+                                            height / (4 * 2),
+                                            3 *  width / 4,
+                                            3 *  height / 4,
+                                            dx,
+                                            dy,
+                                            radius,
+                                            radius
+
+                                        );
+                                                                            
+                                        /*
+                                        ctx.drawImage(
+                                            this, 
+                                            width / (4 * 2), 
+                                            height / (4 * 2),
+                                            3 *  width / 4,
+                                            3 *  height / 4,
+                                            dx,
+                                            dy,
+                                            radius,
+                                            radius
+
+                                        );
+                                        */
+                                        ctx.restore(); // 恢复之前保存的状态  
+                                    };
+                                    
+                                }
+                                
+                            }
+                        }
+                        
+                    };
+                    
+                }
                 
                
             }

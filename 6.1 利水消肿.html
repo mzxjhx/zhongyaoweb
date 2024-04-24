@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./css/font-awesome.min.css?r="+Math.random()>
+    <title>利水渗湿</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .fengm{
+            width: 450px;
+            height: 800px;
+            margin: 50px auto;
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
+
+            color:#000
+        }
+
+        .fm-guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 40px;
+            /* color: aliceblue; */
+            margin-top: 100px;
+            font-family: 楷体;
+        }
+   
+        .fm-title{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 54px;
+            padding-top: 293px;
+        }
+
+        .list{
+            width: 450px;
+            height: 800px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            padding-top: 10px;
+
+
+            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
+            background-position-x: 455px;
+            background-position-y: -570px;
+        }
+        .guilei{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: large;
+        }
+        .img-box{
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .img-box img{
+            width: 100%;
+        }
+        .content-box{
+            padding: 5px 15px 0 15px;
+        }
+        .title{
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: x-large;
+        }
+        .list-item{
+            line-height: 1.7em;
+            text-indent: 1.2em;
+            font-size: 19px;
+            font-family: 楷体;
+            font-weight: 800;
+        }
+        .biao{
+            height: 26px;
+            line-height: 26px;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 18px;
+            margin-top: 5px;
+        }
+        .red{
+            color:#f00;
+        }
+
+        .large-image{
+            position: fixed;
+            
+            top:10px;
+            width: 600px;
+            height: 600px;
+
+        }
+        .large-image img{
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="mainApp" id="app">
+
+        <!--封面-->
+        <div class="fengm">
+            <div class="fm-title">
+                中草药
+            </div>
+            <div class="fm-guilei">
+                利水渗湿总类
+            </div>
+        </div>        
+        <div class="large-image" :style="{display:largeimage.show?'block':'none',left:largeimage.left+'px'}">
+            <img :src="largeimage.src" alt="">
+        </div>                
+        <div v-for="yaowu in yao" class="list">
+            <div class="guilei">
+                利水渗湿各类
+            </div>
+            <div class="img-box"  @mouseenter="showlarge(yaowu.img)" @mouseout="hidelarge">
+                <img :src="yaowu.img" alt="">
+            </div>
+            <div class="content-box">
+                <h3 class="title">{{yaowu.name}}</h3>
+                <div class="biao">【药性】{{yaowu.yaoxing}}</div>
+                <div class="biao">【功效】{{yaowu.zhuzhi}}</div>
+                <div class="biao">【应用】</div>
+                <div v-for="gong in yaowu.gongxiao" class="list-item" v-html="gong">
+
+                </div>
+                <div class="biao" v-if="yaowu.shiyong">使用方法</div>
+                <div class="list-item">
+                    {{yaowu.shiyong}}
+                </div>
+            </div>
+            
+        </div>
+
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                largeimage:{
+                    src:'',
+                    show:false,
+                    left:500,
+                }, 
+                yao:[
+                    {
+                        name:"茯苓",
+                        yaoxing:"甘、淡，平。归心、肺、脾、肾经",
+                        zhuzhi:'利水渗湿，健脾，宁心安神',
+                        img:'./中药图片/利水渗湿/利水消肿/茯苓.jpg',
+                        gongxiao:[
+                            '利水消肿之要药，可用治寒热虚实各种水肿 《五苓散》《真武汤》《猪苓汤》',
+                            '渗泄水湿，使湿无所聚，痰无由生 《苓桂术甘汤》',
+                            '能健脾补中，渗湿而止泻，使中焦清升浊降，尤宜于脾虚湿盛泄泻 《四君子汤》',
+                            '补益心脾而宁心安神。常用治心脾两虚 《归脾汤》 '
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"薏苡仁",
+                        yaoxing:"甘、淡，凉。归脾、胃、肺经",
+                        zhuzhi:'利水渗湿，健脾止泻，除痹，排脓，解毒散结',
+                        img:'./中药图片/利水渗湿/利水消肿/薏苡仁.jpg',
+                        gongxiao:[
+                            '利水消肿，又能健脾补中，止泻。尤宜治脾虚湿盛之泄泻 《参苓白术散》',
+                            '<span class="red">渗湿除痹，能舒筋脉，缓和拘挛</span> 《三仁汤》',
+                            '清肺肠之热，排脓消痈。治疗肺痈胸痛，咳吐脓痰'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"猪苓",
+                        yaoxing:"甘、淡，平。归肾、膀胱经",
+                        zhuzhi:'利水渗湿',
+                        img:'./中药图片/利水渗湿/利水消肿/猪苓.jpg',
+                        gongxiao:[
+                            '利水渗湿作用较强，用于水湿停滞的水肿 《猪苓汤》',
+                            '',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"泽泻",
+                        yaoxing:"甘、淡，寒。归肾、膀胱经",
+                        zhuzhi:'利水渗湿，泄热，化浊降脂',
+                        img:'./中药图片/利水渗湿/利水消肿/泽泻.jpg',
+                        gongxiao:[
+                            '<span class="red">利水渗湿作用较强</span>，治疗水湿停蓄。能“利小便以实大便” 《五苓散》',
+                            '清膀胱之热，又能泄肾经之虚火，故下焦湿热者尤为适宜 《六味地黄丸》',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"冬瓜皮*",
+                        yaoxing:"甘，凉。归脾、小肠经",
+                        zhuzhi:'利尿消肿，清热解暑',
+                        img:'./中药图片/利水渗湿/利水消肿/冬瓜皮.jpg',
+                        gongxiao:[
+                            '生活中常见物品，味甘，药性平和，善于利水消肿',
+                            '本品性凉，有清热解暑之功',
+                            ''
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"玉米须*",
+                        yaoxing:"甘，平。归膀胱、肝、胆经",
+                        zhuzhi:'利水消肿，利湿退黄',
+                        img:'./中药图片/利水渗湿/利水消肿/玉米须.jpg',
+                        gongxiao:[
+                            "利水渗湿以消肿",
+                            "利湿而退黄，药性平和，故阳黄、阴黄均可配伍使用",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"葫芦*",
+                        yaoxing:"甘，平。归肺、肾经",
+                        zhuzhi:'利水消肿',
+                        img:'./中药图片/利水渗湿/利水消肿/葫芦.jpg',
+                        gongxiao:[
+                            "功专利水消肿",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"车前子",
+                        yaoxing:"甘，寒。归肝、肾、肺、小肠经",
+                        zhuzhi:'清热利尿通淋，渗湿止泻，明目，祛痰',
+                        img:'./中药图片/利水渗湿/利尿通淋/车前子.jpg',
+                        gongxiao:[
+                            "甘寒滑利，善于通利水道，清膀胱之热 《八正散》",
+                            "清浊而止泻，即“利小便以实大便”，尤宜于湿盛之大便水泻，小便不利者",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"滑石",
+                        yaoxing:"甘、淡，寒。归膀胱、肺、胃经",
+                        zhuzhi:'利尿通淋，清热解暑；外用祛湿敛疮',
+                        img:'./中药图片/利水渗湿/利尿通淋/滑石.jpg',
+                        gongxiao:[
+                            "能清膀胱湿热而通利水道，为治淋证常用药 《八正散》",
+                            "治暑湿、湿温之常用药 《六一散》《三仁汤》",
+                            "清热解暑热，又利水分清泌浊，即所谓能“分水道，实大肠”",
+                            '夏天使用的痱子粉主要成分'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"木通",
+                        yaoxing:"苦，寒。归心、小肠、膀胱经",
+                        zhuzhi:'利尿通淋，清心除烦，通经下乳',
+                        img:'./中药图片/利水渗湿/利尿通淋/木通.png',
+                        gongxiao:[
+                            "利尿通淋，使湿热之邪下行从小便排出 《八正散》",
+                            "能上清心经之火，下泄小肠之热",
+                            "入血分，能通经下乳"
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"通草",
+                        yaoxing:"甘、淡，微寒。归肺、胃经",
+                        zhuzhi:'清热利尿，通气下乳',
+                        img:'./中药图片/利水渗湿/利尿通淋/通草.png',
+                        gongxiao:[
+                            "入手太阴肺经，引热下降而利小便，既通淋，又消肿",
+                            "多用于产后乳汁不畅或不下",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"瞿麦",
+                        yaoxing:"苦，寒。归心、小肠经",
+                        zhuzhi:'利尿通淋，活血通经',
+                        img:'./中药图片/利水渗湿/利尿通淋/瞿麦.jpg',
+                        gongxiao:[
+                            "能清心与小肠之火，异热下行，有利尿通淋之功，为治淋证之常用药 《八正散》",
+                            "",
+                            ""
+                        ],
+                        shiyong:""
+                    },
+
+                ]
+
+            },
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                
+            },
+            mounted() {
+                var width = window.innerWidth
+                this.largeimage.left = (width - 450)/2 + 500;
+            },
+            methods: {
+                showlarge:function(img){
+                    this.largeimage={
+                        src:img,
+                        show:true
+                    }
+
+                },
+                hidelarge:function(){
+                    this.largeimage.show = false
+                },
+                
+               
+            }
+        })        
+    </script>
+    
+</body>
+
+</html>

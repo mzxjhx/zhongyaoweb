@@ -27,9 +27,9 @@
             width: 450px;
             height: 800px;
             margin: 50px auto;
-            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
-            background-position-x: 455px;
-            background-position-y: -570px;
+            background-image: url(./封面/49b8fcae1dec2aab93727140e1a06d10.jpg);
+            background-position-x: 0px;
+            background-position-y: -270px;
 
             color:#000
         }
@@ -40,7 +40,7 @@
             line-height: 40px;
             font-family: serif;
             font-weight: 600;
-            font-size: 40px;
+            font-size: 60px;
             /* color: aliceblue; */
             margin-top: 100px;
             font-family: 楷体;
@@ -52,7 +52,7 @@
             line-height: 40px;
             font-family: serif;
             font-weight: 600;
-            font-size: 54px;
+            font-size: 70px;
             padding-top: 293px;
         }
 
@@ -64,9 +64,9 @@
             padding-top: 10px;
 
 
-            background-image: url(./封面/d063efb2b0c33987a0b616cbccc38a17.jpg);
-            background-position-x: 455px;
-            background-position-y: -570px;
+            background-image: url(./封面/49b8fcae1dec2aab93727140e1a06d10.jpg);
+            background-position-x: 0px;
+            background-position-y: -270px;
         }
         .guilei{
             text-align: center;
@@ -109,11 +109,25 @@
             line-height: 26px;
             font-weight: 700;
             font-family: 楷体;
-            font-size: 17px;
+            font-size: 18px;
             margin-top: 5px;
         }
         
-        
+        .red{
+            color:#f00;
+        }
+
+        .large-image{
+            position: fixed;
+            
+            top:10px;
+            width: 600px;
+            height: 600px;
+
+        }
+        .large-image img{
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -129,18 +143,22 @@
             <div class="fm-guilei">
                 止血药
             </div>
-        </div>                        
+        </div>                 
+        <div class="large-image" :style="{display:largeimage.show?'block':'none',left:largeimage.left+'px'}">
+            <img :src="largeimage.src" alt="">
+        </div>       
         <div v-for="yaowu in yao" class="list">
             <div class="guilei">
-                
+                止血药各类
             </div>
-            <div class="img-box">
+            <div class="img-box" @mouseenter="showlarge(yaowu.img)" @mouseout="hidelarge">
                 <img :src="yaowu.img" alt="">
             </div>
             <div class="content-box">
                 <h3 class="title">{{yaowu.name}}</h3>
-                <div class="biao">药性：{{yaowu.yaoxing}}</div>
-                <div class="biao">功效：{{yaowu.zhuzhi}}</div>
+                <div class="biao">【药性】{{yaowu.yaoxing}}</div>
+                <div class="biao">【功效】{{yaowu.zhuzhi}}</div>
+                <div class="biao">【应用】</div>
                 <div v-for="gong in yaowu.gongxiao" class="list-item" v-html="gong">
 
                 </div>
@@ -163,6 +181,11 @@
         new Vue({
             el: '#app',
             data: {
+                largeimage:{
+                    src:'',
+                    show:false,
+                    left:500,
+                }, 
                 yao:[
                     {
                         name:"小蓟",
@@ -195,7 +218,7 @@
                         img:'./中药图片/止血/凉血止血/地榆.jpg',
                         gongxiao:[
                             "尤宜于下焦血热之便血、痔血、血痢及崩漏",
-                            '味兼酸涩，又能<span style="color:#f00;">收敛止血</span>',
+                            '味兼酸涩，又能<span class="red">收敛止血</span>',
                             ""
                         ],
                         shiyong:""
@@ -254,7 +277,7 @@
                         zhuzhi:'止血，化瘀，利尿通淋',
                         img:'./中药图片/止血/化瘀止血/蒲黄.jpg',
                         gongxiao:[
-                            "止血行瘀之良药，有止血不留瘀",
+                            "止血行瘀之良药，有止血不留瘀之效",
                             "《失笑散》",
                             ""
                         ],
@@ -266,7 +289,7 @@
                         zhuzhi:'收敛止血，消肿生肌',
                         img:'./中药图片/止血/收敛止血/白及.jpg',
                         gongxiao:[
-                            "本品味涩质黏，为收敛止血之要药，可用治体内外诸出血证",
+                            '本品味涩质黏，为<span class="red">收敛止血之要药</span>，可用治体内外诸出血证',
                             "",
                             ""
                         ],
@@ -278,7 +301,7 @@
                         zhuzhi:'收敛止血，截疟，止痢，解毒，补虚',
                         img:'./中药图片/止血/收敛止血/仙鹤草.jpg',
                         gongxiao:[
-                            '收敛止血，广泛用于全身各部位的出血证。<span style="color:#f00;">治出血而无瘀滞</span>',
+                            '收敛止血，广泛用于全身各部位的出血证。<span class="red">治出血而无瘀滞</span>',
                             "涩肠止泻痢，兼能补虚止血，故对于血痢及久病泻痢尤为适宜",
                             ""
                         ],
@@ -300,12 +323,12 @@
                     {
                         name:"艾叶",
                         yaoxing:"辛、苦，温；有小毒。归肝、脾、肾经",
-                        zhuzhi:'温经止血，散寒止痛，调经，安胎；外用祛湿止痒',
+                        zhuzhi:'温经止血，散寒止痛，调经，安胎',
                         img:'./中药图片/止血/温经止血/艾叶.jpg',
                         gongxiao:[
                             "暖气血而温经脉，为温经止血之要药，适用于虚寒性出血病证 《胶艾汤》",
                             "入三阴经而直走下焦，能温经脉，暖宫散寒止痛，尤善调经",
-                            ""
+                            "外用祛湿止痒"
                         ],
                         shiyong:""
                     },                    
@@ -321,10 +344,20 @@
                 
             },
             mounted() {
-                
+                var width = window.innerWidth
+                this.largeimage.left = (width - 450)/2 + 500;
             },
             methods: {
+                showlarge:function(img){
+                    this.largeimage={
+                        src:img,
+                        show:true
+                    }
 
+                },
+                hidelarge:function(){
+                    this.largeimage.show = false
+                },
                 
                
             }

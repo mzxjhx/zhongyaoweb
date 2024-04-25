@@ -1,0 +1,592 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title></title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        .directory-wrapper,
+        .showimg{
+            flex: 1;
+        } 
+
+        .directory{
+            position: fixed;
+            left: 200px;
+            top: 100px;
+            height: 60%;
+            overflow-y: auto;
+        }
+        .directory .fanglei{
+            list-style: none;
+        }
+        .directory .fangming{
+            list-style: none;
+            margin: 9px 0;
+            cursor: pointer;        
+            color: #000;    
+        }
+        .directory .fangming a{
+   
+            color: #000;    
+            text-decoration: none;
+        }
+        /*方剂宽度
+        .fangji-list{
+            width: 540px;
+        }
+*/
+        .group{
+            margin-left: 10px;
+        }
+        .fengm{
+
+            /*height: 900px;
+            margin: 10px auto;*/
+            border: 1px solid #ccc;
+            padding-top: 10px;
+            min-height: 700px;
+
+            background-image: url(./封面/5f2c602c412fc9dd1fecac904a47681e.jpeg);
+            background-position-x: 0;
+            background-position-y: 0px;
+            color:#000;
+
+            margin-top: 20px;
+        }
+
+        .fm-title{
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-family: serif;
+            font-weight: 600;
+            font-size: 54px;
+            padding-top: 200px;
+        }
+
+        .fang-title{
+            text-align: center;
+            /*width: 200px;*/
+            height: 40px;
+            line-height: 40px;
+            /* background: #5e34be; */
+            /* color: aliceblue; */
+            margin: 0 auto;
+            margin-top: 10px;
+            font-size: 50px;
+            font-family: cursive;
+            font-weight: 600;
+            /* border-radius: 12px;*/
+        }
+
+        .peiwu{
+            
+            position: relative;
+            /*
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin: 0 auto;
+            */
+
+        }
+        .yaobox{
+            /*
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            */
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            margin-left: 20px;     
+            margin-top: 20px;
+
+            position: relative;
+        }
+
+        .yaobox .img-box{
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .yaobox .img-box img{
+            width: 100%;
+        }
+        .yaobox .yaoname{
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 20px;            
+        }
+        .yaobox .role{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 20px;   
+        }
+        /*
+        .peiwu .large-image{
+            position: absolute;
+            left: 540px;
+            top:10px;
+            width: 500px;
+            height: 500px;
+        }
+        .peiwu .large-image img{
+            width: 100%;
+        }
+        */
+        .large-image{
+            position: fixed;
+            
+            top:10px;
+            width: 500px;
+            height: 500px;
+        }
+        .large-image img{
+            width: 100%;
+        }
+
+        .biao{
+            /*height: 26px;*/
+            padding: 0 10px;
+            line-height: 26px;
+            font-weight: 700;
+            font-family: 楷体;
+            font-size: 20px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            text-indent: 1.2em;
+        }
+        .roles{
+            padding: 0 10px;
+        }
+        .table{
+            font-size: 20px;
+            font-family: 楷体;      
+            font-weight: 700;                  
+        }
+        
+    </style>
+</head>
+<!-- 
+    qi--四气：
+    寒 ：-2
+    凉 ：-1
+    平 ：0
+    温 ：1
+    热 ：2
+-->
+<body>
+
+    <div class="mainApp" id="app">
+        <div class="directory-wrapper">
+            <ul class="directory">
+                <li v-for="fangs in fangji" class="fanglei">
+                    {{fangs.name}}
+                    <ul>
+                        <li v-for="fang in fangs.children" class="fangming"><a :href="'#'+fang.key">{{fang.name}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="large-image" :style="{display:largeimage.show?'block':'none',left:largeimage.left+'px'}">
+            <img :src="largeimage.src" alt="">
+        </div>
+        <div class="fangji-list" :style='{width:fangjiWidth+"px",}'>
+
+            <div v-for="fangs in fangji" class="list">
+                <!--每种的封面-->
+                <div class="fengm">
+                    <div class="fm-title">
+                        {{fangs.name}}
+                    </div>                
+                </div>         
+                <!-- 具体方剂 -->
+                <div v-for="fang in fangs.children" class="fengm">
+                    <div class="fang-title" :id="fang.key">{{fang.name}}</div>
+
+                    <h3>【功用】</h3>
+                    <div class="biao">{{fang.gong}}</div>
+                    <h3>【主治】</h3>
+                    <div v-for="it in fang.zhi" class="biao" v-html="it"></div>        
+                                        
+                    <h3 class="group">【组成】</h3>
+                    <!-- 中药图片放这里  -->
+                    <div class="peiwu">
+                        <div v-for="(yao, index) in fang.fangjie" :key="index" class="yaobox">
+                            <div class="img-box" @mouseenter="showlarge(yao.img)" @mouseout="hidelarge">
+                                <img :src="yao.img" alt="">
+                            </div>
+                            <div class="yaoname" :style="{color:calcNameColor(yao.qi)}">{{yao.name}} {{yao.number}}g</div>
+                            <div class="role">{{yao.role}}</div>
+                        </div>
+
+                    </div>
+                    <canvas :id='"canvas_"+fang.key' :width="fangjiWidth" :height="fangjiWidth" style="margin:0 auto; margin-top: 20px;"></canvas>
+                    <h3>【方解】</h3>
+                    <!-- 君臣佐使角色放这里 -->
+                    <div class="roles">
+                        <table class="table">
+                            <tbody>
+                                <tr v-for="yao in fang.fangjie" style="height: 30px;">
+                                    <td style="width: 50px;color:#bd2d2d;">{{ yao.role }}</td>
+                                    <td style="width: 80px;">{{ yao.name }}</td>
+                                    <td >{{ yao.fun }}</td>
+                                </tr>
+                            </tbody>
+
+                        </table>                    
+                        
+                    </div>
+        
+                </div>    
+                
+            </div>
+        </div>
+        <div class="showimg"></div>
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {                    
+                largeimage:{
+                    src:'',
+                    show:false,
+                    left:500,
+                }, 
+                // 定义中心方剂内容宽度
+                fangjiWidth:540,
+                fangji:[
+                    {
+                        name:"一、解表剂",
+                        children:[                            
+                            {
+                                name:'九味羌活汤*',
+                                key:'0c84f1fe8cf73d876d8b0bf3101d4b8f',
+                                gong:'发汗袪湿，兼清里热',
+                                zhi:[
+                                    '外感风寒湿邪，内有蕴热证。',
+                                    '诸药配伍，主以辛温，少佐寒凉。既兼治内外，又分六经。发汗袪湿兼清里热'
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'羌活',
+                                        number:9,
+                                        role:'君',
+                                        qi:1,
+                                        fun:'解表寒，袪风湿利关节。入太阳经',
+                                        img:'./中药图片/发散风寒/羌活.png'
+                                    },
+                                    {
+                                        name:'防风',
+                                        number:9,
+                                        role:'臣',
+                                        qi:1,
+                                        fun:'袪风除湿止痛',
+                                        img:'./中药图片/发散风寒/防风.png'
+                                    },
+                                    {
+                                        name:'苍术',
+                                        number:9,
+                                        role:'',
+                                        qi:1,
+                                        fun:'入太阴经，袪太阴寒湿',
+                                        img:'./中药图片/化湿/苍术.jpg'
+                                    },
+                                    {
+                                        name:'细辛',
+                                        number:9,
+                                        role:'佐',
+                                        qi:1,
+                                        fun:'入少阴经，袪风散寒止痛',
+                                        img:'./中药图片/发散风寒/细辛.png'
+                                    },
+                                    {
+                                        name:'白芷',
+                                        number:9,
+                                        role:'',
+                                        qi:1,
+                                        fun:'入阳明经，袪风散寒燥湿',
+                                        img:'./中药图片/发散风寒/白芷.jpg'
+                                    },
+                                    {
+                                        name:'川芎',
+                                        number:9,
+                                        role:'',
+                                        qi:1,
+                                        fun:'入少阳阙阴经，袪风散寒，行气活血',
+                                        img:'./中药图片/活血化瘀/活血止痛/川芎.jpg',
+                                    },
+                                    {
+                                        name:'生地黄',
+                                        number:6,
+                                        role:'',
+                                        qi:-2,
+                                        fun:'',
+                                        img:'./中药图片/清热药/清热凉血/生地黄.jpg'
+                                    },
+                                    {
+                                        name:'黄芩',
+                                        number:9,
+                                        role:'',
+                                        qi:-2,
+                                        fun:'清泄里热，防散寒药热盛伤津',
+                                        img:'./中药图片/清热药/清热燥湿/黄芩.jpg'
+                                    },
+                                    {
+                                        name:'甘草',
+                                        number:6,
+                                        role:'使',
+                                        fun:'调和辛温清热药',
+                                        img:'./中药图片/补气/甘草.jpg'
+                                    },
+                                ]
+                            },
+                            
+                        ]
+                    },
+                    
+
+                ]
+
+            },
+            computed: {
+                
+            },
+            
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                
+            },
+            mounted() {
+                var width = window.innerWidth
+                this.largeimage.left = (width - this.fangjiWidth)/2 + 600 ;
+                this.drawCanvas()
+            },
+            methods: {
+                showlarge:function(img){
+                    this.largeimage={
+                        src:img,
+                        show:true
+                    }
+
+                },
+                hidelarge:function(){
+                    this.largeimage.show = false
+                },
+                calcNameColor(val){
+                    if(val == undefined || val == null){
+                        return "0x000";
+                    }                        
+                    else if(val == -2){
+                        // 寒
+                        return "#0a497f";
+                    }
+                    else if(val == -1){
+                        // 凉
+                        return "#5792c5";
+                    }
+                    else if(val == 0){
+                        // 凉
+                        return "0x000";
+                    }
+                    else if(val == 1){
+                        // 凉
+                        return "#dd6549";
+                    }
+                    else if(val == 2){
+                        // 凉
+                        return "0xa00";
+                    }
+                },
+                /**
+                 * 在每个canvas上画一圈中药图片
+                 */ 
+                drawCanvas:function(){
+                    let that = this;
+                    
+                    for(let j=0; j < this.fangji.length; j++){
+                        let fangarray = this.fangji[j].children;
+                        for(let k=0; k<fangarray.length; k++){
+                            let fang = fangarray[k];
+                            if(fang.key != undefined ||fang.key != null){
+                                let canvas = document.getElementById('canvas_'+fang.key);
+                                let ctx = canvas.getContext('2d');
+
+                                let start = 0;
+                                let tempAngle = -90;    //canvas坐标系，y轴正方向是-90
+                                let axisAngle = 90;     // 坐标系统y轴正方向是90度
+                                //设置角度的中间变量
+                                let x0 = that.fangjiWidth/2, y0 = that.fangjiWidth/2;
+                                let radius = that.fangjiWidth/2;
+                                let angle = 360 / fang.fangjie.length
+
+                                ctx.strokeStyle = "red";
+                                ctx.lineWidth = 3
+                                ctx.arc(
+                                            x0, 
+                                            y0, 
+                                            radius,                                 // 半径
+                                            0, //起始弧度
+                                            2*Math.PI,  //结束弧度
+                                            false   //顺时针画线
+                                        ); 
+
+                                for(let i=0; i< fang.fangjie.length; i++){
+                                    
+                                    let image = new Image();
+                                    image.src = fang.fangjie[i].img; // 替换为你的图片路径
+                                    //console.log(`i=${i} key=${fang.key} fang.fangjie[i].img = ${fang.fangjie[i].img}`)
+                                    image.onload = function(e) {
+                                        //console.log(e)
+                                        ctx.save()
+                                        // 绘制扇形路径
+                                        ctx.beginPath();
+                                        ctx.moveTo(x0, y0);                                       
+
+                                        //console.log(`key= ${fang.key} i=${i} start=${(tempAngle + angle * i) * Math.PI / 180} end=${(tempAngle + angle * (i + 1)) * Math.PI / 180}`)
+                                        var start = (tempAngle + angle * i) * Math.PI / 180;
+                                        var end = (tempAngle + angle * (i + 1)) * Math.PI / 180
+
+                                        ctx.arc(
+                                            x0, 
+                                            y0, 
+                                            radius,                                 // 半径
+                                            (tempAngle + angle * i) * Math.PI / 180, //起始弧度
+                                            (tempAngle + angle * (i + 1)) * Math.PI / 180,  //结束弧度
+                                            false   //顺时针画线
+                                        ); 
+                                        // 扇形半径、起始角度、结束角度
+                                        ctx.closePath();
+                                        ctx.stroke();
+                                        // 剪切画布到定义的扇形区域
+                                        ctx.clip();
+                                        
+                                        // 计算图片显示位置和显示的长宽
+                                        // 图片要保留中间3/4部分，然后缩小显示
+                                        
+                                        var start = (axisAngle - angle * i);
+                                        var end = (axisAngle - angle * (i + 1))
+                                        let width = e.target.width, height=e.target.height
+                                        let x2 = 0, y2= 0, x1=0, y1=0;
+                                        
+                                        if(start > 0 && end >= -90){
+                                            // 跨1和4
+                                            x1 = radius;
+                                            y1 = radius - radius * Math.sin(start * Math.PI / 180);  
+                                            let h = radius * (Math.abs(Math.sin(start * Math.PI / 180)) + Math.abs(Math.sin(end * Math.PI / 180)))
+                                            width = height = radius > h ? radius:h;
+                                            
+                                        }else if(start < 0 && start > -90 && end < -90 && end >= -180){
+                                            // 跨3和4
+                                            y1 = radius;
+                                            x1 = radius + radius * Math.cos(end * Math.PI / 180);
+                                            let w = radius * (Math.abs(Math.cos(end * Math.PI / 180)) + Math.abs(Math.cos(start * Math.PI / 180)))
+                                            height = width = radius > w?radius:w;
+
+                                        }else if(start < -90 && start >= -180 && end < -180 && end >= -270){
+                                            // 跨2和3
+                                            x1 = 0;
+                                            y1 = radius - radius * Math.sin(end * Math.PI / 180);  
+                                            let h = radius * (Math.abs(Math.sin(end * Math.PI / 180)) + Math.abs(Math.cos(start * Math.PI / 180)))
+                                            width = radius > h? radius:h;
+                                            height = width;
+
+                                        }else if(start > 0 && start <= 90){
+                                            // 第一象限
+                                            x1 = radius;
+                                            y1 = 0;
+                                            width = height = radius;
+                                        }else if(start > -90 && start <= 0){
+                                            // 第四象限
+                                            x1 = radius;
+                                            y1 = radius;
+                                            width = height = radius;
+                                        }else if(start > -180 && start <= -90){
+                                            // 第三象限
+                                            x1 = 0;
+                                            y1 = radius;  
+                                            width = height = radius ;                                            
+                                        }else if(start > -270 && start <= -180){
+                                            // 第二象限
+                                            x1 = 0;
+                                            y1 = 0;
+                                            width = height = radius;                                            
+                                        }
+
+                                           
+                                        ctx.drawImage(
+                                            this, 
+                                            e.target.width / 8,         //截图x
+                                            e.target.height / 8,        //截图y
+                                            3 *  e.target.width / 4,    //截图宽度
+                                            3 *  e.target.height / 4,   //截图高度
+                                            x1,                         //画到canvas坐标x
+                                            y1,                         //画到canvas坐标y
+                                            width,                      //画到canvas宽度，最小是半径
+                                            height                      //画到canvas高度
+
+                                        ); 
+
+                                        ctx.restore(); // 恢复之前保存的状态  
+                                    };
+                                    
+                                }
+                                
+                            }
+                        }
+                        
+                    };
+                    
+                }
+                
+               
+            }
+        })        
+    </script>
+    
+</body>
+
+</html>

@@ -40,7 +40,7 @@
             line-height: 40px;
             font-family: serif;
             font-weight: 600;
-            font-size: 40px;
+            font-size: 50px;
             /* color: aliceblue; */
             margin-top: 100px;
             font-family: 楷体;
@@ -52,7 +52,7 @@
             line-height: 40px;
             font-family: serif;
             font-weight: 600;
-            font-size: 54px;
+            font-size: 70px;
             padding-top: 293px;
         }
 
@@ -109,10 +109,23 @@
             line-height: 26px;
             font-weight: 700;
             font-family: 楷体;
-            font-size: 17px;
+            font-size: 18px;
             margin-top: 5px;
         }
-        
+        .red{
+            color:#f00;
+        }
+        .large-image{
+            position: fixed;
+            
+            top:10px;
+            width: 600px;
+            height: 600px;
+
+        }
+        .large-image img{
+            width: 100%;
+        }
         
     </style>
 </head>
@@ -129,18 +142,22 @@
             <div class="fm-guilei">
                 收涩药
             </div>
-        </div>                        
+        </div>                      
+        <div class="large-image" :style="{display:largeimage.show?'block':'none',left:largeimage.left+'px'}">
+            <img :src="largeimage.src" alt="">
+        </div>  
         <div v-for="yaowu in yao" class="list">
             <div class="guilei">
-                
+                收涩药各类
             </div>
-            <div class="img-box">
+            <div class="img-box" @mouseenter="showlarge(yaowu.img)" @mouseout="hidelarge">
                 <img :src="yaowu.img" alt="">
             </div>
             <div class="content-box">
                 <h3 class="title">{{yaowu.name}}</h3>
-                <div class="biao">药性：{{yaowu.yaoxing}}</div>
-                <div class="biao">功效：{{yaowu.zhuzhi}}</div>
+                <div class="biao">【药性】{{yaowu.yaoxing}}</div>
+                <div class="biao">【功效】{{yaowu.zhuzhi}}</div>
+                <div class="biao">【应用】</div>
                 <div v-for="gong in yaowu.gongxiao" class="list-item" v-html="gong">
 
                 </div>
@@ -163,20 +180,49 @@
         new Vue({
             el: '#app',
             data: {
+                largeimage:{
+                    src:'',
+                    show:false,
+                    left:500,
+                }, 
                 yao:[
+                    {
+                        name:"麻黄根",
+                        yaoxing:"甘、涩，平。归心、肺经",
+                        zhuzhi:'固表止汗',
+                        img:'./中药图片/收涩药/固表止汗/麻黄根.jpg',
+                        gongxiao:[
+                            '本品为麻黄科植物草麻黄的干燥根和根茎',
+                            '行肌表、实卫气、固腠理、闭毛窍，为敛肺固表止汗之要药',
+                            '《牡蛎散》'
+                        ],
+                        shiyong:""
+                    },
+                    {
+                        name:"浮小麦",
+                        yaoxing:"甘，凉。归心经",
+                        zhuzhi:'固表止汗，益气，除热',
+                        img:'./中药图片/收涩药/固表止汗/浮小麦.jpg',
+                        gongxiao:[
+                            '固表止汗，治自汗、盗汗 《牡蛎散》',
+                            '',
+                            ''
+                        ],
+                        shiyong:"表邪汗出者忌用"
+                    },
                     {
                         name:"五味子",
                         yaoxing:"酸、甘，温。归肺、心、肾经",
                         zhuzhi:'收敛固涩，益气生津，补肾宁心',
                         img:'./中药图片/收涩药/敛肺涩肠/五味子.jpg',
                         gongxiao:[
-                            "上能补心，能宁心安神《天王补心丹》",                            
-                            "上敛肺气，为治疗久咳虚喘之要药《小青龙汤》",
-                            "下滋肾阴，补肾涩精止遗，为治肾虚精关不固之遗精滑精及遗尿尿频之常用药",
-                            "下能涩肠止泻《如四神丸》，敛肺止汗，益气生津《生脉散》",
+                            '上能补心，能宁心安神《天王补心丹》',                            
+                            '上敛肺气，为治疗<span class="red">久咳虚喘之要药</span>《小青龙汤》',
+                            '下滋肾阴，补肾涩精止遗，为治肾虚精关不固之遗精滑精及遗尿尿频之常用药',
+                            '下能涩肠止泻《如四神丸》，敛肺止汗，益气生津《生脉散》',
 
                         ],
-                        shiyong:"煎服，2～6g"
+                        shiyong:""
                     },
                     {
                         name:"乌梅",
@@ -295,7 +341,7 @@
                         zhuzhi:'收敛止血，涩精止带，制酸止痛，收湿敛疮',
                         img:'./中药图片/收涩药/固精缩尿止带/海螵蛸.jpg',
                         gongxiao:[
-                            '本品为乌贼科动物无针乌贼或金乌贼S的干燥内壳',
+                            '本品为乌贼科动物无针乌贼或金乌贼的干燥内壳',
                             "收敛止血《固冲汤》，温涩收敛，能固精止带",
                             "味咸而涩，能制酸止痛，为治疗<span style='color:#f00;'>胃酸过多、胃痛吞酸之佳品</span>",
                             ""
@@ -351,10 +397,20 @@
                 
             },
             mounted() {
-                
+                var width = window.innerWidth
+                this.largeimage.left = (width - 450)/2 + 500;
             },
             methods: {
+                showlarge:function(img){
+                    this.largeimage={
+                        src:img,
+                        show:true
+                    }
 
+                },
+                hidelarge:function(){
+                    this.largeimage.show = false
+                },
                 
                
             }

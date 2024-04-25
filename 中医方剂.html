@@ -198,7 +198,9 @@
             font-family: 楷体;      
             font-weight: 700;                  
         }
-        
+        .red{
+            color: #bd2d2d;
+        }
     </style>
 </head>
 <!-- 
@@ -239,7 +241,7 @@
                     <div class="fang-title" :id="fang.key">{{fang.name}}</div>
 
                     <h3>【功用】</h3>
-                    <div class="biao">{{fang.gong}}</div>
+                    <div class="biao" v-html="fang.gong"></div>
                     <h3>【主治】</h3>
                     <div v-for="it in fang.zhi" class="biao" v-html="it"></div>        
                                         
@@ -777,6 +779,23 @@
                                     }
                                 ]
                             },
+                            {
+                                name:'参苏饮*',
+                                key:'6afa2435fd951546573e5bf9c26bfa8a',
+                                gong:'益气解表，理气化痰',
+                                zhi:[
+                                    '气虚外感，内有痰湿证。'
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    },
+                                ]
+                            },
                         ]                        
                     },
                     {
@@ -1265,18 +1284,36 @@
                             },
                             {
                                 name:'泻白散',
-                                gong:'',
+                                key:'d05a3ca32c2f4947fbb3aad0839de9b8',
+                                gong:'泻肺清热，止咳平喘',
                                 zhi:[
-                                    ''
+                                    '肺热咳喘证。气喘咳嗽，皮肤蒸热',
+                                    '肺主宣发和肃降，肺气不降而逆则为咳嗽，肺合皮毛，肺热则外蒸于皮'
                                 ],
-                                fangjie:[
+                                fangjie:[                                    
                                     {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        name:'桑白皮',
+                                        number:30,
+                                        role:'君',
+                                        qi:-2,
+                                        fun:'清肺热，兼泻肺气而平咳喘',
+                                        img:'中药图片/止咳平喘/桑白皮.jpg'
+                                    },
+                                    {
+                                        name:'地骨皮',
+                                        number:30,
+                                        role:'臣',
+                                        qi:-2,
+                                        fun:'清肺降火除蒸',
+                                        img:'中药图片/清热药/清虚热药/地骨皮.jpg'
+                                    },
+                                    {
+                                        name:'灸甘草',
+                                        number:3,
+                                        role:'佐',
+                                        fun:'养胃和中',
+                                        img:'中药图片/补气/灸甘草.jpg'
+                                    },
                                 ]
                             },
                             {
@@ -2911,7 +2948,151 @@
                         name:'十三、治风剂',
                         children:[
                             {
-                                name:'',
+                                name:'川芎茶调散',
+                                key:'ebc411cacb808c9f3cb0dc4b1058a90d',
+                                gong:'疏风止痛',
+                                zhi:[
+                                    '外感风邪头痛',
+                                    '散剂，用时以茶清调。辛散之品过多，不宜久煎。',
+                                    '总体药性偏温，更适风寒头痛'
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'川芎',
+                                        number:12,
+                                        role:'君',
+                                        qi:1,
+                                        fun:'血中气药，袪风止痛',
+                                        img:'中药图片/活血化瘀/活血止痛/川芎.jpg'
+                                    },
+                                    {
+                                        name:'薄荷',
+                                        number:12,
+                                        role:'臣',
+                                        qi:-1,
+                                        fun:'轻而上行，疏风止痛',
+                                        img:'中药图片/发散风热/薄荷.png'
+                                    },
+                                    {
+                                        name:'荆芥',
+                                        number:12,
+                                        role:'',
+                                        qi:1,
+                                        fun:'',
+                                        img:'中药图片/发散风寒/荆芥.jpg'
+                                    },
+                                    {
+                                        name:'羌活',
+                                        number:6,
+                                        role:'佐',
+                                        qi:1,
+                                        fun:'袪太阳经头痛',
+                                        img:'中药图片/发散风寒/羌活.png'
+                                    },
+                                    {
+                                        name:'白芷',
+                                        number:6,
+                                        role:'',
+                                        qi:1,
+                                        fun:'阳明经头痛',
+                                        img:'中药图片/发散风寒/白芷.jpg'
+                                    },
+                                    {
+                                        name:'细辛',
+                                        number:3,
+                                        role:'',
+                                        qi:1,
+                                        fun:'少阴经头痛',
+                                        img:'中药图片/发散风寒/细辛.png'
+                                    },
+                                    {
+                                        name:'防风',
+                                        number:4.5,
+                                        role:'',
+                                        qi:1,
+                                        fun:'辛散上部风邪',
+                                        img:'中药图片/发散风寒/防风.jpg'
+                                    },
+                                    {
+                                        name:'灸甘草',
+                                        number:9,
+                                        role:'使',
+                                        fun:'调和诸药',
+                                        img:'中药图片/补气/灸甘草.jpg'
+                                    },
+                                ]
+                            },
+                            {
+                                name:'消风散',
+                                key:'a19e7d93662c8f230a2c8a437b3d3aaf',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'羚羊钩藤汤',
+                                key:'065e160c3de086fa21686011a79f3841',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'镇肝息风汤',
+                                key:'e0ce317d5bade13786cae2f8adc79699',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'天麻钩藤饮',
+                                key:'9caaeafdbde9a76369eaa93b8dcb95af',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'大定风珠',
+                                key:'281c70d428bd1b863a5d86df9189333c',
                                 gong:'',
                                 zhi:[
                                     ''
@@ -2932,7 +3113,89 @@
                         name:'十四、治燥剂',
                         children:[
                             {
-                                name:'',
+                                name:'杏苏散',
+                                key:'8bda83c834f7f46bfa1c1916a03e8ff8',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'桑杏汤',
+                                key:'5a856e65520f0395c92abfdc7a49899c',
+                                gong:'清宣温燥，润肺止咳',
+                                zhi:[
+                                    '外感温燥。头涌，身热微恶风寒。干咳少痰，舌红苔薄白'
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'桑叶',
+                                        number:3,
+                                        role:'君',
+                                        qi:-2,
+                                        fun:'宣肺清热',
+                                        img:'./中药图片/发散风热/桑叶.png'
+                                    },
+                                    {
+                                        name:'杏仁',
+                                        number:4.5,
+                                        role:'',
+                                        fun:'降气止咳平喘',
+                                        img:'./中药图片/止咳平喘/杏仁.jpeg'
+                                    },
+                                    {
+                                        name:'淡豆豉',
+                                        number:3,
+                                        role:'臣',
+                                        qi:-1,
+                                        fun:'辛凉发散',
+                                        img:'./中药图片/发散风热/淡豆豉.png'
+                                    },
+                                    {
+                                        name:'贝母',
+                                        number:3,
+                                        role:'',
+                                        qi:-2,
+                                        fun:'清热化痰',
+                                        img:'./中药图片/清化热痰/浙贝母.jpg',
+                                    },
+                                    {
+                                        name:'南沙参',
+                                        number:6,
+                                        role:'佐',
+                                        qi:-1,
+                                        fun:'养阴生津，润肺止咳',
+                                        img:'中药图片/补阴/南沙参.jpg'
+                                    },
+                                    {
+                                        name:'栀子皮',
+                                        number:3,
+                                        role:'',
+                                        qi:-2,
+                                        fun:'入上焦清泄肺热',
+                                        img:'中药图片/清热药/清热泻火/栀子.jpg'
+                                    },
+                                    {
+                                        name:'梨皮',
+                                        number:3,
+                                        role:'',
+                                        fun:'益阴降火，生津润肺',
+                                        img:'中药图片/'
+                                    },
+                                ]
+                            },
+                            {
+                                name:'清燥救肺汤',
+                                key:'5210dafa92a4d82b04701b381b1715fb',
                                 gong:'',
                                 zhi:[
                                     ''
@@ -2983,13 +3246,99 @@
                                                            
                                 ]
                             },
+                            {
+                                name:'麦门冬汤',
+                                key:'65c41a0f93b38d49fd89fd7c339251ad',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'养阴清肺汤',
+                                key:'c82badfbf82c071adcf58d5a7be91a24',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'百合固金汤',
+                                key:'819559715a0e870a6f30fb76f7eb9816',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
                         ]
                     },
                     {
                         name:'十五、袪湿剂',
                         children:[
                             {
-                                name:'',
+                                name:'平胃散',
+                                key:'add8326c400bfc572744db4469ea3eaf',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'霍香正气散',
+                                key:'ffdac9c7bef43aa6771c39085d5c75d6',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'茵陈蒿汤',
+                                key:'',
                                 gong:'',
                                 zhi:[
                                     ''
@@ -3222,11 +3571,14 @@
                                             let h = radius * (Math.abs(Math.sin(start * Math.PI / 180)) + Math.abs(Math.sin(end * Math.PI / 180)))
                                             width = height = radius > h ? radius:h;
                                             
-                                        }else if(start < 0 && start > -90 && end >= -180){
+                                        }else if(start < 0 && start > -90 && end < -90 && end >= -180){
                                             // 跨3和4
                                             y1 = radius;
-                                            x1 = radius + radius * Math.sin(end * Math.PI / 180);
-                                            let w = radius * (Math.abs(Math.sin(end * Math.PI / 180)) + Math.abs(Math.cos(start * Math.PI / 180)))
+                                            //x1 = radius + radius * Math.sin(end * Math.PI / 180);
+                                            //let w = radius * (Math.abs(Math.sin(end * Math.PI / 180)) + Math.abs(Math.cos(start * Math.PI / 180)))
+
+                                            x1 = radius + radius * Math.cos(end * Math.PI / 180);
+                                            let w = radius * (Math.abs(Math.cos(end * Math.PI / 180)) + Math.abs(Math.cos(start * Math.PI / 180)))
                                             height = width = radius > w?radius:w;
 
                                         }else if(start < -90 && start >= -180 && end < -180 && end >= -270){

@@ -192,6 +192,7 @@
         }
         .roles{
             padding: 0 10px;
+            margin-bottom: 20px;
         }
         .table{
             font-size: 20px;
@@ -199,7 +200,7 @@
             font-weight: 700;                  
         }
         .red{
-            color: #bd2d2d;
+            color: #f00;
         }
     </style>
 </head>
@@ -749,34 +750,127 @@
                             },
                             {
                                 name:'麻杏石甘汤',
-                                gong:'',
+                                key:'ef62fa890d2ab69e70e1e628460349f1',
+                                gong:'辛凉解表，清肺平喘',
                                 zhi:[
-                                    ''
+                                    '外感风邪，邪热壅肺证。',
+                                    '身热不解，咳喘气逆'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
+                                        name:'麻黄',
                                         number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        role:'君',
+                                        qi:1,
+                                        fun:'宣肺平喘，疏表散邪',
+                                        img:'./中药图片/发散风寒/麻黄.jpg'
+                                    },
+                                    {
+                                        name:'石膏',
+                                        number:18,
+                                        role:'',
+                                        qi:2,
+                                        fun:'泄肺经实热，治疗邪热壅肺',                                        
+                                        img:'./中药图片/清热药/清热泻火/石膏.jpg'
+                                    },
+                                    {
+                                        name:'杏仁',
+                                        number:9,
+                                        role:'臣',
+                                        fun:'降气平喘',
+                                        img:'./中药图片/止咳平喘/杏仁.jpeg'
+                                    },
+                                    {
+                                        name:'灸甘草',
+                                        number:6,
+                                        role:'佐',
+                                        fun:'调和寒热',
+                                        img:'./中药图片/补气/灸甘草.jpg'
+                                    },
                                 ]
                             },
                             {
                                 name:'败毒散',
-                                gong:'',
+                                key:'a0a585d3391fef1caf10182524c8878a',
+                                gong:'散寒袪湿，益气解表',
                                 zhi:[
-                                    ''
+                                    '气虚外感风寒湿证。憎寒壮热，头项强痛，肢体酸痛，无汗咳嗽有痰',
+                                    '气虚而风寒湿邪束表，痰湿内生，肺气失宣'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
+                                        name:'羌活',
                                         number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        role:'君',
+                                        fun:'长于袪上半身风寒湿',
+                                        img:'中药图片/发散风寒/羌活.png'
+                                    },
+                                    {
+                                        name:'独活',
+                                        number:9,
+                                        role:'',
+                                        fun:'长于袪下半身风寒湿',
+                                        img:'中药图片/袪风湿药/袪风寒湿/独活.jpg'
+                                    },
+                                    {
+                                        name:'川芎',
+                                        number:9,
+                                        role:'臣',
+                                        qi:1,
+                                        fun:'行气活血，袪风止痛',
+                                        img:'中药图片/活血化瘀/活血止痛/川芎.jpg'
+                                    },
+                                    {
+                                        name:'柴胡',
+                                        number:9,
+                                        role:'',
+                                        qi:-1,
+                                        fun:'发散退热解表',
+                                        img:'中药图片/发散风热/柴胡.png'
+                                    },
+                                    {
+                                        name:'桔梗',
+                                        number:9,
+                                        role:'佐',
+                                        fun:'载药上行，宣肺袪痰',
+                                        img:'中药图片/清化热痰/桔梗.jpg'
+                                    },
+                                    {
+                                        name:'枳壳',
+                                        number:9,
+                                        role:'',
+                                        qi:-1,
+                                        fun:'破气消积化痰',
+                                        img:'中药图片/理气药/枳实.jpg'
+                                    },
+                                    {
+                                        name:'前胡',
+                                        number:9,
+                                        role:'',
+                                        fun:'降气化痰，散风清热',
+                                        img:'中药图片/清化热痰/前胡.jpg'
+                                    },
+                                    {
+                                        name:'茯苓',
+                                        number:9,
+                                        role:'',
+                                        fun:'健脾利水渗湿，杜生痰之源',
+                                        img:'./中药图片/利水渗湿/利水消肿/茯苓.jpg'
+                                    },
+                                    {
+                                        name:'人参',
+                                        number:9,
+                                        role:'',
+                                        fun:'扶正气鼓邪外出',
+                                        img:'中药图片/补气/人参.jpg'
+                                    },
+                                    {
+                                        name:'灸甘草',
+                                        number:6,
+                                        role:'使',
+                                        fun:'调和',
+                                        img:'中药图片/补气/灸甘草.jpg'
+                                    },
                                 ]
                             },
                             {
@@ -784,15 +878,92 @@
                                 key:'6afa2435fd951546573e5bf9c26bfa8a',
                                 gong:'益气解表，理气化痰',
                                 zhi:[
-                                    '气虚外感，内有痰湿证。'
+                                    '气虚感冒，内有痰湿证。恶寒发热，头痛鼻塞，咳嗽痰白，倦怠乏力。',
+                                    '素体气虚，卫外不固'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
+                                        name:'苏叶',
                                         number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
+                                        role:'君',
+                                        qi:1,
+                                        fun:'发散表邪，宣肺止咳',
+                                        img:'中药图片/发散风寒/紫苏叶.jpg'
+                                    },
+                                    {
+                                        name:'葛根',
+                                        number:9,
+                                        role:'臣',
+                                        qi:-1,
+                                        fun:'解肝发汗',
+                                        img:'中药图片/发散风热/葛根.png'
+                                    },
+                                    {
+                                        name:'人参',
+                                        number:9,
+                                        role:'',
+                                        fun:'益气健脾',
+                                        img:'中药图片/补气/人参.jpg'
+                                    },
+                                    {
+                                        name:'半夏',
+                                        number:9,
+                                        role:'佐',
+                                        qi:1,
+                                        fun:'燥湿化痰，降逆止呕',
+                                        img:'./中药图片/温化寒痰/半夏.jpeg'
+                                    },
+                                    {
+                                        name:'前胡',
+                                        number:9,
+                                        role:'',
+                                        qi:-1,
+                                        fun:'降气化痰',
+                                        img:'中药图片/清化热痰/前胡1.jpg'
+                                    },
+                                    {
+                                        name:'桔梗',
+                                        number:6,
+                                        role:'',
+                                        fun:'载药上行，宣肺袪痰',
+                                        img:'中药图片/清化热痰/桔梗.jpg'
+                                    },
+                                    {
+                                        name:'木香',
+                                        number:6,
+                                        role:'',
+                                        qi:1,
+                                        fun:'理气宽中',
+                                        img:'中药图片/理气药/木香.jpg'
+                                    },
+                                    {
+                                        name:'枳壳',
+                                        number:6,
+                                        role:'',
+                                        qi:-1,
+                                        fun:'破气消积化痰',
+                                        img:'中药图片/理气药/枳实.jpg'
+                                    },
+                                    {
+                                        name:'陈皮',
+                                        number:6,
+                                        role:'',
+                                        fun:'理气健脾，燥湿化痰',
+                                        img:'中药图片/理气药/陈皮.jpg'
+                                    },
+                                    {
+                                        name:'茯苓',
+                                        number:6,
+                                        role:'',
+                                        fun:'健脾利水渗湿，杜生痰之源',
+                                        img:'./中药图片/利水渗湿/利水消肿/茯苓.jpg'
+                                    },
+                                    {
+                                        name:'灸甘草',
+                                        number:6,
+                                        role:'使',
+                                        fun:'调和',
+                                        img:'中药图片/补气/灸甘草.jpg'
                                     },
                                 ]
                             },
@@ -1083,18 +1254,58 @@
                             },
                             {
                                 name:'竹叶石膏汤',
-                                gong:'',
+                                key:'2ddeb20eb4e195c4a0c810e963f6a08c',
+                                gong:'清热生津，益生和胃',
                                 zhi:[
-                                    ''
+                                    '病后余热未清，气阴两伤证。身热多汗，气逆呕吐'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
+                                        name:'石膏',
+                                        number:50,
+                                        role:'君',
+                                        qi:-2,
+                                        fun:'清热生津，除烦止渴',
+                                        img:'中药图片/清热药/清热泻火/石膏.jpg'
+                                    },
+                                    {
+                                        name:'人参',
+                                        number:6,
+                                        role:'臣',
+                                        fun:'益气生津，固脱止汗',
+                                        img:'中药图片/补气/人参.jpg'
+                                    },
+									{
+                                        name:'麦冬',
+                                        number:20,
+                                        role:'',
+                                        qi:-1,
+                                        fun:'养阴清热，润肺生津',
+                                        img:'中药图片/补阴/麦冬.jpg'
+                                    },
+                                    {
+                                        name:'半夏',
                                         number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        role:'佐',
+                                        qi:1,
+                                        fun:'降逆和胃止呕，去性存用',
+                                        img:'中药图片/温化寒痰/半夏.jpeg'
+                                    },
+                                    {
+                                        name:'竹叶',
+                                        number:6,
+                                        role:'',
+                                        qi:-2,
+                                        fun:'清热除烦',
+                                        img:'中药图片/清热药/清热泻火/竹叶.jpg'
+                                    },
+                                    {
+                                        name:'灸甘草',
+                                        number:6,
+                                        role:'使',
+                                        fun:'调和',
+                                        img:'./中药图片/补气/灸甘草.jpg'
+                                    },
                                 ]
                             },
                             {
@@ -1729,13 +1940,8 @@
                                     
                                 ]
                             },
-                        ]
-                    },
-                    {
-                        name:"七、补益剂",
-                        children:[
                             {
-                                name:'四君子汤',
+                                name:'暖肝煎',
                                 gong:'',
                                 zhi:[
                                     ''
@@ -1746,38 +1952,140 @@
                                         number:9,
                                         role:1,
                                         fun:'',
-                                        img:'./中药图片/发散风寒/麻黄.jpg'
+                                        img:'中药图片/'
                                     }
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        name:"七、补益剂",
+                        children:[
+                            {
+                                name:'四君子汤',
+                                key:'6243c67156360b1af1064dbdbf6bc7ea',
+                                gong:'益气健脾',
+                                zhi:[
+                                    '脾胃气虚证。面色萎白，气短乏力，食少便溏。舌淡苔白',
+                                    '脾胃之损伤，运化和受纳无力。脾胃为后天之本，气血生化之源'
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'人参',
+                                        number:9,
+                                        role:'君',
+                                        fun:'补气健脾',
+                                        img:'./中药图片/补气/人参.jpg'
+                                    },
+                                    {
+                                        name:'白术',
+                                        number:9,
+                                        role:'臣',
+                                        fun:'益气健脾，培土生金',
+                                        img:'中药图片/补气/白术.jpg'
+                                    },
+                                    {
+                                        name:'茯苓',
+                                        number:9,
+                                        role:'佐',
+                                        fun:'健脾渗湿，脾喜燥不恶湿',
+                                        img:'./中药图片/利水渗湿/利水消肿/茯苓.jpg'
+                                    },
+                                    {
+                                        name:'灸甘草',
+                                        number:6,
+                                        role:'使',
+                                        fun:'调和',
+                                        img:'./中药图片/补气/灸甘草.jpg'
+                                    },
                                 ]
                             },
                             {
                                 name:'参苓白术散',
+                                key:'3ba111eb22c55c3ccf822ca83c9bfc25',
                                 gong:'益气健脾，渗湿止泻',
                                 zhi:[
-                                    '脾虚湿盛证，饮食不化。肠鸣泄泻，四肢乏力，面色萎黄'
+                                    '脾虚湿盛证。饮食不化。肠鸣泄泻，四肢乏力，面色萎黄',
+                                    '四君子汤基础上增加理气药'
                                 ],
 
                                 fangjie:[
-                                    {
+                                {
                                         name:'人参',
                                         number:15,
                                         role:'君',
                                         fun:'补气健脾',
                                         img:'./中药图片/补气/人参.jpg'
+                                    },
+                                    {
+                                        name:'白术',
+                                        number:15,
+                                        role:'',
+                                        fun:'益气健脾，培土生金',
+                                        img:'中药图片/补气/白术.jpg'
                                     },
                                     {
                                         name:'茯苓',
                                         number:15,
-                                        role:'君',
-                                        fun:'健脾渗湿',
+                                        role:'',
+                                        fun:'健脾渗湿，脾喜燥不恶湿',
                                         img:'./中药图片/利水渗湿/利水消肿/茯苓.jpg'
                                     },
                                     {
-                                        name:'人参',
+                                        name:'山药',
                                         number:15,
-                                        role:'君',
-                                        fun:'补气健脾',
-                                        img:'./中药图片/补气/人参.jpg'
+                                        role:'臣',
+                                        fun:'补益脾气',
+                                        img:'中药图片/补气/山药.jpg'
+                                    },
+                                    {
+                                        name:'莲子',
+                                        number:9,
+                                        role:'',
+                                        fun:'补脾止泻',
+                                        img:'中药图片/收涩药/固精缩尿止带/莲子.jpg'
+                                    },
+                                    {
+                                        name:'白扁豆',
+                                        number:9,
+                                        role:'',
+                                        fun:'健脾化湿',
+                                        img:'中药图片/补气/白扁豆.jpg'
+                                    },
+                                    {
+                                        name:'薏苡仁',
+                                        number:9,
+                                        role:'',
+                                        fun:'健脾袪湿',
+                                        img:'中药图片/利水渗湿/利水消肿/薏苡仁.jpg'
+                                    },
+                                    {
+                                        name:'砂仁',
+                                        number:6,
+                                        role:'',
+                                        fun:'化湿醒脾开胃',
+                                        img:'中药图片/化湿/砂仁.jpg'
+                                    },
+                                    {
+                                        name:'桔梗',
+                                        number:6,
+                                        role:'',
+                                        fun:'载药上行，宣肺',
+                                        img:'中药图片/清化热痰/桔梗.jpg'
+                                    },
+                                    {
+                                        name:'大枣',
+                                        number:3,
+                                        role:'',
+                                        fun:'枣汤调下',
+                                        img:'中药图片/补气/大枣.jpg'
+                                    },                                    
+                                    {
+                                        name:'灸甘草',
+                                        number:6,
+                                        role:'使',
+                                        fun:'调和',
+                                        img:'./中药图片/补气/灸甘草.jpg'
                                     },
                                 ]
                             },
@@ -1799,34 +2107,68 @@
                             },
                             {
                                 name:'生脉散',
-                                gong:'',
+                                key:'278f40a26aeba9457eae4244d82ec7b5',
+                                gong:'益气生津，敛阴止汗',
                                 zhi:[
-                                    ''
+                                    '1、热耗气伤阴证。汗多，体倦乏力，气短。咽干口渴，舌红少苔。',
+                                    '2、久咳伤肺，气阴两虚证。',
+                                    '大汗伤阴，而气随汗泄，导致气阴两伤。所以出现少气，汗多体倦乏力等。三药相合，一补一润一敛，使气复津生，汗复阴存，脉气得充，故名生脉散'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
+                                        name:'人参',
                                         number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        role:'君',
+                                        fun:'益气生津，固脱止汗',
+                                        img:'中药图片/补气/人参.jpg'
+                                    },
+									{
+                                        name:'麦冬',
+                                        number:9,
+                                        role:'臣',
+                                        fun:'养阴清热，润肺生津',
+                                        img:'中药图片/补阴/麦冬.jpg'
+                                    },
+                                    {
+                                        name:'五味子',
+                                        number:6,
+                                        role:'佐',
+                                        fun:'益气生津，敛阴止汗',
+                                        img:'中药图片/收涩药/敛肺涩肠/五味子.jpg'
+                                    },                                    
                                 ]
                             },
                             {
                                 name:'玉屏风散',
-                                gong:'',
+                                key:'f2656d35363a9a15f10dd8546a45a130',
+                                gong:'益气固表止汗',
                                 zhi:[
-                                    ''
+                                    '表虚自汗。汗出恶风，面色，舌淡苔薄白。',
+                                    '卫气虚弱则腠理开而恶风。卫表不固则常自汗，卫气虚弱，风寒易入则容易感冒',
+                                    '全方重用芪、术而少用防风，补中有散，补不敛邪。似御风之屏障，有贵重如玉。故名玉屏风散'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        name:'黄芪',
+                                        number:30,
+                                        role:'君',
+                                        fun:'大补脾肺之气，益卫固表',
+                                        img:'中药图片/补气/黄芪.jpg'
+                                    },
+                                    {
+                                        name:'白术',
+                                        number:30,
+                                        role:'臣',
+                                        fun:'益气健脾，培土生金',
+                                        img:'中药图片/补气/白术.jpg'
+                                    },
+                                    {
+                                        name:'防风',
+                                        number:15,
+                                        role:'佐',
+                                        fun:'疏风袪邪',
+                                        img:'中药图片/发散风寒/防风.jpg'
+                                    },
                                 ]
                             },
                             {
@@ -2642,22 +2984,7 @@
                                     }
                                 ]
                             },
-                            {
-                                name:'暖肝煎',
-                                gong:'',
-                                zhi:[
-                                    ''
-                                ],
-                                fangjie:[
-                                    {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
-                                    }
-                                ]
-                            },
+                            
                             {
                                 name:'苏子降气汤',
                                 gong:'',
@@ -3354,6 +3681,108 @@
                                 ]
                             },
                             {
+                                name:'八正散',
+                                key:'57b9416a8d32bd5070b796c2bd991fc4',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'三仁汤',
+                                key:'5bccd7816ec231d6c06117f0a96610c5',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'甘露消毒丹',
+                                key:'62ae7efb146e3f7f9e0f40b34b41c165',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'五苓散',
+                                key:'c886d97dd73301888902531edf67f679',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'猪苓汤',
+                                key:'8c337341461ddec13aa9d985730e7b7e',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'防己黄芪汤',
+                                key:'85de996843c439186f49d8648952bf72',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
                                 name:'苓桂术甘汤',
                                 key:'cd473faf069fff9a0b4555ae8dba1b8e',
                                 gong:'温阳化饮，健脾利水',
@@ -3392,13 +3821,172 @@
                                     },
                                 ]
                             },
+                            {
+                                name:'真武汤',
+                                key:'04b658d5069234ef2bd100df49117761',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'实脾散',
+                                key:'54b0531a5d21c6bd29976c9b8ad7fea3',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'独活寄生汤',
+                                key:'',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
                         ]
                     },
                     {
                         name:'十六、袪痰剂',
                         children:[
                             {
-                                name:'',
+                                name:'二陈汤',
+                                key:'b2cbe03f549f6cc5f77f5adc4d1376cb',
+                                gong:'燥湿化痰，理气和中',
+                                zhi:[
+                                    '湿痰证。咳嗽痰多，恶心呕吐，肢体困重，或头眩心悸',
+                                    '方中陈皮，半夏贵在陈久，故名“二陈”',
+                                    '<span class="red">脾失健运，湿聚成痰</span>。湿犯于肺则咳嗽痰多，痰阻中焦胃失和降，则恶心呕吐，湿性重滞致肢体困重，痰浊阻碍清阳上升会头晕目眩'
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'半夏',
+                                        number:15,
+                                        role:'君',
+                                        qi:1,
+                                        fun:'燥湿化痰，降逆止呕',
+                                        img:'./中药图片/温化寒痰/半夏.jpeg'
+                                    },
+                                    {
+                                        name:'陈皮',
+                                        number:15,
+                                        role:'臣',
+                                        qi:1,
+                                        fun:'理气行滞。治痰先治气，气顺则痰消',
+                                        img:'中药图片/理气药/陈皮.jpg'
+                                    },
+                                    {
+                                        name:'茯苓',
+                                        number:9,
+                                        role:'佐',
+                                        fun:'渗湿健脾以绝生痰之源',
+                                        img:'./中药图片/利水渗湿/利水消肿/茯苓.jpg'
+                                    },                                    
+									{
+                                        name:'生姜',
+                                        number:3,
+                                        role:'',
+                                        fun:'助降逆，制半夏之毒',
+                                        img:'中药图片/发散风寒/生姜.jpeg'
+                                    },
+                                    {
+                                        name:'乌梅',
+                                        number:1,
+                                        role:'',
+                                        fun:'',
+                                        img:'中药图片/收涩药/敛肺涩肠/乌梅.jpg'
+                                    },
+                                    {
+                                        name:'灸甘草',
+                                        number:4.5,
+                                        role:'使',
+                                        fun:'调和',
+                                        img:'中药图片/补气/灸甘草.jpg'
+                                    },
+                                ]
+                            },
+                            {
+                                name:'温胆汤',
+                                key:'67792c5629125d5390c83ecc73f76fe5',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    },
+                                ]
+                            },
+                            {
+                                name:'清气化痰丸',
+                                key:'117a56df3331dc5355ba60db01f57b52',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'贝母瓜蒌散',
+                                key:'bae3956e03804a26780298ef4e300576',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'半夏白术天麻汤',
+                                key:'dab76fb420d467cd4b9416810de76bbd',
                                 gong:'',
                                 zhi:[
                                     ''
@@ -3419,7 +4007,8 @@
                         name:'十七、消食剂',
                         children:[
                             {
-                                name:'',
+                                name:'保和丸',
+                                key:'4e108fcb7d7fa35a4e89117c4f431e05',
                                 gong:'',
                                 zhi:[
                                     ''
@@ -3430,7 +4019,58 @@
                                         number:9,
                                         role:1,
                                         fun:'',
-                                        img:'./中药图片/'
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'枳实导滞丸',
+                                key:'8759b86eeec8eb2cd4428897c03109b5',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'木香槟榔丸',
+                                key:'6004bbeebb1ec1cce64326dc3d969392',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
+                                    }
+                                ]
+                            },
+                            {
+                                name:'健脾丸',
+                                key:'93e67c7ec64b4194c3bb4e484e2f1818',
+                                gong:'',
+                                zhi:[
+                                    ''
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'',
+                                        number:9,
+                                        role:1,
+                                        fun:'',
+                                        img:'中药图片/'
                                     }
                                 ]
                             },

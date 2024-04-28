@@ -2767,18 +2767,48 @@
                             },
                             {
                                 name:'酸枣仁汤',
-                                gong:'',
+                                key:'48bddcdcacf440a284ab9462d335c39f',
+                                gong:'养血安神，清热除烦',
                                 zhi:[
-                                    ''
+                                    '肝血不足，虚热内扰之虚烦不眠证。'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
-                                        number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
-                                    }
+                                        name:'酸枣仁',
+                                        number:15,
+                                        role:'君',
+                                        fun:'养血补肝，宁心安神',
+                                        img:'./中药图片/安神/酸枣仁.jpg'
+                                    },
+									{
+                                        name:'茯苓',
+                                        number:6,
+                                        role:'君',
+                                        fun:'这里用茯苓的宁心安神之功',
+                                        img:'./中药图片/利水渗湿/利水消肿/茯苓.jpg'
+                                    },
+                                    {
+                                        name:'知母',
+                                        number:6,
+                                        role:'',
+                                        qi:-2,
+                                        fun:'清热泻火，滋阴润燥',
+                                        img:'中药图片/清热药/清热泻火/知母.jpg'
+                                    },
+                                    {
+                                        name:'川芎',
+                                        number:6,
+                                        role:'佐',
+                                        fun:'调肝血，揉肝气',
+                                        img:'中药图片/活血化瘀/活血止痛/川芎.jpg'
+                                    },
+                                    {
+                                        name:'甘草',
+                                        number:3,
+                                        role:'使',
+                                        fun:'调和',
+                                        img:'中药图片/补气/甘草.jpg'
+                                    },
                                 ]
                             },
                         ]
@@ -3187,6 +3217,30 @@
                                         fun:'',
                                         img:'中药图片/'
                                     }
+                                ]
+                            },
+                            {
+                                name:'失笑散*',
+                                key:'e927a1a56f974a1baa9d6bc46a0c32ec',
+                                gong:'活血袪瘀，散结止痛',
+                                zhi:[
+                                    '瘀血疼痛证'
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'蒲黄',
+                                        number:6,
+                                        role:'君',
+                                        fun:'止血，化瘀',
+                                        img:'中药图片/止血/化瘀止血/蒲黄.jpg'
+                                    },
+                                    {
+                                        name:'五灵脂',
+                                        number:9,
+                                        role:'',
+                                        fun:'活血止痛，化瘀止血',
+                                        img:'中药图片/活血化瘀/活血止痛/五灵脂.jpg'
+                                    },
                                 ]
                             },
                             {
@@ -3936,17 +3990,69 @@
                             {
                                 name:'温胆汤',
                                 key:'67792c5629125d5390c83ecc73f76fe5',
-                                gong:'',
+                                gong:'理气化痰，清胆和胃',
                                 zhi:[
-                                    ''
+                                    '胆胃不和，痰热内扰证。虚烦不宁，失眠多梦，或恶心呕逆'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
+                                        name:'半夏',
+                                        number:6,
+                                        role:'君',
+                                        qi:1,
+                                        fun:'燥湿化痰，降逆止呕',
+                                        img:'./中药图片/温化寒痰/半夏.jpeg'
+                                    },
+                                    {
+                                        name:'竹茹',
+                                        number:6,
+                                        role:'臣',
+                                        qi:-1,
+                                        fun:'入胃和胆经。清化热痰，除烦止呕',
+                                        img:'./中药图片/清化热痰/竹茹.jpg'
+                                    },
+                                    {
+                                        name:'陈皮',
                                         number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
+                                        role:'佐',
+                                        fun:'理气健脾，燥湿化痰',
+                                        img:'中药图片/理气药/陈皮.jpg'
+                                    },
+                                    {
+                                        name:'茯苓',
+                                        number:4.5,
+                                        role:'',
+                                        fun:'健脾利水渗湿，杜生痰之源',
+                                        img:'./中药图片/利水渗湿/利水消肿/茯苓.jpg'
+                                    },
+                                    {
+                                        name:'枳壳',
+                                        number:6,
+                                        role:'',
+                                        qi:-1,
+                                        fun:'破气消积化痰',
+                                        img:'中药图片/理气药/枳实.jpg'
+                                    },
+                                    {
+                                        name:'生姜',
+                                        number:3,
+                                        role:'',
+                                        fun:'生姜5片',
+                                        img:'中药图片/发散风寒/生姜.jpeg'
+                                    },
+                                    {
+                                        name:'大枣',
+                                        number:1,
+                                        role:'',
+                                        fun:'1枚',
+                                        img:'中药图片/补气/大枣.jpg'
+                                    },
+                                    {
+                                        name:'灸甘草',
+                                        number:3,
+                                        role:'使',
+                                        fun:'调和',
+                                        img:'中药图片/补气/灸甘草.jpg'
                                     },
                                 ]
                             },
@@ -4229,6 +4335,12 @@
                                             width = radius > h? radius:h;
                                             height = width;
 
+                                        }else if(start == -90 && end == -270){
+                                            // 完全在左边
+                                            x1=0;
+                                            y1=0;
+                                            width = height =radius *2;
+                                            
                                         }else if(start > 0 && start <= 90){
                                             // 第一象限
                                             x1 = radius;

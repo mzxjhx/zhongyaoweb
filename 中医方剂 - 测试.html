@@ -381,6 +381,30 @@
                                     },
                                 ]
                             },
+                            {
+                                name:'失笑散*',
+                                key:'e927a1a56f974a1baa9d6bc46a0c32ec',
+                                gong:'活血袪瘀，散结止痛',
+                                zhi:[
+                                    '瘀血疼痛证'
+                                ],
+                                fangjie:[
+                                    {
+                                        name:'蒲黄',
+                                        number:6,
+                                        role:'君',
+                                        fun:'止血，化瘀',
+                                        img:'中药图片/止血/化瘀止血/蒲黄.jpg'
+                                    },
+                                    {
+                                        name:'五灵脂',
+                                        number:9,
+                                        role:'',
+                                        fun:'活血止痛，化瘀止血',
+                                        img:'中药图片/活血化瘀/活血止痛/五灵脂.jpg'
+                                    },
+                                ]
+                            },
                             
                         ]
                     },
@@ -522,6 +546,9 @@
                                         }else if(start < 0 && start > -90 && end < -90 && end >= -180){
                                             // 跨3和4
                                             y1 = radius;
+                                            //x1 = radius + radius * Math.sin(end * Math.PI / 180);
+                                            //let w = radius * (Math.abs(Math.sin(end * Math.PI / 180)) + Math.abs(Math.cos(start * Math.PI / 180)))
+
                                             x1 = radius + radius * Math.cos(end * Math.PI / 180);
                                             let w = radius * (Math.abs(Math.cos(end * Math.PI / 180)) + Math.abs(Math.cos(start * Math.PI / 180)))
                                             height = width = radius > w?radius:w;
@@ -534,6 +561,12 @@
                                             width = radius > h? radius:h;
                                             height = width;
 
+                                        }else if(start == -90 && end == -270){
+                                            // 完全在左边
+                                            x1=0;
+                                            y1=0;
+                                            width = height =radius *2;
+                                            
                                         }else if(start > 0 && start <= 90){
                                             // 第一象限
                                             x1 = radius;

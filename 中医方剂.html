@@ -202,6 +202,29 @@
         .red{
             color: #f00;
         }
+
+        ::-webkit-scrollbar {
+            width: 8px; /* 对于垂直滚动条，设置宽度 */
+            height: 12px; /* 对于水平滚动条，设置高度 */
+            border-radius: 2px;
+        }
+        
+        /* 滚动条轨道 */
+        ::-webkit-scrollbar-track {
+            /* background: #f1f1f1; 背景颜色 */
+            background: #fff;
+            /*#f1f2f3*/
+        }
+        
+        /* 滚动条的滑块 */
+        ::-webkit-scrollbar-thumb {
+            background: #888; /* 滑块颜色 */
+        }
+        
+        /* 滑块hover效果 */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; /* 滑块hover颜色 */
+        }
     </style>
 </head>
 <!-- 
@@ -2513,17 +2536,55 @@
                             },
                             {
                                 name:'六味地黄丸',
-                                gong:'',
+                                key:'a8c70b94518af8827db317ee08382db7',
+                                gong:'填精滋阴补肾',
                                 zhi:[
-                                    ''
+                                    '肾阴精不足证'
                                 ],
                                 fangjie:[
                                     {
-                                        name:'',
+                                        name:'熟地黄',
+                                        number:24,
+                                        role:'君',
+                                        fun:'填精益髓，滋补阴精',
+                                        img:'中药图片/补血/熟地黄.jpeg'
+                                    },
+                                    {
+                                        name:'山茱萸',
+                                        number:12,
+                                        role:'臣',
+                                        fun:'补肝肾',
+                                        img:'中药图片/收涩药/固精缩尿止带/山茱萸.jpg'
+                                    },
+                                    {
+                                        name:'山药',
+                                        number:12,
+                                        role:'',
+                                        fun:'双补脾肾',
+                                        img:'中药图片/补气/山药.jpg'
+                                    },
+                                    {
+                                        name:'泽泻',
                                         number:9,
-                                        role:1,
-                                        fun:'',
-                                        img:'中药图片/'
+                                        role:'佐',
+                                        qi:-2,
+                                        fun:'利水渗湿、泄热化浊',
+                                        img:'中药图片/利水渗湿/利水消肿/泽泻.jpg'
+                                    },
+                                    {
+                                        name:'牡丹皮',
+                                        number:9,
+                                        role:'',
+                                        qi:-1,
+                                        fun:'清热',
+                                        img:'中药图片/清热药/清热凉血/牡丹皮.jpg'
+                                    },
+                                    {
+                                        name:'茯苓',
+                                        number:9,
+                                        role:'',
+                                        fun:'健脾利水渗湿',
+                                        img:'./中药图片/利水渗湿/利水消肿/茯苓.jpg'
                                     }
                                 ]
                             },

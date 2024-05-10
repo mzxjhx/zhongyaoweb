@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倪海厦-神农本草经</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            font-family: serif;
+            background: #d6e6d5;
+        }
+
+        .mainApp {
+            width: 100%;
+            height: 100%;
+
+        }
+        .header{
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .directory{
+            width: 1024px;
+            margin: 0 auto;
+        }
+        .directory .fanglei{
+            list-style: none;
+        }
+        .directory .fangming{
+            list-style: none;
+            margin: 9px 0;
+            cursor: pointer;        
+            color: #000;    
+        }
+    </style>
+</head>
+<body>
+    <div class="mainApp" id="app">
+        <h3 class="header">倪海厦-神农本草经 60集每集主要内容记录</h3>
+
+        <ul class="directory">
+            <li v-for="ji in nis" class="fanglei">
+                {{ji.title}}
+                <ul>
+                    <li v-for="cc in ji.content" class="fangming" v-html="cc">
+
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {                    
+                largeimage:{
+                    src:'',
+                    show:false,
+                    left:500,
+                }, 
+                nis:[
+                    {
+                        title:'第01集',
+                        content:[
+                            '介绍',
+                            ''
+                        ]
+                    },
+                    {
+                        title:'第02集',
+                        content:[
+                            '本草备要的药性总义，五味入五脏',
+                            ''
+                        ]
+                    },
+                    {
+                        title:'第03集',
+                        content:[
+                            '本草备要的药性总义，五味作用讲解',
+                            '四气为阳，五味为阴',
+                            '药的升降浮沉。气之厚薄，味之淡重及其作用，质重和质轻的作用',
+                            '根据取药的位置，决定其药性是在表、在头、在四肢、在里、还是在下。以区分用药'
+                        ]
+                    },
+                    {
+                        title:'第04集',
+                        content:[
+                            '五色和五味归经讲解，五脏补泻之义',
+                            ''
+                        ]
+                    },
+                    {
+                        title:'第05集',
+                        content:[
+                            '六淫：风湿寒热火燥的用药总义。火与热的区别',
+                            '人之五脏应五行，虚则补其母，实则泻其子，子能令母实。还有五行相克的',
+                            '五病之所禁，五味之所伤'
+                        ]
+                    },
+                    {
+                        title:'第06集',
+                        content:[
+                            '中药炮制，醋、酒、盐、蜜等炮制药性变化',
+                            '讲了很多书上没有但实用的',
+                            '丹砂'
+                        ]
+                    }
+                ]
+            },
+        })
+    </script>
+
+</body>
+</html>

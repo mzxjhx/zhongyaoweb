@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./css/font-awesome.min.css?r="+Math.random()>
+    <title>方剂学随机测试题</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+            background: #f5f5f5;
+            font-family: serif;
+        }
+
+        .mainApp {
+            width: 1024px;
+            margin: 0 auto;
+            margin-top: 50px;
+
+            font-size: 24px;
+        }
+        h3{
+            text-align: center;
+        }
+
+        .content-box{
+            display: flex;
+        }
+        .content-box .box{        
+            flex: 1;
+        }
+        .yao-name,
+        .zheng-name{
+            list-style: none;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="mainApp" id="app">
+        <h3>方剂学随机测试题</h3>
+        <div class="content-box">
+            <!--封面-->
+
+            <ul class="box yao-list">
+                <li  v-for="y in yao" class="yao-name">{{y}}</li>
+            </ul>
+            <div class="mid">
+            </div>                        
+
+            <ul class="box zheng-list">
+                <li v-for="z in zheng" class="zheng-name">{{z}}</li>
+            </ul>
+
+        </div>
+
+        
+    </div>
+
+
+    <script src="./js/vue.min.js"></script>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                list:[
+                    {
+                        yao:'麻黄汤',
+                        zheng:'恶寒发热，头身疼痛，无汗而喘'
+                    },
+                    {
+                        yao:'桂枝汤',
+                        zheng:'恶风发热，汗出头痛鼻鸣干呕'
+                    },
+                    {
+                        yao:'小青龙汤',
+                        zheng:'恶寒发热，头身疼痛，无汗。痰涎清稀量多'
+                    },
+                    {
+                        yao:'止嗽散',
+                        zheng:'咳嗽咽痒，咯痰不爽，或微恶风发热'
+                    },
+                    {
+                        yao:'桑菊饮',
+                        zheng:'但咳，身热不甚'
+                    },
+                ],
+                yao:[
+                   
+                ],
+                zheng:[
+                    
+                ]
+
+            },
+            components: {
+
+            },
+            // 生命周期钩子
+            created() {
+                this.shuffleArray()
+            },
+            mounted() {
+                
+            },
+            methods: {
+                shuffleArray() {  
+                    let shuffledArray = []
+                    this.yao = this.list.map(m=>{
+                        return m.yao;
+                    })
+                    this.zheng= this.list.map(m=>{
+                        return m.zheng;
+                    })
+                    // 使用 Fisher-Yates 洗牌算法进行随机排序  
+                    for (let i = this.zheng.length - 1; i > 0; i--) {  
+                        const j = Math.floor(Math.random() * (i + 1));  
+                        [this.zheng[i], this.zheng[j]] = [this.zheng[j], this.zheng[i]];  
+                    }  
+                    // 将打乱后的数组赋值给用于显示的数组  
+                    shuffledArray = this.zheng.slice(); // 使用 slice 创建一个新数组，避免直接修改 originalArray  
+                    this.zheng = shuffledArray;
+                } 
+                
+               
+            }
+        })        
+    </script>
+    
+</body>
+
+</html>
